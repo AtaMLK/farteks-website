@@ -13,7 +13,7 @@ export function CTA() {
               Let's Work Together
             </p>
 
-            <WordAnimation className="mx-auto max-w-4xl text-5xl font-bold leading-tight block">
+            <WordAnimation className="mx-auto max-w-4xl text-5xl font-bold leading-1 block">
               Looking for a Reliable OEM Hydraulic Component Supplier?
             </WordAnimation>
 

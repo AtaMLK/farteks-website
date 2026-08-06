@@ -79,20 +79,27 @@ export const trustItems = [
 export const featuredProducts = [
   {
     title: "Hydraulic Glands",
-    description:  "Precision-machined glands for heavy-duty hydraulic cylinders.",
+    description:
+      "Precision-machined glands for heavy-duty hydraulic cylinders.",
     image: "/images/products/gland.jpg",
-    href: "/products/glands",
+    href: "/products",
   },
   {
     title: "Rod Ends",
     description: "Reliable rod ends manufactured with tight tolerances.",
     image: "/images/products/rodend.jpg",
-    href: "/products/rod-ends",
+    href: "/products",
   },
   {
     title: "Pistons",
     description: "OEM piston solutions for industrial applications.",
     image: "/images/products/piston.jpg",
-    href: "/products/pistons",
+    href: "/products",
+  },
+  {
+    title: "Pistons",
+    description: "OEM piston solutions for industrial applications.",
+    image: "/images/products/custom.jpg",
+    href: "/products",
   },
 ];

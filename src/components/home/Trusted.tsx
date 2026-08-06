@@ -5,14 +5,14 @@ import { FadeItem } from "../animations/FadeItem";
 
 export function Trusted() {
   return (
-    <section className="bg-slate-50">
+    <section className="bg-slate-50 mb-10">
       <Container>
         <div className="mb-16 text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#E5322D]">
             Trusted Worldwide
           </p>
 
-          <h2 className="mt-5 text-4xl font-bold text-[#181617]">
+          <h2 className="m-5 text-4xl font-bold text-[#181617]">
             Built for OEM Manufacturers
           </h2>
         </div>

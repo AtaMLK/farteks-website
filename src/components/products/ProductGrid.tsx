@@ -12,11 +12,8 @@ export function ProductGrid() {
       <ProductsHero />
 
       <section className="py-28">
-
         <Container>
-
-          <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
-
+          <div className="grid gap-10 md:grid-cols-3 xl:grid-cols-4">
             {productCategories.map((product) => (
               <ProductCard
                 key={product.slug}
@@ -26,11 +23,8 @@ export function ProductGrid() {
                 href={`/products/${product.slug}`}
               />
             ))}
-
           </div>
-
         </Container>
-
       </section>
 
       <ProductsCTA />

@@ -10,7 +10,7 @@ export const productCategories = [
   {
     slug: "rod-ends",
     title: "Rod Ends",
-    image: "/images/products/rod-end.jpg",
+    image: "/images/products/rodend.jpg",
     description:
       "Heavy-duty rod ends for industrial cylinders.",
   },
@@ -26,7 +26,7 @@ export const productCategories = [
   {
     slug: "end-caps",
     title: "End Caps",
-    image: "/images/products/end-cap.jpg",
+    image: "/images/products/endcap.jpg",
     description:
       "Precision end cap solutions.",
   },

@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode } from "react";
 
 interface Props {
   children: string;
@@ -33,7 +32,7 @@ export function WordAnimation({ children, className = "", delay = 0 }: Props) {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
