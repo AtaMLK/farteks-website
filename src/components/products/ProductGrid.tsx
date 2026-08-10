@@ -1,4 +1,4 @@
-import { productCategories } from "../../data/products";
+import { PRODUCTS } from "../..//data/products-data";
 
 import { Container } from "../layout/Container";
 
@@ -11,18 +11,29 @@ export function ProductGrid() {
     <>
       <ProductsHero />
 
-      <section className="py-28">
+      {/* 4-Column Grid Section - 36 Products */}
+      <section className="py-24">
         <Container>
-          <div className="grid gap-10 md:grid-cols-3 xl:grid-cols-4">
-            {productCategories.map((product) => (
+          {/* Grid: 4 columns (9 rows × 4 = 36 items), responsive */}
+          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {PRODUCTS.map((product) => (
               <ProductCard
-                key={product.slug}
-                title={product.title}
+                key={product.id}
+                title={product.name}
                 description={product.description}
                 image={product.image}
-                href={`/products/${product.slug}`}
+                href={`/products/${product.id}`}
+                badge={product.category}
+                variants={product.specs.length}
               />
             ))}
+          </div>
+
+          {/* Summary */}
+          <div className="mt-12 text-center">
+            <p className="text-slate-600">
+              Showing {PRODUCTS.length} hydraulic cylinder components
+            </p>
           </div>
         </Container>
       </section>

@@ -7,6 +7,8 @@ interface ProductCardProps {
   description: string;
   image: string;
   href: string;
+  badge?: string;
+  variants?: number;
 }
 
 export function ProductCard({
@@ -14,31 +16,60 @@ export function ProductCard({
   description,
   image,
   href,
+  badge,
+  variants,
 }: ProductCardProps) {
   return (
-    <article className="group overflow-hidden rounded-[30px] border border-slate-200 bg-white transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
-      <div className="overflow-hidden">
+    <article className="group relative overflow-hidden rounded-[20px] border border-slate-200 bg-white transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
+      {/* Image Container - Overflow visible for hover scale */}
+      <div className="relative h-32 overflow-visible">
         <Image
           src={image}
           alt={title}
           width={280}
-          height={250}
-          className="aspect-4/3 object-cover transition duration-700 group-hover:scale-110"
+          height={200}
+          className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.2] group-hover:-translate-y-2"
         />
+        
+        {/* Badge - Category or variants */}
+        {badge && (
+          <div 
+            className="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold text-white bg-orange-500"
+            style={{ zIndex: 10 }}
+          >
+            {badge}
+          </div>
+        )}
       </div>
 
-      <div className="p-6 ">
-        <h3 className="text-2xl font-bold">{title}</h3>
+      {/* Content */}
+      <div className="p-3 space-y-2">
+        {/* Title */}
+        <h3 className="text-sm font-bold line-clamp-2 group-hover:text-orange-500 transition-colors">
+          {title}
+        </h3>
 
-        <p className="mt-3 leading-6 text-slate-600">{description}</p>
+        {/* Description */}
+        <p className="text-xs leading-5 text-slate-600 line-clamp-2">
+          {description}
+        </p>
 
-        <Link
-          href={href}
-          className="mt-5 inline-flex items-center gap-2 font-semibold text-orange-500"
-        >
-          Learn More
-          <ArrowRight size={18} />
-        </Link>
+        {/* Footer - Variants count + Arrow */}
+        <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+          {variants && (
+            <span className="text-xs text-slate-500">
+              {variants} variants
+            </span>
+          )}
+          
+          <Link
+            href={href}
+            className="inline-flex items-center gap-1 text-xs font-semibold text-orange-500 hover:text-orange-600 transition-colors ml-auto"
+          >
+            Details
+            <ArrowRight size={14} />
+          </Link>
+        </div>
       </div>
     </article>
   );
