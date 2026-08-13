@@ -1,13 +1,12 @@
-"use client";
+/* "use client";
 
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { Button } from "../../components/ui/Button";
-import { cn } from "../../lib/utils";
+import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
 import { Container } from "./Container";
-import Image from "next/image";
 
 const links = [
   ["Products", "/products"],
@@ -87,3 +86,4 @@ export function Navbar() {
     </header>
   );
 }
+ */

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { cn } from "../../lib/utils";
-import { ButtonProps } from "../../types";
+import { cn } from "@/lib/utils";
+import { ButtonProps } from "@/types";
 
 const variants = {
   primary: "bg-[#392B87] text-white hover:bg-[#2a1f63]",
@@ -19,7 +19,7 @@ export function Button({
   onClick,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex h-14 items-center justify-center rounded-2xl px-8 font-semibold transition-all duration-300",
+    "inline-flex h-14 items-center justify-center rounded-3xl px-8 font-semibold transition-all duration-300",
     variants[variant],
     className,
   );

@@ -1,4 +1,4 @@
-import { PRODUCTS } from "../..//data/products-data";
+import { PRODUCTS } from "@//data/products-data";
 
 import { Container } from "../layout/Container";
 

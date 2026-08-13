@@ -1,4 +1,4 @@
-import { trustItems } from "../../data/home";
+import { trustItems } from "@/data/home";
 import { Container } from "../layout/Container";
 import { Stagger } from "../animations/Stagger";
 import { FadeItem } from "../animations/FadeItem";
@@ -27,7 +27,9 @@ export function Trusted() {
                   <div className="rounded-[30px] bg-white p-10 shadow-card shadow-hover hover:border-[#E5322D] hover:border transition-all">
                     <Icon className="mb-8 text-[#E5322D]" size={42} />
 
-                    <h3 className="text-2xl font-semibold text-[#181617]">{item.title}</h3>
+                    <h3 className="text-2xl font-semibold text-[#181617]">
+                      {item.title}
+                    </h3>
                   </div>
                 </FadeItem>
               );

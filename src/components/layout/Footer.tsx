@@ -50,7 +50,7 @@ export function Footer() {
 
             <p>info@farteks.com</p>
 
-            <p>+90 XXX XXX XX XX</p>
+            <p>+90 212 660 58 57</p>
           </div>
         </div>
       </Container>

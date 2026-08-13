@@ -9,11 +9,14 @@ export function CTA() {
       <Container>
         <FadeIn>
           <div className="overflow-hidden rounded-[40px] bg-[#392B87] px-12 py-20 text-center text-white">
-            <p className="mb-4 text-[#E5322D] uppercase tracking-[0.35em] font-semibold">
+
+            <p className="mb-4 font-semibold uppercase tracking-[0.35em] text-[#E5322D]">
               Let's Work Together
             </p>
 
-            <WordAnimation className="mx-auto max-w-4xl text-5xl font-bold leading-1 block">
+            <WordAnimation
+              className="mx-auto block max-w-4xl text-5xl font-bold leading-tight"
+            >
               Looking for a Reliable OEM Hydraulic Component Supplier?
             </WordAnimation>
 
@@ -23,8 +26,11 @@ export function CTA() {
             </p>
 
             <div className="mt-12 flex justify-center">
-              <AnimatedButton href="/contact">Request a Quotation</AnimatedButton>
+              <AnimatedButton href="/contact">
+                Request a Quotation
+              </AnimatedButton>
             </div>
+
           </div>
         </FadeIn>
       </Container>

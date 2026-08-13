@@ -97,8 +97,8 @@ export const featuredProducts = [
     href: "/products",
   },
   {
-    title: "Pistons",
-    description: "OEM piston solutions for industrial applications.",
+    title: "Custom Components",
+    description: "Just share your drawing with us, and we’ll take care of everything else.",
     image: "/images/products/custom.jpg",
     href: "/products",
   },

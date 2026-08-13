@@ -20,15 +20,14 @@ export function ProductCard({
   variants,
 }: ProductCardProps) {
   return (
-    <article className="group relative overflow-hidden rounded-[20px] border border-slate-200 bg-white transition-all duration-500 hover:shadow-lg hover:-translate-y-1">
+    <article className="group relative overflow-hidden rounded-[20px]  border-slate-200 bg-white transition-all duration-500 hover:shadow-lg hover:-translate-y-1 ">
       {/* Image Container - Overflow visible for hover scale */}
-      <div className="relative h-32 overflow-visible">
+      <div className="relative h-32 overflow-visible hover:border-[#E5322D]">
         <Image
           src={image}
           alt={title}
-          width={280}
-          height={200}
-          className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.2] group-hover:-translate-y-2"
+          fill
+          className=""
         />
         
         {/* Badge - Category or variants */}

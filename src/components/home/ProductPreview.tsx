@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { featuredProducts } from "../../data/home";
+import { featuredProducts } from "@/data/home";
 
 import { Container } from "../layout/Container";
 import { SectionTitle } from "../ui/SectionTitle";

@@ -1,7 +1,7 @@
 "use client";
 
-import { stats } from "../../data/home";
-import { Container } from "../../components/layout/Container";
+import { stats } from "@/data/home";
+import { Container } from "@/components/layout/Container";
 import { motion } from "framer-motion";
 import { Stagger } from "../animations/Stagger";
 import { FadeItem } from "../animations/FadeItem";

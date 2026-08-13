@@ -1,5 +1,5 @@
 export const SITE = {
-  name: "Farteks",
+  name: "Farteks limited ",
 
   shortName: "Farteks",
 
@@ -9,9 +9,9 @@ export const SITE = {
 
   email: process.env.NEXT_PUBLIC_COMPANY_EMAIL || "info..farteks.com",
 
-  phone: process.env.NEXT_PUBLIC_PHONE || "+90XXXXXXXXXX",
+  phone: process.env.NEXT_PUBLIC_PHONE || "+90 212 660 58 57",
 
-  map: process.env.NEXT_PUBLIC_GOOGLE_MAP || "",
+  map: process.env.NEXT_PUBLIC_GOOGLE_MAP || "https://maps.app.goo.gl/ttufjcvHgUxsR98y5",
 
   slogan: "Hydraulic Cylinder Components",
 

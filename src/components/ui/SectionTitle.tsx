@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 
 interface Props {
   eyebrow?: string;
@@ -24,7 +24,9 @@ export function SectionTitle({
         </span>
       )}
 
-      <h2 className="max-w-4xl text-5xl font-bold leading-tight text-[#181617]">{title}</h2>
+      <h2 className="max-w-4xl text-5xl font-bold leading-tight text-[#181617]">
+        {title}
+      </h2>
 
       {description && (
         <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">

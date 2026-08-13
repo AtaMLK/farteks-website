@@ -1,5 +1,5 @@
 import { LucideIcon } from "lucide-react";
-import { FadeItem } from "../../components/animations/FadeItem";
+import { FadeItem } from "@/components/animations/FadeItem";
 
 interface IconBoxProps {
   icon: LucideIcon;
