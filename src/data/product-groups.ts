@@ -100,6 +100,30 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
       'trunnion',
     ],
   },
+   {
+    id: 'custom-hydraulic',
+    name: 'Custom Hydraulic Components',
+    description: 'Bespoke hydraulic cylinder components manufactured to customer drawings and specifications, with engineering and OEM support.',
+    order: 7,
+    products: [
+      'custom-piston',
+      'custom-gland',
+      'custom-rod-end',
+    ],
+  },
+  {
+    id: 'hydraulic-unit',
+    name: 'Hydraulic Power Unit Components',
+    description: 'Components for hydraulic power units, including pump drums, elastic gear couplings, oil tanks, maintenance covers and adapters.',
+    order: 8,
+    products: [
+      'hydraulic-pump-drums',
+      'elastic-gear-couplings',
+      'hydraulic-oil-tanks',
+      'maintenance-covers',
+      'adapters',
+    ],
+  },
 ];
 
 export function getProductGroup(groupId: string): ProductGroup | undefined {
