@@ -47,7 +47,7 @@ export default function ContactPage() {
 
       <section className="bg-slate-50">
         <Container>
-          <div className="grid gap-12 grid-rows-2">
+          <div className="grid gap-12">
             <div className="grid gap-12 lg:grid-cols-2">
               <div>
                 <div>
@@ -139,7 +139,7 @@ export default function ContactPage() {
               </Container>
             </section>
 
-            <div className="grid lg:grid-cols-1 gap-4">
+            <div className="grid lg:grid-cols-1 gap-4 ">
               <div className="mt-6 overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
                 <iframe
                   src="https://www.google.com/maps?q=FARTEKS,+Zeytinlik+Mahallesi,+Yakut+Sokak+No+11%2F10,+Bakırköy,+Istanbul,+Türkiye&output=embed"
