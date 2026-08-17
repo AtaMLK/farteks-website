@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -28,9 +26,25 @@ export async function POST(request: Request) {
         ? `Quote Request — ${subject || "Farteks Website"}`
         : `Contact Message — ${subject || "Farteks Website"}`;
 
+    // Resend is optional for now. The site and contact form can run
+    // without RESEND_API_KEY. When the key is added, messages are sent normally.
+    const apiKey = process.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+      console.warn("RESEND_API_KEY is not configured. Contact message was received but not emailed.");
+
+      return NextResponse.json({
+        success: true,
+        emailSent: false,
+        message: "Your message was received. Email notifications are temporarily unavailable.",
+      });
+    }
+
+    const resend = new Resend(apiKey);
+
     const { data, error } = await resend.emails.send({
       from: "FARTEKS Website <website@farteks.com>",
-      to: ["info@farteks.com" , "support@farteks.com"],
+      to: ["info@farteks.com", "support@farteks.com"],
       replyTo: email,
       subject: emailSubject,
 
@@ -148,6 +162,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
+      emailSent: true,
       id: data?.id,
     });
   } catch (error) {
