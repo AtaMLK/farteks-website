@@ -13,18 +13,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Container } from '@/components/layout/Container';
 import { ProductCard } from '@/components/products/ProductCard';
 
-type Product = {
-  id: string;
-  name: string;
-  groupName: string;
-  category: string;
-  productNumber: string;
-  description: string;
-  image: string;
-  drawingImage: string;
-  specColumns: string[];
-  specs: Record<string, string>[];
-};
+import type { Product } from "@/data/products-data"
 
 interface ProductDetailClientProps {
   product: Product;

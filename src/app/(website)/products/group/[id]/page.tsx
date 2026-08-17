@@ -52,7 +52,7 @@ export default function ProductGroupDetailPage() {
 
           {/* View Toggle */}
           {isClient && (
-            <div className="flex gap-2 bg-slate-100 rounded-full p-1">
+            <div className="flex gap-2 bg-slate-100 rounded-full p-1 mt-10">
               <button
                 onClick={() => setViewMode('cards')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all ${

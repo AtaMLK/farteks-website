@@ -22,7 +22,7 @@ export default function ContactForm() {
   >("idle");
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
 
@@ -63,6 +63,7 @@ export default function ContactForm() {
         phone: "",
         subject: "",
         message: "",
+        type,
       });
     } catch (error) {
       console.error(error);
@@ -75,13 +76,11 @@ export default function ContactForm() {
       <div className="mb-10">
         <p className="site-eyebrow">Farteks / contact</p>
 
-        <h2 className="site-section-title mt-3">
-          Let&apos;s talk.
-        </h2>
+        <h2 className="site-section-title mt-3">Let&apos;s talk.</h2>
 
         <p className="mt-4 max-w-2xl text-slate-500">
-          Whether you need a quotation, product information or simply want
-          to get in touch with our team, send us a message.
+          Whether you need a quotation, product information or simply want to
+          get in touch with our team, send us a message.
         </p>
       </div>
 
@@ -102,9 +101,7 @@ export default function ContactForm() {
 
             <span
               className={`mt-1 block text-xs ${
-                type === "quote"
-                  ? "text-white/70"
-                  : "text-slate-400"
+                type === "quote" ? "text-white/70" : "text-slate-400"
               }`}
             >
               Ask us about products and pricing
@@ -126,9 +123,7 @@ export default function ContactForm() {
 
             <span
               className={`mt-1 block text-xs ${
-                type === "message"
-                  ? "text-white/70"
-                  : "text-slate-400"
+                type === "message" ? "text-white/70" : "text-slate-400"
               }`}
             >
               Contact the FARTEKS team
@@ -138,18 +133,15 @@ export default function ContactForm() {
 
         {status === "success" ? (
           <div className="px-8 py-16 text-center md:px-16">
-            <CheckCircle2
-              className="mx-auto text-[#392B87]"
-              size={52}
-            />
+            <CheckCircle2 className="mx-auto text-[#392B87]" size={52} />
 
             <h3 className="site-subsection-title mt-6">
               Message sent successfully.
             </h3>
 
             <p className="mx-auto mt-3 max-w-md text-slate-500">
-              Thank you for contacting FARTEKS. Our team will get back
-              to you as soon as possible.
+              Thank you for contacting FARTEKS. Our team will get back to you as
+              soon as possible.
             </p>
 
             <button
@@ -161,10 +153,7 @@ export default function ContactForm() {
             </button>
           </div>
         ) : (
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-6 p-8 md:p-10"
-          >
+          <form onSubmit={handleSubmit} className="space-y-6 p-8 md:p-10">
             <div className="grid gap-6 md:grid-cols-2">
               <Field
                 label="Name"
@@ -237,9 +226,7 @@ export default function ContactForm() {
               ) : (
                 <>
                   <Send size={18} />
-                  {type === "quote"
-                    ? "Request Quote"
-                    : "Send Message"}
+                  {type === "quote" ? "Request Quote" : "Send Message"}
                 </>
               )}
             </button>
@@ -261,9 +248,7 @@ function Field({
   label: string;
   name: string;
   value: string;
-  onChange: (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: string;
   required?: boolean;
 }) {
