@@ -87,10 +87,10 @@ export function GalleryPreview() {
           </Link>
         </div>
 
-        <div className="relative mt-14">
+        <div className="relative mt-10 sm:mt-14">
           <Link
             href="/gallery"
-            className="group relative block h-[540px] overflow-hidden rounded-[40px] bg-[#181617]"
+            className="group relative block h-[360px] overflow-hidden rounded-[28px] bg-[#181617] sm:h-[460px] sm:rounded-[34px] lg:h-[540px] lg:rounded-[40px]"
           >
             <Image
               src={gallery[galleryIndex]}
@@ -99,7 +99,7 @@ export function GalleryPreview() {
               className="object-cover transition duration-1000 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
-            <div className="absolute left-7 bottom-7 text-white md:left-10 md:bottom-10">
+            <div className="absolute bottom-5 left-5 text-white sm:bottom-7 sm:left-7 md:bottom-10 md:left-10">
               <p className="text-xs uppercase tracking-[.25em] text-[#E5322D]">
                 01 — 0{gallery.length}
               </p>
@@ -110,7 +110,7 @@ export function GalleryPreview() {
                 Click to open the full gallery
               </p>
             </div>
-            <div className="absolute right-7 top-7 rounded-full bg-white/15 px-4 py-2 text-xs font-semibold text-white backdrop-blur">
+            <div className="absolute right-4 top-4 rounded-full sm:right-7 sm:top-7 bg-white/15 px-4 py-2 text-xs font-semibold text-white backdrop-blur">
               View gallery ↗
             </div>
           </Link>
@@ -118,7 +118,7 @@ export function GalleryPreview() {
             type="button"
             onClick={prevGallery}
             aria-label="Previous gallery image"
-            className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-4 shadow-xl transition hover:bg-white"
+            className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 sm:left-4 sm:p-4 shadow-xl transition hover:bg-white"
           >
             <ChevronLeft size={20} />
           </button>
@@ -126,7 +126,7 @@ export function GalleryPreview() {
             type="button"
             onClick={nextGallery}
             aria-label="Next gallery image"
-            className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-4 shadow-xl transition hover:bg-white"
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 sm:right-4 sm:p-4 shadow-xl transition hover:bg-white"
           >
             <ChevronRight size={20} />
           </button>

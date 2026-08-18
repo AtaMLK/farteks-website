@@ -107,6 +107,7 @@ section{
 .container{
   width:min(100% - 32px,var(--container));
   margin-inline:auto;
+  margin-bottom: 1rem;
 }
 
 ::selection{
@@ -303,4 +304,35 @@ section{
 @media (max-width: 768px){
   .site-page-intro{ padding: 96px 0 72px; }
   .site-page-description{ font-size:1rem; line-height:1.7; }
+}
+
+
+/* Mobile UX safeguards */
+@media (max-width: 640px){
+  section{
+    padding: 72px 0;
+  }
+
+  .container{
+    width: min(100% - 24px, var(--container));
+  }
+
+  .site-page-title{
+    font-size: clamp(2.75rem, 13vw, 4rem);
+    overflow-wrap: anywhere;
+  }
+
+  .site-section-title{
+    font-size: clamp(2.35rem, 11vw, 3.5rem);
+  }
+
+  p, h1, h2, h3, h4, h5, h6, a, button{
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    scroll-behavior: auto !important;
+  }
 }

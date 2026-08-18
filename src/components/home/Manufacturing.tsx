@@ -152,8 +152,8 @@ export function Manufacturing() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-[520vh] overflow-clip bg-[#111214] text-white">
-      <div className="sticky top-0 h-svh min-h-[620px] overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-[300vh] overflow-clip bg-[#111214] text-white md:min-h-[520vh]">
+      <div className="sticky top-0 h-svh min-h-[560px] overflow-hidden sm:min-h-[620px]">
         {/* Visual layer */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[#17181b]" />
@@ -165,7 +165,7 @@ export function Manufacturing() {
           />
           <video
             ref={videoRef}
-            className="absolute inset-0 h-full w-full object-cover object-center opacity-[0.92]"
+            className="absolute inset-0 h-full w-full object-cover object-center opacity-[0.92] sm:object-center"
             src="/videos/manufacturing-cylinder.mp4"
             poster="/images/factory/manufacturing.jpg"
             muted
@@ -202,18 +202,18 @@ export function Manufacturing() {
                     ref={(node) => {
                       stageRefs.current[index] = node;
                     }}
-                    className="absolute left-0 top-1/2 w-full -translate-y-1/2 will-change-transform"
+                    className="absolute left-0 top-1/2 w-full -translate-y-1/2 will-change-transform px-1"
                   >
-                    <div className="mb-6 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.3em] text-white/60">
+                    <div className="mb-4 flex items-center gap-3 text-[10px] font-extrabold uppercase tracking-[0.22em] text-white/60 sm:mb-6 sm:text-[11px] sm:tracking-[0.3em]">
                       <span className="grid h-9 w-9 place-items-center rounded-full border border-white/10 bg-white/[0.06] backdrop-blur-md">
                         <Icon size={15} strokeWidth={1.7} />
                       </span>
                       <span>{stage.eyebrow}</span>
                     </div>
-                    <h2 className="max-w-2xl text-5xl font-extrabold leading-[0.94] tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl">
+                    <h2 className="max-w-2xl text-[2.35rem] font-extrabold leading-[0.96] tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl">
                       {stage.title}
                     </h2>
-                    <p className="mt-7 max-w-lg text-base leading-7 text-white/62 sm:text-lg sm:leading-8">
+                    <p className="mt-5 max-w-lg text-sm leading-6 text-white/62 sm:mt-7 sm:text-lg sm:leading-8">
                       {stage.body}
                     </p>
                   </div>
@@ -222,7 +222,7 @@ export function Manufacturing() {
 
               <div
                 data-manufacturing-cta
-                className="absolute left-0 top-1/2 w-full -translate-y-1/2 will-change-transform"
+                className="absolute left-0 top-1/2 w-full -translate-y-1/2 will-change-transform px-1"
               >
                 <div className="mb-6 text-[11px] font-extrabold uppercase tracking-[0.3em] text-white/55">
                   FARTEKS MANUFACTURING

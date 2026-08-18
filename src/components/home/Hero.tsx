@@ -12,42 +12,42 @@ import { WordAnimation } from "../animations/WordAnimation";
 
 export function Hero() {
   return (
-    <section className="relative isolate flex min-h-screen items-center overflow-hidden pt-28 pb-24">
+    <section className="relative isolate flex min-h-[100svh] items-center overflow-hidden px-0 pb-14 pt-24 sm:pb-20 sm:pt-28">
       {/* Background */}
       <HeroBackground />
 
       {/* Content */}
       <div className="relative z-10 w-full ">
         <Container>
-          <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] ">
+          <div className="grid min-w-0 items-center gap-10 sm:gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
             {/* LEFT */}
             <div>
               <FadeIn>
                 <Badge>{hero.badge}</Badge>
               </FadeIn>
 
-              <WordAnimation className="mt-8 block text-6xl font-bold leading-[1.05] lg:text-8xl">
+              <WordAnimation className="mt-6 block text-[clamp(2.6rem,11vw,4rem)] font-bold leading-[0.98] tracking-[-0.04em] sm:mt-8 sm:text-6xl sm:leading-[1.02] lg:text-8xl">
                 {hero.title}
               </WordAnimation>
 
               <WordAnimation
-                className="gradient-text mt-5 block text-6xl font-bold leading-[1.05] lg:text-8xl"
+                className="gradient-text mt-3 block text-[clamp(2.6rem,11vw,4rem)] font-bold leading-[0.98] tracking-[-0.04em] sm:mt-5 sm:text-6xl sm:leading-[1.02] lg:text-8xl"
                 delay={0.5}
               >
                 {hero.highlight}
               </WordAnimation>
 
               <FadeIn delay={0.8}>
-                <p className="mt-8 max-w-xl text-lg leading-8 text-slate-600">
+                <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:mt-8 sm:text-lg sm:leading-8">
                   {hero.description}
                 </p>
 
-                <div className="mt-12 flex flex-wrap gap-5">
-                  <AnimatedButton href={hero.primaryButton.href}>
+                <div className="mt-8 flex w-full flex-col gap-3 sm:mt-12 sm:flex-row sm:flex-wrap sm:gap-5">
+                  <AnimatedButton href={hero.primaryButton.href} className="w-full justify-center sm:w-auto">
                     {hero.primaryButton.text}
                   </AnimatedButton>
 
-                  <Button href={hero.secondaryButton.href} variant="outline">
+                  <Button href={hero.secondaryButton.href} variant="outline" className="w-full justify-center sm:w-auto">
                     {hero.secondaryButton.text}
                   </Button>
                 </div>
@@ -62,7 +62,7 @@ export function Hero() {
                 width={900}
                 height={900}
                 priority
-                className="rounded-[40px]"
+                className="h-auto w-full max-w-[680px] rounded-[24px] object-cover sm:rounded-[32px] lg:rounded-[40px]"
               />
             </FadeIn>
           </div>

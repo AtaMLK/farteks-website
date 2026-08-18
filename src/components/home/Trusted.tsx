@@ -7,7 +7,7 @@ export function Trusted() {
   return (
     <section className="bg-slate-50 mb-10">
       <Container>
-        <div className="mb-16 text-center">
+        <div className="mb-10 text-center sm:mb-16">
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#E5322D]">
             Trusted Worldwide
           </p>
@@ -24,7 +24,7 @@ export function Trusted() {
 
               return (
                 <FadeItem key={item.title}>
-                  <div className="rounded-[30px] bg-white p-10 shadow-card shadow-hover hover:border-[#E5322D] hover:border transition-all">
+                  <div className="rounded-[24px] bg-white p-6 sm:rounded-[30px] sm:p-10 shadow-card shadow-hover hover:border-[#E5322D] hover:border transition-all">
                     <Icon className="mb-8 text-[#E5322D]" size={42} />
 
                     <h3 className="text-2xl font-semibold text-[#181617]">

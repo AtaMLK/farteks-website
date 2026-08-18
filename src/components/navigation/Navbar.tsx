@@ -253,6 +253,18 @@ export function Navbar() {
                 </Link>
               ))}
 
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileOpen(false);
+                  setIsCatalogModalOpen(true);
+                }}
+                className="flex w-full items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left font-semibold text-slate-900 transition hover:border-[#E5322D] hover:text-[#E5322D]"
+              >
+                Download Catalog
+                <span aria-hidden="true">↗</span>
+              </button>
+
               <Button href="/contact" className="w-full rounded-3xl">
                 Request Quote
               </Button>

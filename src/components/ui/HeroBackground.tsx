@@ -28,10 +28,12 @@ export function HeroBackground() {
           absolute
           left-1/2
           top-1/2
+          hidden
           h-[600px]
           w-[600px]
           -translate-x-1/2
           -translate-y-1/2
+          sm:block
         "
       >
 
@@ -159,15 +161,15 @@ export function HeroBackground() {
           TECHNICAL CROSSHAIRS
       ================================= */}
 
-      <div className="absolute left-[18%] top-[25%] text-lg text-slate-300">
+      <div className="absolute left-[18%] top-[25%] hidden text-lg text-slate-300 sm:block">
         +
       </div>
 
-      <div className="absolute right-[20%] top-[30%] text-lg text-slate-300">
+      <div className="absolute right-[20%] top-[30%] hidden text-lg text-slate-300 sm:block">
         +
       </div>
 
-      <div className="absolute bottom-[22%] left-[25%] text-lg text-slate-300">
+      <div className="absolute bottom-[22%] left-[25%] hidden text-lg text-slate-300 sm:block">
         +
       </div>
 
@@ -175,13 +177,13 @@ export function HeroBackground() {
           TECHNICAL AXIS MARKS
       ================================= */}
 
-      <div className="absolute left-[8%] top-1/2 h-px w-12 bg-slate-200" />
+      <div className="absolute left-[8%] top-1/2 hidden h-px w-12 bg-slate-200 sm:block" />
 
-      <div className="absolute right-[8%] top-1/2 h-px w-12 bg-slate-200" />
+      <div className="absolute right-[8%] top-1/2 hidden h-px w-12 bg-slate-200 sm:block" />
 
-      <div className="absolute left-1/2 top-[10%] h-8 w-px bg-slate-200" />
+      <div className="absolute left-1/2 top-[10%] hidden h-8 w-px bg-slate-200 sm:block" />
 
-      <div className="absolute bottom-[10%] left-1/2 h-8 w-px bg-slate-200" />
+      <div className="absolute bottom-[10%] left-1/2 hidden h-8 w-px bg-slate-200 sm:block" />
 
     </div>
   );

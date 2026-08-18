@@ -47,7 +47,7 @@ export default function ProductGroupDetailPage() {
             className="inline-flex items-center gap-2 text-slate-600 hover:text-orange-500 transition-colors font-semibold"
           >
             <ArrowLeft size={20} />
-            Back to Categories
+            Back to Products
           </Link>
 
           {/* View Toggle */}

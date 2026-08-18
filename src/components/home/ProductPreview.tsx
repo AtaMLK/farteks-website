@@ -61,10 +61,10 @@ export function ProductPreview() {
           </Link>
         </div>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
+        <div className="mt-10 grid gap-5 sm:mt-14 lg:grid-cols-[1.15fr_.85fr] lg:gap-6">
           <motion.div
             layout
-            className="relative min-h-[520px] overflow-hidden rounded-[38px] bg-[#181617]"
+            className="relative min-h-[380px] overflow-hidden rounded-[28px] bg-[#181617] sm:min-h-[460px] sm:rounded-[34px] lg:min-h-[520px] lg:rounded-[38px]"
           >
             <Image
               src={products[productIndex].image}
@@ -74,11 +74,11 @@ export function ProductPreview() {
               className="object-cover transition duration-700 hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10 text-white">
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-white sm:p-8 md:p-10">
               <p className="text-xs font-bold uppercase tracking-[.25em] text-[#E5322D]">
                 {products[productIndex].type}
               </p>
-              <h3 className="mt-3 text-4xl font-black tracking-tight">
+              <h3 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">
                 {products[productIndex].title}
               </h3>
               <Link
@@ -96,9 +96,9 @@ export function ProductPreview() {
                 type="button"
                 key={product.title}
                 onClick={() => setProductIndex(index)}
-                className={`group flex items-center gap-5 rounded-[28px] border p-4 text-left transition duration-300 ${productIndex === index ? "border-[#E5322D] bg-white shadow-lg" : "border-slate-200 bg-white/50 hover:bg-white"}`}
+                className={`group flex min-w-0 items-center gap-3 rounded-[22px] border p-3 text-left transition duration-300 sm:gap-5 sm:rounded-[28px] sm:p-4 ${productIndex === index ? "border-[#E5322D] bg-white shadow-lg" : "border-slate-200 bg-white/50 hover:bg-white"}`}
               >
-                <div className="relative h-24 w-28 shrink-0 overflow-hidden rounded-2xl bg-slate-100">
+                <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-xl bg-slate-100 sm:h-24 sm:w-28 sm:rounded-2xl">
                   <Image
                     src={product.image}
                     alt=""
@@ -110,7 +110,7 @@ export function ProductPreview() {
                   <p className="text-[10px] font-bold uppercase tracking-[.2em] text-slate-400">
                     0{index + 1}
                   </p>
-                  <h3 className="mt-1 truncate text-lg font-bold">
+                  <h3 className="mt-1 truncate text-base font-bold sm:text-lg">
                     {product.title}
                   </h3>
                   <p className="mt-1 text-sm text-slate-500">{product.type}</p>

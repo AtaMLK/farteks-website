@@ -118,13 +118,15 @@ export function useEmailValidation() {
       /* -------------------------------------------------------------------- */
 
       const link = document.createElement("a");
-
       link.href = catalogUrl;
       link.download = "Farteks-Catalog.pdf";
+      link.rel = "noopener";
 
+      // Keep the browser download in the same user interaction flow.
+      // This also works when the catalog is served as a static public asset.
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
+      link.remove();
 
       setSuccess(true);
 

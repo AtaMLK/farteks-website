@@ -1,7 +1,6 @@
 import { PRODUCTS } from "@//data/products-data";
 
 import { Container } from "../layout/Container";
-
 import { ProductCard } from "./ProductCard";
 import { ProductsHero } from "./ProductsHero";
 import { ProductsCTA } from "./ProductsCTA";
@@ -11,11 +10,20 @@ export function ProductGrid() {
     <>
       <ProductsHero />
 
-      {/* 4-Column Grid Section - 36 Products */}
-      <section className="py-24">
+      <section className="py-14 sm:py-20 lg:py-24">
         <Container>
-          {/* Grid: 4 columns (9 rows × 4 = 36 items), responsive */}
-          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div
+            className="
+              grid
+              grid-cols-2
+              gap-3
+              sm:grid-cols-2
+              sm:gap-4
+              md:grid-cols-3
+              lg:grid-cols-4
+              lg:gap-5
+            "
+          >
             {PRODUCTS.map((product) => (
               <ProductCard
                 key={product.id}
@@ -29,9 +37,8 @@ export function ProductGrid() {
             ))}
           </div>
 
-          {/* Summary */}
-          <div className="mt-12 text-center">
-            <p className="text-slate-600">
+          <div className="mt-10 text-center sm:mt-14">
+            <p className="text-sm text-slate-500">
               Showing {PRODUCTS.length} hydraulic cylinder components
             </p>
           </div>

@@ -84,7 +84,7 @@ export function CatalogDownloadModal({
       />
 
       {/* Modal */}
-      <div className="fixed left-1/2 top-1/2 z-[101] w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-8 shadow-2xl">
+      <div className="fixed left-1/2 top-1/2 z-[101] max-h-[calc(100dvh-1rem)] w-[calc(100%-1rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl bg-white p-5 shadow-2xl sm:w-[calc(100%-2rem)] sm:p-8">
         {/* Close Button */}
         <button
           type="button"

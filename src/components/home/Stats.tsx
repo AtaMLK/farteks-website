@@ -11,7 +11,7 @@ export function Stats() {
     <section>
       <Container>
         <Stagger>
-          <div className="grid gap-10 rounded-[40px] bg-[#392B87] p-14 text-white md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid grid-cols-2 gap-5 rounded-[28px] bg-[#392B87] p-6 text-white sm:gap-8 sm:rounded-[32px] sm:p-10 md:grid-cols-2 xl:grid-cols-4 xl:rounded-[40px] xl:p-14">
             {stats.map((item) => (
               <FadeItem key={item.label}>
                 <motion.div
@@ -20,11 +20,11 @@ export function Stats() {
                   }}
                   className="text-center"
                 >
-                  <h3 className="text-6xl font-bold text-[#E5322D]">
+                  <h3 className="text-4xl font-bold text-[#E5322D] sm:text-5xl xl:text-6xl">
                     {item.value}
                   </h3>
 
-                  <p className="mt-4 text-lg text-slate-300">{item.label}</p>
+                  <p className="mt-2 text-sm text-slate-300 sm:mt-4 sm:text-lg">{item.label}</p>
                 </motion.div>
               </FadeItem>
             ))}
