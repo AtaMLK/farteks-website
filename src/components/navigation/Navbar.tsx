@@ -213,7 +213,7 @@ export function Navbar() {
               RIGHT SIDE
           ===================================================== */}
 
-          <div className="hidden items-center gap-4 lg:flex">
+          <div className="hidden items-center gap-4 lg:flex md:mx-2">
             <SearchBox />
 
             <div className="shrink-0 whitespace-nowrap">

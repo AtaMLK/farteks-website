@@ -16,7 +16,7 @@ export function Footer() {
             </div>
             <p className="mt-6 max-w-md leading-7 text-white/55">
               Precision hydraulic cylinder components for OEM partners,
-              engineered and manufactured in Türkiye.
+              engineered and manufactured with years of experience.
             </p>
             <Link
               href="/contact"

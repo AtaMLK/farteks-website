@@ -24,7 +24,7 @@ export function Export() {
                 <div className="mt-10 space-y-5">
                   <FadeItem>
                     <div className="rounded-2xl border-2 border-[#E5322D] bg-white p-6 font-semibold text-[#392B87] hover:bg-red-50 transition-colors">
-                      ✈ 30+ Export Countries
+                      ✈ 40+ Export Countries
                     </div>
                   </FadeItem>
 

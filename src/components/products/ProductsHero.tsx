@@ -94,7 +94,7 @@ export function ProductsHero() {
                     className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500"
                     delay={0.08}
                   >
-                    Manufactured in Türkiye
+                    manufactured with years of experience
                   </WordAnimation>
                 )}
               </h2>
