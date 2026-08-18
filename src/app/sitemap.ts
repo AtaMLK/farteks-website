@@ -25,6 +25,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/gallery`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/resources`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/industries`,
       lastModified: now,
       changeFrequency: 'monthly',
@@ -56,9 +68,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  /*
-   * Product group pages
-   */
   const groupPages: MetadataRoute.Sitemap = PRODUCT_GROUPS.map(
     (group) => ({
       url: `${baseUrl}/products/group/${group.id}`,
@@ -68,13 +77,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  /*
-   * Canonical product pages
-   *
-   * IMPORTANT:
-   * /products/[id] is the single canonical URL
-   * for each product.
-   */
   const productPages: MetadataRoute.Sitemap = PRODUCTS.map(
     (product) => ({
       url: `${baseUrl}/products/${product.id}`,
