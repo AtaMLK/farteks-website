@@ -21,16 +21,12 @@ export function Navbar() {
 
   const productsRef = useRef<HTMLDivElement>(null);
 
-  /*
-   * Scroll effect
-   */
   useEffect(() => {
     const handleScroll = () => {
       setSolid(window.scrollY > 20);
     };
 
     handleScroll();
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -38,17 +34,11 @@ export function Navbar() {
     };
   }, []);
 
-  /*
-   * Close dropdown when route changes
-   */
   useEffect(() => {
     setIsProductsOpen(false);
     setMobileOpen(false);
   }, [pathname]);
 
-  /*
-   * Close dropdown when clicking outside
-   */
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -71,6 +61,10 @@ export function Navbar() {
       label: "Products",
       href: "/products",
       hasDropdown: true,
+    },
+    {
+      label: "Resources",
+      href: "/resources",
     },
     {
       label: "Industries",
@@ -98,12 +92,8 @@ export function Navbar() {
     <>
       <header
         className={`
-          fixed
-          inset-x-0
-          top-0
-          z-50
-          transition-all
-          duration-300
+          fixed inset-x-0 top-0 z-50
+          transition-all duration-300
           ${
             solid
               ? "border-b border-slate-200 bg-white/95 backdrop-blur-xl"
@@ -112,10 +102,6 @@ export function Navbar() {
         `}
       >
         <Container className="flex h-20 items-center justify-between">
-          {/* =====================================================
-              LOGO
-          ===================================================== */}
-
           <Link
             href="/home"
             className="farteks-logo shrink-0 text-4xl font-bold tracking-[0.2em]"
@@ -131,48 +117,30 @@ export function Navbar() {
             ))}
           </Link>
 
-          {/* =====================================================
-              DESKTOP NAVIGATION
-          ===================================================== */}
-
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-7 lg:flex">
             {navItems.map((item) => (
               <div
                 key={item.href}
                 ref={item.hasDropdown ? productsRef : undefined}
                 className="relative"
                 onMouseEnter={() => {
-                  if (item.hasDropdown) {
-                    setIsProductsOpen(true);
-                  }
+                  if (item.hasDropdown) setIsProductsOpen(true);
                 }}
                 onMouseLeave={() => {
-                  if (item.hasDropdown) {
-                    setIsProductsOpen(false);
-                  }
+                  if (item.hasDropdown) setIsProductsOpen(false);
                 }}
               >
                 {item.hasDropdown ? (
                   <button
                     type="button"
                     onClick={() => setIsProductsOpen((prev) => !prev)}
-                    className={`
-                      flex
-                      items-center
-                      gap-1
-                      whitespace-nowrap
-                      text-sm
-                      font-medium
-                      transition-colors
-                      ${
-                        pathname.startsWith(item.href)
-                          ? "text-[#E5322D]"
-                          : "text-slate-900 hover:text-[#E5322D]"
-                      }
-                    `}
+                    className={`flex items-center gap-1 whitespace-nowrap text-sm font-medium transition-colors ${
+                      pathname.startsWith(item.href)
+                        ? "text-[#E5322D]"
+                        : "text-slate-900 hover:text-[#E5322D]"
+                    }`}
                   >
                     {item.label}
-
                     <ChevronDown
                       size={16}
                       className={`transition-transform duration-200 ${
@@ -183,17 +151,11 @@ export function Navbar() {
                 ) : (
                   <Link
                     href={item.href}
-                    className={`
-                      whitespace-nowrap
-                      text-sm
-                      font-medium
-                      transition-colors
-                      ${
-                        pathname.startsWith(item.href)
-                          ? "text-[#E5322D]"
-                          : "text-slate-900 hover:text-[#E5322D]"
-                      }
-                    `}
+                    className={`whitespace-nowrap text-sm font-medium transition-colors ${
+                      pathname.startsWith(item.href)
+                        ? "text-[#E5322D]"
+                        : "text-slate-900 hover:text-[#E5322D]"
+                    }`}
                   >
                     {item.label}
                   </Link>
@@ -209,21 +171,12 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* =====================================================
-              RIGHT SIDE
-          ===================================================== */}
-
           <div className="hidden items-center gap-4 lg:flex">
             <SearchBox />
-
             <div className="shrink-0 whitespace-nowrap">
               <Button href="/contact">Request Quote</Button>
             </div>
           </div>
-
-          {/* =====================================================
-              MOBILE
-          ===================================================== */}
 
           <button
             type="button"
@@ -234,10 +187,6 @@ export function Navbar() {
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </Container>
-
-        {/* =====================================================
-            MOBILE MENU
-        ===================================================== */}
 
         {mobileOpen && (
           <div className="border-t border-slate-200 bg-white lg:hidden">
@@ -272,10 +221,6 @@ export function Navbar() {
           </div>
         )}
       </header>
-
-      {/* ==========================================================
-          CATALOG DOWNLOAD MODAL
-      ========================================================== */}
 
       <CatalogDownloadModal
         isOpen={isCatalogModalOpen}
