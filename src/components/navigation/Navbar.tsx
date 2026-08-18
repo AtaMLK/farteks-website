@@ -60,6 +60,10 @@ export function Navbar() {
       hasDropdown: true,
     },
     {
+      label: "Gallery",
+      href: "/gallery",
+    },
+    {
       label: "Resources",
       href: "/resources",
     },
@@ -110,7 +114,6 @@ export function Navbar() {
             ))}
           </Link>
 
-          {/* Desktop navigation: use xl because Resources makes the full header wider. */}
           <nav className="hidden min-w-0 flex-1 items-center justify-center gap-6 xl:flex">
             {navItems.map((item) => (
               <div
