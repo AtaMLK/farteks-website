@@ -15,11 +15,13 @@ export function Navbar() {
   const pathname = usePathname();
 
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isCapabilitiesOpen, setIsCapabilitiesOpen] = useState(false);
   const [isCatalogModalOpen, setIsCatalogModalOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [solid, setSolid] = useState(false);
 
   const productsRef = useRef<HTMLDivElement>(null);
+  const capabilitiesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,21 +38,34 @@ export function Navbar() {
 
   useEffect(() => {
     setIsProductsOpen(false);
+    setIsCapabilitiesOpen(false);
     setMobileOpen(false);
   }, [pathname]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
+      const target = event.target as Node;
+
       if (
         productsRef.current &&
-        !productsRef.current.contains(event.target as Node)
+        !productsRef.current.contains(target)
       ) {
         setIsProductsOpen(false);
+      }
+
+      if (
+        capabilitiesRef.current &&
+        !capabilitiesRef.current.contains(target)
+      ) {
+        setIsCapabilitiesOpen(false);
       }
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const navItems = [
@@ -68,16 +83,9 @@ export function Navbar() {
       href: "/resources",
     },
     {
-      label: "Industries",
-      href: "/industries",
-    },
-    {
-      label: "Manufacturing",
-      href: "/manufacturing",
-    },
-    {
-      label: "Quality",
-      href: "/quality",
+      label: "Capabilities",
+      href: "/capabilities",
+      hasCapabilitiesDropdown: true,
     },
     {
       label: "About",
@@ -86,6 +94,24 @@ export function Navbar() {
     {
       label: "Contact",
       href: "/contact",
+    },
+  ];
+
+  const capabilityItems = [
+    {
+      label: "Industries",
+      href: "/industries",
+      description: "Applications and industries we serve",
+    },
+    {
+      label: "Manufacturing",
+      href: "/manufacturing",
+      description: "Machining and production capabilities",
+    },
+    {
+      label: "Quality",
+      href: "/quality",
+      description: "Quality control and inspection",
     },
   ];
 
@@ -98,7 +124,7 @@ export function Navbar() {
             : "bg-white/80 backdrop-blur-sm"
         }`}
       >
-        <Container className="flex h-20 items-center justify-between gap-4">
+        <Container className="flex h-20 items-center justify-between gap-3">
           <Link
             href="/home"
             className="farteks-logo shrink-0 text-4xl font-bold tracking-[0.2em]"
@@ -114,24 +140,53 @@ export function Navbar() {
             ))}
           </Link>
 
-          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-6 xl:flex">
+          {/* Desktop navigation */}
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-5 xl:flex">
             {navItems.map((item) => (
               <div
                 key={item.href}
-                ref={item.hasDropdown ? productsRef : undefined}
+                ref={
+                  item.hasDropdown
+                    ? productsRef
+                    : item.hasCapabilitiesDropdown
+                      ? capabilitiesRef
+                      : undefined
+                }
                 className="relative"
                 onMouseEnter={() => {
-                  if (item.hasDropdown) setIsProductsOpen(true);
+                  if (item.hasDropdown) {
+                    setIsProductsOpen(true);
+                    setIsCapabilitiesOpen(false);
+                  }
+
+                  if (item.hasCapabilitiesDropdown) {
+                    setIsCapabilitiesOpen(true);
+                    setIsProductsOpen(false);
+                  }
                 }}
                 onMouseLeave={() => {
                   if (item.hasDropdown) setIsProductsOpen(false);
+                  if (item.hasCapabilitiesDropdown) setIsCapabilitiesOpen(false);
                 }}
               >
-                {item.hasDropdown ? (
+                {item.hasDropdown || item.hasCapabilitiesDropdown ? (
                   <button
                     type="button"
-                    onClick={() => setIsProductsOpen((prev) => !prev)}
-                    className={`flex items-center gap-1 whitespace-nowrap text-sm font-medium transition-colors ${
+                    aria-expanded={
+                      item.hasDropdown
+                        ? isProductsOpen
+                        : isCapabilitiesOpen
+                    }
+                    onClick={() => {
+                      if (item.hasDropdown) {
+                        setIsProductsOpen((prev) => !prev);
+                        setIsCapabilitiesOpen(false);
+                      } else {
+                        setIsCapabilitiesOpen((prev) => !prev);
+                        setIsProductsOpen(false);
+                      }
+                    }}
+                    className={`flex items-center gap-1 whitespace-nowrap text-[13px] font-medium transition-colors ${
                       pathname.startsWith(item.href)
                         ? "text-[#E5322D]"
                         : "text-slate-900 hover:text-[#E5322D]"
@@ -139,16 +194,19 @@ export function Navbar() {
                   >
                     {item.label}
                     <ChevronDown
-                      size={16}
+                      size={14}
                       className={`transition-transform duration-200 ${
-                        isProductsOpen ? "rotate-180" : ""
+                        (item.hasDropdown && isProductsOpen) ||
+                        (item.hasCapabilitiesDropdown && isCapabilitiesOpen)
+                          ? "rotate-180"
+                          : ""
                       }`}
                     />
                   </button>
                 ) : (
                   <Link
                     href={item.href}
-                    className={`whitespace-nowrap text-sm font-medium transition-colors ${
+                    className={`whitespace-nowrap text-[13px] font-medium transition-colors ${
                       pathname.startsWith(item.href)
                         ? "text-[#E5322D]"
                         : "text-slate-900 hover:text-[#E5322D]"
@@ -164,22 +222,58 @@ export function Navbar() {
                     onDownloadCatalog={() => setIsCatalogModalOpen(true)}
                   />
                 )}
+
+                {item.hasCapabilitiesDropdown && (
+                  <div
+                    className={`absolute left-1/2 top-full z-50 mt-4 w-[310px] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl transition-all duration-200 ${
+                      isCapabilitiesOpen
+                        ? "visible translate-y-0 opacity-100"
+                        : "invisible -translate-y-2 opacity-0"
+                    }`}
+                  >
+                    <div className="px-3 pb-2 pt-2">
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#E5322D]">
+                        Farteks Capabilities
+                      </p>
+                      <p className="mt-1 text-xs leading-5 text-slate-500">
+                        Explore our applications, manufacturing and quality capabilities.
+                      </p>
+                    </div>
+
+                    {capabilityItems.map((capability) => (
+                      <Link
+                        key={capability.href}
+                        href={capability.href}
+                        className="block rounded-xl px-3 py-3 transition-colors hover:bg-slate-50"
+                      >
+                        <span className="block text-sm font-semibold text-slate-900 hover:text-[#E5322D]">
+                          {capability.label}
+                        </span>
+                        <span className="mt-0.5 block text-xs text-slate-500">
+                          {capability.description}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </nav>
 
-          <div className="hidden shrink-0 items-center gap-3 xl:flex">
-            <div className="w-[220px]">
+          {/* Desktop actions */}
+          <div className="hidden shrink-0 items-center gap-2 xl:flex">
+            <div className="w-[190px] shrink-0">
               <SearchBox />
             </div>
-            <div className="shrink-0 whitespace-nowrap">
-              <Button href="/contact">Request Quote</Button>
-            </div>
+            <Button href="/contact" className="shrink-0 whitespace-nowrap px-6">
+              Request Quote
+            </Button>
           </div>
 
+          {/* Mobile / tablet */}
           <button
             type="button"
-            className="xl:hidden"
+            className="shrink-0 xl:hidden"
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
@@ -191,18 +285,67 @@ export function Navbar() {
         {mobileOpen && (
           <div className="border-t border-slate-200 bg-white xl:hidden">
             <Container className="flex flex-col gap-6 py-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`font-medium transition-colors hover:text-[#E5322D] ${
-                    pathname.startsWith(item.href) ? "text-[#E5322D]" : ""
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                if (item.hasDropdown) {
+                  return (
+                    <div key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileOpen(false)}
+                        className={`font-medium transition-colors hover:text-[#E5322D] ${
+                          pathname.startsWith(item.href)
+                            ? "text-[#E5322D]"
+                            : "text-slate-900"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    </div>
+                  );
+                }
+
+                if (item.hasCapabilitiesDropdown) {
+                  return (
+                    <div key={item.href} className="space-y-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
+                        Capabilities
+                      </p>
+
+                      <div className="grid gap-3 pl-3">
+                        {capabilityItems.map((capability) => (
+                          <Link
+                            key={capability.href}
+                            href={capability.href}
+                            onClick={() => setMobileOpen(false)}
+                            className={`font-medium transition-colors hover:text-[#E5322D] ${
+                              pathname.startsWith(capability.href)
+                                ? "text-[#E5322D]"
+                                : "text-slate-900"
+                            }`}
+                          >
+                            {capability.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`font-medium transition-colors hover:text-[#E5322D] ${
+                      pathname.startsWith(item.href)
+                        ? "text-[#E5322D]"
+                        : "text-slate-900"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
 
               <button
                 type="button"
