@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { PRODUCTS } from '@/data/products-data';
 import { PRODUCT_GROUPS } from '@/data/product-groups';
+import { TECHNICAL_RESOURCES } from '@/data/technical-resources';
 
 const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://farteks.com';
@@ -8,9 +9,6 @@ const baseUrl =
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  /*
-   * Main public pages
-   */
   const mainPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -23,6 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/resources`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/industries`,
@@ -56,9 +60,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  /*
-   * Product group pages
-   */
   const groupPages: MetadataRoute.Sitemap = PRODUCT_GROUPS.map(
     (group) => ({
       url: `${baseUrl}/products/group/${group.id}`,
@@ -68,13 +69,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  /*
-   * Canonical product pages
-   *
-   * IMPORTANT:
-   * /products/[id] is the single canonical URL
-   * for each product.
-   */
   const productPages: MetadataRoute.Sitemap = PRODUCTS.map(
     (product) => ({
       url: `${baseUrl}/products/${product.id}`,
@@ -84,9 +78,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
+  const resourcePages: MetadataRoute.Sitemap = TECHNICAL_RESOURCES.map(
+    (resource) => ({
+      url: `${baseUrl}/resources/${resource.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  );
+
   return [
     ...mainPages,
     ...groupPages,
     ...productPages,
+    ...resourcePages,
   ];
 }
