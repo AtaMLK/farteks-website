@@ -1,63 +1,65 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
-interface Props {
+interface WordAnimationProps {
   children: string;
   className?: string;
   delay?: number;
 }
 
-export function WordAnimation({ children, className = "", delay = 0 }: Props) {
-  const words = children.split(" ");
+export function WordAnimation({
+  children,
+  className = '',
+  delay = 0,
+}: WordAnimationProps) {
+  const ref = useRef<HTMLHeadingElement>(null);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: delay,
-      },
-    },
-  };
+  const isInView = useInView(ref, {
+    once: true,
+    amount: 0.2,
+  });
 
-  const wordVariants = {
-    hidden: {
-      opacity: 0,
-      y: 10,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
+  const words = children.trim().split(/\s+/);
 
   return (
-    <motion.div
+    <h1
+      ref={ref}
       className={className}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{
-        once: true,
-        amount: 0.3,
-      }}
     >
       {words.map((word, index) => (
-        <motion.span
-          key={index}
-          variants={wordVariants}
-          className="inline-block mr-2"
+        <span
+          key={`${word}-${index}`}
+          className="mr-[0.25em] inline-block overflow-hidden align-bottom"
         >
-          {word}
-        </motion.span>
+          <motion.span
+            className="inline-block"
+            initial={{
+              opacity: 0,
+              y: '110%',
+            }}
+            animate={
+              isInView
+                ? {
+                    opacity: 1,
+                    y: '0%',
+                  }
+                : {
+                    opacity: 0,
+                    y: '110%',
+                  }
+            }
+            transition={{
+              duration: 0.7,
+              delay: delay + index * 0.08,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            {word}
+          </motion.span>
+        </span>
       ))}
-    </motion.div>
+    </h1>
   );
 }

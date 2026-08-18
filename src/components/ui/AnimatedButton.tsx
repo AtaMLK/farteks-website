@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 
 interface Props {
   href: string;
@@ -24,7 +24,7 @@ export function AnimatedButton({ href, children, className }: Props) {
       <Link
         href={href}
         className={cn(
-          "group inline-flex h-14 items-center gap-3 rounded-2xl bg-[#E5322D] px-8 font-semibold text-white transition-all duration-300 hover:bg-[#cc2a24]",
+          "group inline-flex h-14 items-center gap-3 rounded-3xl bg-[#E5322D] px-8 font-semibold text-white transition-all duration-300 hover:bg-[#cc2a24]",
           className,
         )}
       >

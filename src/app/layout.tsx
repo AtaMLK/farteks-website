@@ -1,77 +1,222 @@
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import type { Metadata, Viewport } from 'next';
+import { Archivo } from 'next/font/google';
 
-import "./globals.css";
+import { GoogleAnalytics } from '@/hooks/useGoogleAnalytics';
 
-import { AppProvider } from "../components/providers/AppProvider";
-import { Layout } from "../components/layout/Layout";
+import './globals.css';
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
-  display: "swap",
-});
+const archivo = Archivo({ subsets: ['latin'], variable: '--font-heading', display: 'swap' });
+
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://farteks.com';
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://farteks.com"),
+  metadataBase: new URL(baseUrl),
 
   title: {
-    default: "Farteks | Hydraulic Cylinder Components",
-    template: "%s | Farteks",
+    default:
+      'Farteks | Hydraulic Cylinder Components Manufacturer',
+    template: '%s | Farteks',
   },
 
   description:
-    "Premium hydraulic cylinder component manufacturer serving OEM customers worldwide.",
+    'Farteks manufactures high-quality hydraulic cylinder components for OEM partners worldwide. Hydraulic glands, pistons, rod ends and precision-machined components manufactured in Turkey.',
 
   keywords: [
-    "Hydraulic Cylinder",
-    "OEM",
-    "Hydraulic Components",
-    "Turkey",
-    "Manufacturer",
-    "Glands",
-    "Rod Ends",
-    "Pistons",
+    'hydraulic cylinder components',
+    'hydraulic cylinder parts',
+    'hydraulic gland',
+    'hydraulic piston',
+    'hydraulic rod end',
+    'hydraulic cylinder manufacturer',
+    'OEM hydraulic components',
+    'hydraulic parts supplier',
+    'hydraulic components Turkey',
+    'mobile crane components',
+    'precision machined components',
   ],
 
+  alternates: {
+    canonical: '/',
+  },
+
   openGraph: {
-    title: "Farteks",
+    type: 'website',
+    locale: 'en_US',
+    url: baseUrl,
+    siteName: 'Farteks',
+
+    title:
+      'Farteks | Hydraulic Cylinder Components Manufacturer',
+
     description:
-      "Premium Hydraulic Cylinder Components.",
-    siteName: "Farteks",
-    url: "https://farteks.com",
-    locale: "en_US",
-    type: "website",
+      'High-quality hydraulic cylinder components manufactured in Turkey for OEM and industrial applications.',
+
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Farteks Hydraulic Cylinder Components',
+        type: 'image/jpeg',
+      },
+    ],
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+
+    title:
+      'Farteks | Hydraulic Cylinder Components Manufacturer',
+
+    description:
+      'Premium hydraulic cylinder components manufactured in Turkey.',
+
+    images: ['/images/twitter-image.jpg'],
+  },
+
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
   },
 
   robots: {
     index: true,
     follow: true,
+
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
   },
+
+  creator: 'Farteks',
+  publisher: 'Farteks',
+
+  formatDetection: {
+    telephone: true,
+    address: true,
+    email: true,
+  },
+
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+
+  manifest: '/site.webmanifest',
 };
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  colorScheme: 'light',
+  themeColor: '#392B87',
+};
+
+interface RootLayoutProps {
+  children: React.ReactNode;
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Preconnect */}
+        <link
+          rel="preconnect"
+          href="https://fonts.googleapis.com"
+        />
 
-      <body className={geist.variable}>
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
 
-        <AppProvider>
+        <link
+          rel="preconnect"
+          href="https://www.googletagmanager.com"
+        />
 
-          <Layout>
+        {/* DNS Prefetch */}
+        <link
+          rel="dns-prefetch"
+          href="https://www.google-analytics.com"
+        />
 
-            {children}
+        <link
+          rel="dns-prefetch"
+          href="https://www.googletagmanager.com"
+        />
 
-          </Layout>
+        {/* Apple Web App */}
+        <meta
+          name="apple-mobile-web-app-capable"
+          content="yes"
+        />
 
-        </AppProvider>
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
 
+        <meta
+          name="apple-mobile-web-app-title"
+          content="Farteks"
+        />
+      </head>
+
+      <body className={`${archivo.variable} antialiased`}>
+        {/* Google Analytics */}
+        <GoogleAnalytics />
+
+        
+
+        {/* Main Content */}
+        <main className="min-h-screen">
+          {children}
+        </main>
+
+        
+
+        {/* Organization JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+
+              name: 'Farteks',
+
+              url: baseUrl,
+
+              logo: `${baseUrl}/images/logos/farteks-logo.png`,
+
+              description:
+                'Hydraulic cylinder components manufacturer based in Turkey.',
+
+              address: {
+                '@type': 'PostalAddress',
+                addressCountry: 'TR',
+              },
+
+              contactPoint: {
+                '@type': 'ContactPoint',
+                contactType: 'sales',
+                url: `${baseUrl}/contact`,
+              },
+            }).replace(/</g, '\\u003c'),
+          }}
+        />
       </body>
-
     </html>
   );
 }

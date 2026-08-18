@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 
 interface Props {
   children: ReactNode;
-  className?: string; 
+  className?: string;
 }
 
 export function Card({ children, className }: Props) {

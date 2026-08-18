@@ -1,4 +1,4 @@
-import { cn } from "../lib/utils";
+import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 
 interface HeadingProps {
@@ -7,14 +7,5 @@ interface HeadingProps {
 }
 
 export function Heading({ children, className }: HeadingProps) {
-  return (
-    <h2
-      className={cn(
-        "text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl",
-        className,
-      )}
-    >
-      {children}
-    </h2>
-  );
+  return <h2 className={cn("site-section-title", className)}>{children}</h2>;
 }

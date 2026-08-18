@@ -77,22 +77,28 @@ export const trustItems = [
 ];
 
 export const featuredProducts = [
-  {
+ {
     title: "Hydraulic Glands",
-    description:  "Precision-machined glands for heavy-duty hydraulic cylinders.",
-    image: "/images/products/gland.jpg",
-    href: "/products/glands",
+    type: "Sealing & Guidance",
+    image: "/images/products/gland-steel-single.png",
+    href: "/products/group/std1",
   },
   {
     title: "Rod Ends",
-    description: "Reliable rod ends manufactured with tight tolerances.",
-    image: "/images/products/rodend.jpg",
-    href: "/products/rod-ends",
+    type: "Cylinder Connection",
+    image: "/images/products/rod-end-single.png",
+    href: "/products/group/rod-end",
   },
   {
     title: "Pistons",
-    description: "OEM piston solutions for industrial applications.",
-    image: "/images/products/piston.jpg",
-    href: "/products/pistons",
+    type: "Pressure & Motion",
+    image: "/images/products/piston-single.png",
+    href: "/products/group/std1",
+  },
+  {
+    title: "Custom Components",
+    type: "Drawing to Production",
+    image: "/images/products/custom.png",
+    href: "/products/group/custom-hydraulic",
   },
 ];

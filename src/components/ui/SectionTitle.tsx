@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { cn } from "../../lib/utils";
+import { cn } from "@/lib/utils";
 
 interface Props {
   eyebrow?: string;
@@ -19,12 +19,14 @@ export function SectionTitle({
   return (
     <div className={cn("mb-16", align === "center" && "text-center")}>
       {eyebrow && (
-        <span className="mb-4 inline-flex rounded-full bg-red-100 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-[#E5322D]">
+        <span className="site-eyebrow">
           {eyebrow}
         </span>
       )}
 
-      <h2 className="max-w-4xl text-5xl font-bold leading-tight text-[#181617]">{title}</h2>
+      <h2 className="site-section-title">
+        {title}
+      </h2>
 
       {description && (
         <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">

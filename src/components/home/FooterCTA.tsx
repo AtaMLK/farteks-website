@@ -13,7 +13,7 @@ export function FooterCTA() {
               Ready to Start?
             </p>
 
-            <WordAnimation className="mt-6 max-w-4xl text-5xl font-bold leading-tight block">
+            <WordAnimation className="mt-6 max-w-4xl site-section-title text-white block">
               Let's Build Your Next Hydraulic Solution Together
             </WordAnimation>
 

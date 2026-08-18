@@ -1,13 +1,12 @@
-"use client";
+/* "use client";
 
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
 
-import { Button } from "../../components/ui/Button";
+import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
 import { Container } from "./Container";
-import { cn } from "../../lib/utils";
-import Image from "next/image";
 
 const links = [
   ["Products", "/products"],
@@ -35,14 +34,11 @@ export function Navbar() {
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         solid
           ? "border-b border-slate-200 bg-white/90 backdrop-blur-xl"
-          : "bg-transparent",
+          : "bg-white/30",
       )}
     >
       <Container className="flex h-20 items-center justify-between">
-        <Link
-          href="/"
-          className="text-2xl font-bold tracking-[0.2em] text-[#392B87]"
-        >
+        <Link href="/" className="text-2xl font-bold tracking-[0.2em] text-[#392B87]">
           FARTEKS
         </Link>
 
@@ -71,9 +67,9 @@ export function Navbar() {
         <div className="border-t bg-white lg:hidden">
           <Container className="flex flex-col gap-6 py-8">
             {links.map(([title, href]) => (
-              <Link
-                key={href}
-                href={href}
+              <Link 
+                key={href} 
+                href={href} 
                 onClick={() => setOpen(false)}
                 className="hover:text-[#E5322D] transition"
               >
@@ -90,3 +86,4 @@ export function Navbar() {
     </header>
   );
 }
+ */
