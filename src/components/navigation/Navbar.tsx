@@ -94,7 +94,7 @@ export function Navbar() {
             : "bg-white/80 backdrop-blur-sm"
         }`}
       >
-        <Container className="flex h-20 items-center justify-between">
+        <Container className="flex h-20 items-center justify-between gap-4">
           <Link
             href="/home"
             className="farteks-logo shrink-0 text-4xl font-bold tracking-[0.2em]"
@@ -110,7 +110,8 @@ export function Navbar() {
             ))}
           </Link>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          {/* Desktop navigation: use xl because Resources makes the full header wider. */}
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-6 xl:flex">
             {navItems.map((item) => (
               <div
                 key={item.href}
@@ -164,8 +165,10 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-4 lg:flex">
-            <SearchBox />
+          <div className="hidden shrink-0 items-center gap-3 xl:flex">
+            <div className="w-[220px]">
+              <SearchBox />
+            </div>
             <div className="shrink-0 whitespace-nowrap">
               <Button href="/contact">Request Quote</Button>
             </div>
@@ -173,7 +176,7 @@ export function Navbar() {
 
           <button
             type="button"
-            className="lg:hidden"
+            className="xl:hidden"
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
@@ -183,7 +186,7 @@ export function Navbar() {
         </Container>
 
         {mobileOpen && (
-          <div className="border-t border-slate-200 bg-white lg:hidden">
+          <div className="border-t border-slate-200 bg-white xl:hidden">
             <Container className="flex flex-col gap-6 py-8">
               {navItems.map((item) => (
                 <Link
