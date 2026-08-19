@@ -377,7 +377,7 @@ const factoryImages: GalleryItem[] = [
 const exhibitionImages: GalleryItem[] = [
   {
     src: "/images/gallery/exhibitions/1.jpg",
-    title: "Agritechnica 2015 — Stand 01",
+    title: "Agritechnica 2015",
     year: "2015",
     location: "Hannover, Germany",
     detail: "International agricultural machinery exhibition archive",
@@ -386,7 +386,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/10.JPG",
-    title: "Agritechnica 2015 — Stand 02",
+    title: "Agritechnica 2015",
     year: "2015",
     location: "Hannover, Germany",
     detail: "International agricultural machinery exhibition archive",
@@ -395,7 +395,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/11.JPG",
-    title: "AUME 2015 — Stand 03",
+    title: "AUME 2015",
     year: "Sample",
     location: "Sample location",
     detail: "International trade exhibition archive",
@@ -404,7 +404,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/12.JPG",
-    title: "AUME 2015 — Stand 04",
+    title: "AUME 2015",
     year: "Sample",
     location: "Sample location",
     detail: "International trade exhibition archive",
@@ -413,7 +413,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/13.JPG",
-    title: "Hannover Messe 2017 — Stand 05",
+    title: "Hannover Messe 2017",
     year: "2017",
     location: "Hannover, Germany",
     detail: "Industrial technology exhibition archive",
@@ -422,7 +422,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/14.jpg",
-    title: "Hannover Messe 2017 — Stand 06",
+    title: "Hannover Messe 2017",
     year: "2017",
     location: "Hannover, Germany",
     detail: "Industrial technology exhibition archive",
@@ -431,7 +431,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/16.JPG",
-    title: "Hannover Messe 2017 — Stand 07",
+    title: "Hannover Messe 2017",
     year: "2017",
     location: "Hannover, Germany",
     detail: "Industrial technology exhibition archive",
@@ -440,7 +440,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/17.JPG",
-    title: "Hannover Messe 2017 — Stand 08",
+    title: "Hannover Messe 2017",
     year: "2017",
     location: "Hannover, Germany",
     detail: "Industrial technology exhibition archive",
@@ -449,7 +449,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/18.jpg",
-    title: "Agritechnica 2019 — Stand 09",
+    title: "Agritechnica 2019",
     year: "2019",
     location: "Hannover, Germany",
     detail: "Agricultural machinery and components exhibition archive",
@@ -458,7 +458,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/19.JPG",
-    title: "Agritechnica 2019 — Stand 10",
+    title: "Agritechnica 2019",
     year: "2019",
     location: "Hannover, Germany",
     detail: "Agricultural machinery and components exhibition archive",
@@ -467,7 +467,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/2.jpg",
-    title: "Agritechnica 2019 — Stand 11",
+    title: "Agritechnica 2019",
     year: "2019",
     location: "Hannover, Germany",
     detail: "Agricultural machinery and components exhibition archive",
@@ -476,7 +476,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/20.JPG",
-    title: "Agritechnica 2019 — Stand 12",
+    title: "Agritechnica 2019",
     year: "2019",
     location: "Hannover, Germany",
     detail: "Agricultural machinery and components exhibition archive",
@@ -485,7 +485,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/21.JPG",
-    title: "Konya Agriculture Fair — Stand 13",
+    title: "Konya Agriculture Fair",
     year: "Sample",
     location: "Konya, Türkiye",
     detail: "Agricultural machinery exhibition in Konya",
@@ -494,7 +494,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/22.jpg",
-    title: "Konya Agriculture Fair — Stand 14",
+    title: "Konya Agriculture Fair",
     year: "Sample",
     location: "Konya, Türkiye",
     detail: "Agricultural machinery exhibition in Konya",
@@ -503,7 +503,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/23.jpg",
-    title: "Konya Agriculture Fair — Stand 15",
+    title: "Konya Agriculture Fair",
     year: "Sample",
     location: "Konya, Türkiye",
     detail: "Agricultural machinery exhibition in Konya",
@@ -512,7 +512,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/24.jpg",
-    title: "Konya Agriculture Fair — Stand 16",
+    title: "Konya Agriculture Fair",
     year: "Sample",
     location: "Konya, Türkiye",
     detail: "Agricultural machinery exhibition in Konya",
@@ -521,7 +521,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/25.JPG",
-    title: "Other Exhibition — Stand 17",
+    title: "Other Exhibition",
     year: "Sample",
     location: "Sample location",
     detail: "International exhibition and trade fair archive",
@@ -530,7 +530,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/26.JPG",
-    title: "Other Exhibition — Stand 18",
+    title: "Other Exhibition",
     year: "Sample",
     location: "Sample location",
     detail: "International exhibition and trade fair archive",
@@ -539,7 +539,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/27.JPG",
-    title: "Other Exhibition — Stand 19",
+    title: "Other Exhibition",
     year: "Sample",
     location: "Sample location",
     detail: "International exhibition and trade fair archive",
@@ -548,7 +548,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/4.jpg",
-    title: "Other Exhibition — Stand 20",
+    title: "Other Exhibition",
     year: "Sample",
     location: "Sample location",
     detail: "International exhibition and trade fair archive",
@@ -557,7 +557,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/5.jpg",
-    title: "Other Exhibition — Stand 21",
+    title: "Other Exhibition",
     year: "Sample",
     location: "Sample location",
     detail: "International exhibition and trade fair archive",
@@ -566,7 +566,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/6.JPG",
-    title: "Other Exhibition — Stand 22",
+    title: "Other Exhibition",
     year: "Sample",
     location: "Sample location",
     detail: "International exhibition and trade fair archive",
@@ -575,7 +575,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/7.JPG",
-    title: "Other Exhibition — Stand 23",
+    title: "Other Exhibition",
     year: "Sample",
     location: "Sample location",
     detail: "International exhibition and trade fair archive",
@@ -584,7 +584,7 @@ const exhibitionImages: GalleryItem[] = [
   },
   {
     src: "/images/gallery/exhibitions/8.JPG",
-    title: "Other Exhibition — Stand 24",
+    title: "Other Exhibition",
     year: "Sample",
     location: "Sample location",
     detail: "International exhibition and trade fair archive",
@@ -733,7 +733,9 @@ export default function GalleryPage() {
                 priority
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/10" />
+              {group === "exhibitions" && (
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/10" />
+              )}
 
               <div className="absolute bottom-7 left-7 right-7 text-white md:bottom-10 md:left-10 md:right-10">
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[10px] font-extrabold uppercase tracking-[.22em] text-white/70">

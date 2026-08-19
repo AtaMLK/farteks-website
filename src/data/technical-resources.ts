@@ -54,7 +54,7 @@ export const TECHNICAL_RESOURCES: TechnicalResource[] = [
     ],
     relatedLinks: [
       { label: 'View Hydraulic Cylinder Components', href: '/products' },
-      { label: 'Custom Parts Manufacturing', href: '/products/custom-parts' },
+      { label: 'Custom Parts Manufacturing', href: '/custom-parts' },
       { label: 'Request a Quote', href: '/contact' },
     ],
   },
@@ -138,7 +138,7 @@ export const TECHNICAL_RESOURCES: TechnicalResource[] = [
     ],
     relatedLinks: [
       { label: 'Explore Products', href: '/products' },
-      { label: 'Custom Parts', href: '/products/custom-parts' },
+      { label: 'Custom Parts', href: '/custom-parts' },
       { label: 'Contact Farteks', href: '/contact' },
     ],
   },
@@ -265,7 +265,7 @@ export const TECHNICAL_RESOURCES: TechnicalResource[] = [
       },
     ],
     relatedLinks: [
-      { label: 'Custom Parts', href: '/products/custom-parts' },
+      { label: 'Custom Parts', href: '/custom-parts' },
       { label: 'Manufacturing', href: '/manufacturing' },
       { label: 'Request a Quote', href: '/contact' },
     ],

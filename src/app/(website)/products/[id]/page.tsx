@@ -143,7 +143,7 @@ function createProductJsonLd(product: Product) {
 
     image: [imageUrl],
 
-    sku: product.productNumber || product.id,
+    sku: product.productCode || product.id,
 
     category: product.category,
 

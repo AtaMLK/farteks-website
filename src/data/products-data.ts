@@ -4,7 +4,8 @@ export interface ProductSpec {
 
 export interface Product {
   id: string;
-  productNumber: number;
+  productCode: string;
+  availableMaterials?: string[];
   name: string;
   category: "STD.1" | "STD.2" | "MC" | "RE" | "ISO" | "TRU" | "UNI" | "CUSTOM";
   description: string;
@@ -19,7 +20,7 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     id: "custom-made-hydraulic",
-    productNumber: 1,
+    productCode: "GDC-CUSTOM-",
     name: "Custom-Made Hydraulic Cylinder Components",
     category: "STD.1",
     description:
@@ -40,7 +41,8 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "gland-cast-iron-din1691",
-    productNumber: 2,
+    productCode: "GDC-B-",
+    availableMaterials: ["DIN GG25 / EN-GJL-250"],
     name: "Gland (Cast Iron GG25/GG26 DIN 1691)",
     category: "STD.1",
     description: "Cast iron glands with multiple size variants",
@@ -1721,7 +1723,8 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "steel-gland",
-    productNumber: 3,
+    productCode: "GDC-CB-",
+    availableMaterials: ["CK45 / C45", "S355J2", "11SMn30", "11SMnPb30"],
     name: "Steel Gland",
     category: "STD.1",
     description: "Steel glands SAE 1040/1050 with full specifications",
@@ -2897,7 +2900,8 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "piston",
-    productNumber: 4,
+    productCode: "GDC-P-",
+    availableMaterials: ["CK45 / C45", "S355J2", "11SMn30", "11SMnPb30"],
     name: "Piston",
     category: "STD.1",
     description: "Standard pistons with multiple size combinations",
@@ -2948,7 +2952,8 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "piston-with-thread",
-    productNumber: 5,
+    productCode: "GDC-PV-",
+    availableMaterials: ["CK45 / C45", "S355J2", "11SMn30", "11SMnPb30"],
     name: "Piston With Thread",
     category: "STD.1",
     description: "Pistons with threaded connections",
@@ -3215,7 +3220,8 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "piston-with-guide-ring",
-    productNumber: 6,
+    productCode: "GDC-PV-Y",
+    availableMaterials: ["CK45 / C45", "S355J2", "11SMn30", "11SMnPb30"],
     name: "Piston With Guide Ring",
     category: "STD.1",
     description: "Pistons featuring integrated guide rings",
@@ -3401,11 +3407,12 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "gland-cast-iron-std2-new",
-    productNumber: 7,
+    productCode: "GDC-B-",
+    availableMaterials: ["DIN GG25 / EN-GJL-250"],
     name: "Gland (Cast Iron GG25/GG26 DIN 1691) - NEW",
     category: "STD.2",
     description: "New standard cast iron glands STD.2 series",
-    groupName: "italian group component (STD.2)",
+    groupName: "Standard 2",
     image: "/images/products/gland-cast-iron-std2-new.png",
     singleImage: "/images/products/gland-cast-iron-std2-new-single.png",
     drawingImage: "/images/drawings/gland-cast-iron-std2-new-drawings.png",
@@ -4040,11 +4047,12 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "piston-steel-std2-new",
-    productNumber: 8,
+    productCode: "GDC-P-",
+    availableMaterials: ["CK45 / C45", "S355J2", "11SMn30", "11SMnPb30"],
     name: "Piston (Steel SAE 1040/SAE 1050) - NEW",
     category: "STD.2",
     description: "New standard steel pistons STD.2 series",
-    groupName: "italian group component (STD.2)",
+    groupName: "Standard 2",
     image: "/images/products/piston-steel-std2-new.png",
     singleImage: "/images/products/piston-steel-std2-new-single.png",
     drawingImage: "/images/drawings/piston-steel-std2-new-drawing.png",
@@ -4265,11 +4273,12 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "piston-with-thread-steel-std2-new",
-    productNumber: 9,
+    productCode: "GDC-PV-",
+    availableMaterials: ["CK45 / C45", "S355J2", "11SMn30", "11SMnPb30"],
     name: "Piston With Thread (Steel SAE 1040/SAE 1050) - NEW",
     category: "STD.2",
     description: "Steel pistons with threads STD.2 series",
-    groupName: "italian group component  (STD.2)",
+    groupName: "Standard 2",
     image: "/images/products/piston-with-thread-steel-std2-new.png",
     singleImage:
       "/images/products/piston-with-thread-steel-std2-new-single.png",
@@ -4344,7 +4353,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "mobile-crane-rod-gland",
-    productNumber: 10,
+    productCode: "GDC-UK-",
     name: "Mobile Crane Rod Gland",
     category: "MC",
     description: "Specialized rod glands for mobile cranes",
@@ -4945,7 +4954,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "mobile-crane-rod-gland-large",
-    productNumber: 11,
+    productCode: "GDC-MB-",
     name: "Mobile Crane Rod Gland - Large",
     category: "MC",
     description: "Large series rod glands for mobile cranes",
@@ -5149,7 +5158,8 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "mobile-crane-piston",
-    productNumber: 12,
+    productCode: "GDC-UP-",
+    availableMaterials: ["CK45 / C45", "S355J2", "11SMn30", "11SMnPb30"],
     name: "Mobile Crane Piston",
     category: "MC",
     description: "Specialized pistons for mobile crane applications",
@@ -5283,7 +5293,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "mobile-crane-rod-nut",
-    productNumber: 13,
+    productCode: "GDC-S-",
     name: "Mobile Crane Rod Nut",
     category: "MC",
     description: "Rod nuts for mobile crane assemblies",
@@ -5423,7 +5433,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "mobile-crane-nut",
-    productNumber: 14,
+    productCode: "GDC-S-",
     name: "Mobile Crane Nut",
     category: "MC",
     description: "Internal nuts for mobile crane components",
@@ -5478,154 +5488,8 @@ export const PRODUCTS: Product[] = [
     ],
   },
   {
-    id: "trunnion",
-    productNumber: 15,
-    name: "Trunnion",
-    category: "TRU",
-    description: "Trunnion components for cylinder mounting",
-    groupName: "trunnion",
-    image: "/images/products/trunnion.png",
-    singleImage: "/images/products/trunnion-single.png",
-    drawingImage: "/images/drawings/trunnion-drawing.png",
-
-    specColumns: ["CODE", "A", "B", "C", "D", "E", "H", "kg"],
-
-    specs: [
-      {
-        CODE: "GDC-H 63x75",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "76",
-        E: "12.5",
-        H: "2.5",
-        kg: "3.300",
-      },
-      {
-        CODE: "GDC-H 70x85",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "86",
-        E: "12.5",
-        H: "2.5",
-        kg: "3.900",
-      },
-      {
-        CODE: "GDC-H 80x95",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "96",
-        E: "12.5",
-        H: "2.5",
-        kg: "4.350",
-      },
-      {
-        CODE: "GDC-H 80x100",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "101",
-        E: "12.5",
-        H: "2.5",
-        kg: "4.350",
-      },
-      {
-        CODE: "GDC-H 90x105",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "106",
-        E: "12.5",
-        H: "2.5",
-        kg: "3.850",
-      },
-      {
-        CODE: "GDC-H 90x110",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "111",
-        E: "12.5",
-        H: "2.5",
-        kg: "3.500",
-      },
-      {
-        CODE: "GDC-H 100x115",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "116",
-        E: "12.5",
-        H: "2.5",
-        kg: "4.900",
-      },
-      {
-        CODE: "GDC-H 100x120",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "121",
-        E: "12.5",
-        H: "2.5",
-        kg: "4.900",
-      },
-      {
-        CODE: "GDC-H 110x130",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "131",
-        E: "12.5",
-        H: "2.5",
-        kg: "4.800",
-      },
-      {
-        CODE: "GDC-H 115x130",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "131",
-        E: "12.5",
-        H: "2.5",
-        kg: "4.800",
-      },
-      {
-        CODE: "GDC-H 120x140",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "141",
-        E: "16.5",
-        H: "2.5",
-        kg: "5.000",
-      },
-      {
-        CODE: "GDC-H 125x145",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "146",
-        E: "16.5",
-        H: "2.5",
-        kg: "7.850",
-      },
-      {
-        CODE: "GDC-H 130x150",
-        A: "42",
-        B: "57",
-        C: "70",
-        D: "151",
-        E: "16.5",
-        H: "2.5",
-        kg: "7.850",
-      },
-    ],
-  },
-  {
     id: "end-plug-with-oil-hole",
-    productNumber: 16,
+    productCode: "GDC-AKR-",
     name: "End Plug With Oil Hole",
     category: "STD.1",
     description: "End plugs with integrated oil holes",
@@ -5799,7 +5663,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "end-plug",
-    productNumber: 17,
+    productCode: "GDC-AK-",
     name: "End Plug",
     category: "STD.1",
     description: "Standard end plugs for cylinders",
@@ -6111,7 +5975,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "bsp-weldable-port",
-    productNumber: 18,
+    productCode: "GDC-KM-",
     name: "BSP Weldable Port",
     category: "STD.1",
     description: "BSP thread weldable ports",
@@ -6162,7 +6026,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "unf-weldable-nipple",
-    productNumber: 19,
+    productCode: "GDC-KN-",
     name: "UNF Weldable Nipple",
     category: "STD.1",
     description: "UNF thread weldable nipples",
@@ -6227,7 +6091,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "weldable-metric-elbow",
-    productNumber: 20,
+    productCode: "GDC-MKD-",
     name: "Weldable Metric Elbow",
     category: "STD.1",
     description: "Metric thread weldable elbows",
@@ -6279,7 +6143,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "weldable-metric-nipple",
-    productNumber: 21,
+    productCode: "GDC-KN-Metric-",
     name: "Weldable Metric Nipple",
     category: "STD.1",
     description: "Metric thread weldable nipples",
@@ -6341,7 +6205,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "metric-weldable-port",
-    productNumber: 22,
+    productCode: "GDC-KMM-",
     name: "Metric Weldable Port",
     category: "STD.1",
     description: "Metric thread weldable ports",
@@ -6399,7 +6263,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "rod-end",
-    productNumber: 23,
+    productCode: "PR-",
     name: "Rod End",
     category: "RE",
     description: "Standard rod ends with ball joints",
@@ -6534,7 +6398,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "weldable-rod-end",
-    productNumber: 24,
+    productCode: "S-",
     name: "Weldable Rod End",
     category: "RE",
     description: "Weldable rod ends for direct attachment",
@@ -6681,7 +6545,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "rod-end-secondary",
-    productNumber: 25,
+    productCode: "S-",
     name: "Rod End (Secondary)",
     category: "RE",
     description: "Secondary design rod ends",
@@ -6805,7 +6669,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "iso-cetop-front-head",
-    productNumber: 26,
+    productCode: "BY.CF.",
     name: "ISO - Cetop Front Head",
     category: "ISO",
     description: "ISO Cetop standard front heads",
@@ -7126,7 +6990,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "iso-cetop-end-head",
-    productNumber: 27,
+    productCode: "BY.CE.",
     name: "ISO - Cetop End Head",
     category: "ISO",
     description: "ISO Cetop standard end heads",
@@ -7212,7 +7076,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "iso-cetop-nut",
-    productNumber: 28,
+    productCode: "BY.N.",
     name: "ISO - Cetop Nut",
     category: "ISO",
     description: "ISO Cetop mounting nuts",
@@ -7274,7 +7138,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "flange",
-    productNumber: 29,
+    productCode: "BY.FL.",
     name: "Flange",
     category: "ISO",
     description: "Flanges for cylinder mounting",
@@ -7348,7 +7212,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "end-plug-with-oil-hole-bush-type",
-    productNumber: 30,
+    productCode: "BY.PB.",
     name: "End Plug With Oil Hole (Bush Type)",
     category: "ISO",
     description: "Bush type end plugs with oil passages",
@@ -7435,7 +7299,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "weldable-with-oil-hole-end-plug-spherical-bearing",
-    productNumber: 31,
+    productCode: "BY.WB.",
     name: "Weldable With Oil Hole End Plug - With Spherical Bearing",
     category: "ISO",
     description: "Weldable end plugs with spherical bearings",
@@ -7544,7 +7408,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "weldable-forks",
-    productNumber: 32,
+    productCode: "BY.WF.",
     name: "Weldable Forks",
     category: "ISO",
     description: "Weldable fork clevis connections",
@@ -7608,7 +7472,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "threaded-forks",
-    productNumber: 33,
+    productCode: "BY.TF.",
     name: "Threaded Forks",
     category: "ISO",
     description: "Threaded fork clevis connections",
@@ -7677,7 +7541,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "bearings",
-    productNumber: 34,
+    productCode: "GE",
     name: "Bearings",
     category: "STD.2",
     description: "Standard spherical bearings for rod ends",
@@ -7745,7 +7609,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "bushing",
-    productNumber: 35,
+    productCode: "BY.B.",
     name: "Bushing",
     category: "ISO",
     description: "Bronze bushings for rod ends",
@@ -7765,7 +7629,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "copper-washer",
-    productNumber: 36,
+    productCode: "BY.CW-",
     name: "Copper Washer",
     category: "ISO",
     description: "Copper washers for hydraulic systems",
@@ -7782,7 +7646,8 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "steel-single-acting-cylinder-piston",
-    productNumber: 37,
+    productCode: "GDC-PV-T-",
+    availableMaterials: ["CK45 / C45", "S355J2", "11SMn30", "11SMnPb30"],
     name: "1040 / 1050 Steel Single Acting Cylinder Piston",
     category: "STD.1",
     description:
@@ -7896,7 +7761,8 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "steel-with-nutring-cylinder-piston",
-    productNumber: 38,
+    productCode: "GDC-PV-N-",
+    availableMaterials: ["CK45 / C45", "S355J2", "11SMn30", "11SMnPb30"],
     name: "1040 / 1050 Steel With Nutring Cylinder Piston (Double Action)",
     category: "STD.1",
     description:
@@ -8010,7 +7876,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "custom-gland",
-    productNumber: 39,
+    productCode: "GDC-CUSTOM-",
     name: "Custom Hydraulic Gland",
     category: "CUSTOM",
     description:
@@ -8045,7 +7911,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "custom-rod-end",
-    productNumber: 40,
+    productCode: "GDC-CUSTOM-",
     name: "Custom Hydraulic Rod End",
     category: "CUSTOM",
     description:
@@ -8080,7 +7946,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "hydraulic-pump-drums",
-    productNumber: 41,
+    productCode: "GDC-PD-",
     name: "Hydraulic Pump Drums",
     category: "UNI",
     description:
@@ -8707,7 +8573,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "elastic-gear-couplings",
-    productNumber: 42,
+    productCode: "GDC-DA-",
     name: "Elastic Gear Couplings",
     category: "UNI",
     description:
@@ -9411,7 +9277,8 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "elbow-pump-adapters",
-    productNumber: 43,
+    productCode: "GDC-DPA-",
+    availableMaterials: ["EN-GJL-250", "EN-GJS-400", "EN-GJS-500"],
     name: "Elbow Pump Adapters (GGG50)",
     category: "UNI",
     description: "Elbow pump adapters made from GGG50 material for hydraulic power unit connections.",
@@ -9465,7 +9332,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "flat-pump-adapters",
-    productNumber: 44,
+    productCode: "GDC-DPA-",
     name: "Flat Pump Adapters",
     category: "UNI",
     description: "Flat pump adapters for hydraulic power unit connections.",
@@ -9504,7 +9371,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "maintenance-covers",
-    productNumber: 45,
+    productCode: "GDC-BK-",
     name: "Maintenance Covers for the Unit",
     category: "UNI",
     description: "Maintenance covers with gasket for hydraulic power units.",
@@ -9536,11 +9403,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "hydraulic-oil-tanks",
-    productNumber: 46,
-    name: "Hydraulic Oil Tanks",
+    productCode: "GDC-YT-",
+    name: "Hydraulic Oil Tanks – Seamless / Weldless",
     category: "UNI",
     description:
-      "Seamless weldless hydraulic oil tanks in capacities from 6 to 250 liters.",
+      "Seamless / weldless hydraulic oil tanks in capacities from 6 to 250 liters.",
     groupName: "Hydraulic Power Unit Components",
     image: "/images/products/tank.png",
     singleImage: "/images/products/tank-single.png",

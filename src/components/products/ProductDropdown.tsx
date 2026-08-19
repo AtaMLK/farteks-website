@@ -39,17 +39,17 @@ export function ProductDropdown({
       <div className="mx-auto w-full max-w-7xl px-6 py-8">
         <div className="grid min-w-0 grid-cols-6 gap-6">
           {PRODUCT_GROUPS.map((group) => {
-            const groupProducts = PRODUCTS.filter((p) =>
-              group.products.includes(p.id),
-            );
+            const groupProducts = PRODUCTS.filter((p) => group.products.includes(p.id));
+            const isCustom = group.id === "custom-hydraulic";
+            const href = isCustom ? "/custom-parts" : `/products/group/${group.id}`;
 
             return (
-              <div key={group.id} className="group/item min-w-0">
+              <div key={group.id} className={`group/item min-w-0 ${isCustom ? "lg:col-span-2" : ""}`}>
                 <Link
-                  href={`/products/group/${group.id}`}
-                  className="mb-4 flex min-w-0 items-center gap-2 border-b-2 border-slate-100 pb-2 transition-colors group-hover/item:border-orange-500"
+                  href={href}
+                  className={`mb-4 flex min-w-0 items-center gap-2 border-b-2 border-slate-100 pb-2 transition-colors group-hover/item:border-orange-500 ${isCustom ? "rounded-xl border border-orange-200 bg-gradient-to-r from-orange-50 via-white to-red-50 px-4 py-3" : ""}`}
                 >
-                  <h4 className="min-w-0 flex-1 truncate text-sm font-semibold text-slate-900 transition-colors group-hover/item:text-orange-500">
+                  <h4 className={`min-w-0 flex-1 ${isCustom ? "text-base font-extrabold" : "truncate text-sm font-semibold"} text-slate-900 transition-colors group-hover/item:text-orange-500`}>
                     {group.name}
                   </h4>
 
@@ -59,7 +59,8 @@ export function ProductDropdown({
                   />
                 </Link>
 
-                <div className="space-y-2">
+                {!isCustom && (
+                  <div className="space-y-2">
                   {groupProducts.slice(0, 5).map((product) => (
                     <Link
                       key={product.id}
@@ -78,7 +79,8 @@ export function ProductDropdown({
                       +{groupProducts.length - 5} more →
                     </Link>
                   )}
-                </div>
+                  </div>
+                )}
               </div>
             );
           })}

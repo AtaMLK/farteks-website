@@ -45,10 +45,11 @@ export default function CustomPartsPage() {
               <br />
               <span className="text-[#392B87]">Our production.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-7 text-black/60 sm:mt-8 sm:text-lg sm:leading-8">
-              Custom hydraulic cylinder components produced from drawings,
-              samples and application requirements.
-            </p>
+            <div className="mt-6 max-w-3xl space-y-4 text-base leading-7 text-black/60 sm:mt-8 sm:text-lg sm:leading-8">
+              <p>We are producing “custom made hydraulic cylinder components” generally for our OEM partners according to their parameters, main material, special specifications, drawings, quality and quality control requests.</p>
+              <p>Thanks to our large CNC machine park, fully equipped quality control tools and lab, and highly experienced engineering team, we are supplying custom made equipment to the world’s No.1 OEMs according to their requirements and needs.</p>
+              <p>Our custom made production service covers all requests starting from main material selection and production until final packing according to their instructions.</p>
+            </div>
             <Link
               href="/contact"
               className="mt-7 inline-flex w-full items-center justify-center gap-3 rounded-full bg-[#E5322D] px-6 py-4 text-center font-bold text-white transition hover:-translate-y-0.5 sm:mt-9 sm:w-auto sm:px-7"

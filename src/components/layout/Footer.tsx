@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 
 export function Footer() {
@@ -11,8 +12,8 @@ export function Footer() {
       <div className="relative mx-auto max-w-[1440px] px-5 py-20 md:px-10 lg:px-14">
         <div className="grid gap-14 lg:grid-cols-[1.5fr_.7fr_.7fr_1fr]">
           <div>
-            <div className="text-4xl font-black tracking-[-.06em]">
-              FARTEKS<span className="text-[#E5322D]">.</span>
+            <div className="inline-flex max-w-full rounded-2xl bg-white p-2 shadow-lg">
+              <Image src="/images/logos/logos3.jpg" alt="GDC · Farteks Foreign Trade · FZ" width={402} height={108} className="h-auto w-[280px] max-w-full object-contain" />
             </div>
             <p className="mt-6 max-w-md leading-7 text-white/55">
               Precision hydraulic cylinder components for OEM partners,
@@ -66,7 +67,7 @@ export function Footer() {
               </Link>
               <Link
                 className="block hover:text-white"
-                href="/products/custom-parts"
+                href="/custom-parts"
               >
                 Custom parts
               </Link>

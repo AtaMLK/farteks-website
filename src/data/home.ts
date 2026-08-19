@@ -99,6 +99,6 @@ export const featuredProducts = [
     title: "Custom Components",
     type: "Drawing to Production",
     image: "/images/products/custom.png",
-    href: "/products/group/custom-hydraulic",
+    href: "/custom-parts",
   },
 ];

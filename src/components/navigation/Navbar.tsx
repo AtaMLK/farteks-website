@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 
@@ -98,21 +99,9 @@ export function Navbar() {
   ];
 
   const capabilityItems = [
-    {
-      label: "Industries",
-      href: "/industries",
-      description: "Applications and industries we serve",
-    },
-    {
-      label: "Manufacturing",
-      href: "/manufacturing",
-      description: "Machining and production capabilities",
-    },
-    {
-      label: "Quality",
-      href: "/quality",
-      description: "Quality control and inspection",
-    },
+    { label: "Quality", href: "/quality", description: "Quality control and inspection" },
+    { label: "Manufacturing", href: "/manufacturing", description: "Machining and production capabilities" },
+    { label: "Industries", href: "/industries", description: "Applications and industries we serve" },
   ];
 
   return (
@@ -125,19 +114,8 @@ export function Navbar() {
         }`}
       >
         <Container className="flex h-20 items-center justify-between gap-3">
-          <Link
-            href="/home"
-            className="farteks-logo shrink-0 text-4xl font-bold tracking-[0.2em]"
-          >
-            {"FARTEKS".split("").map((letter, index) => (
-              <span
-                key={index}
-                className="farteks-letter"
-                style={{ animationDelay: `${index * 0.08}s` }}
-              >
-                {letter}
-              </span>
-            ))}
+          <Link href="/home" className="shrink-0" aria-label="Farteks home">
+            <Image src="/images/logos/logos3.jpg" alt="GDC · Farteks Foreign Trade · FZ" width={402} height={108} priority className="h-12 w-auto object-contain sm:h-14" />
           </Link>
 
           {/* Desktop navigation */}
@@ -169,39 +147,16 @@ export function Navbar() {
                   if (item.hasCapabilitiesDropdown) setIsCapabilitiesOpen(false);
                 }}
               >
-                {item.hasDropdown || item.hasCapabilitiesDropdown ? (
-                  <button
-                    type="button"
-                    aria-expanded={
-                      item.hasDropdown
-                        ? isProductsOpen
-                        : isCapabilitiesOpen
-                    }
-                    onClick={() => {
-                      if (item.hasDropdown) {
-                        setIsProductsOpen((prev) => !prev);
-                        setIsCapabilitiesOpen(false);
-                      } else {
-                        setIsCapabilitiesOpen((prev) => !prev);
-                        setIsProductsOpen(false);
-                      }
-                    }}
-                    className={`flex items-center gap-1 whitespace-nowrap text-[13px] font-medium transition-colors ${
-                      pathname.startsWith(item.href)
-                        ? "text-[#E5322D]"
-                        : "text-slate-900 hover:text-[#E5322D]"
-                    }`}
-                  >
-                    {item.label}
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-200 ${
-                        (item.hasDropdown && isProductsOpen) ||
-                        (item.hasCapabilitiesDropdown && isCapabilitiesOpen)
-                          ? "rotate-180"
-                          : ""
-                      }`}
-                    />
+                {item.hasDropdown ? (
+                  <div className="flex items-center gap-0.5">
+                    <Link href={item.href} className={`whitespace-nowrap text-[13px] font-medium transition-colors ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900 hover:text-[#E5322D]"}`}>{item.label}</Link>
+                    <button type="button" aria-label="Toggle Products menu" aria-expanded={isProductsOpen} onClick={() => { setIsProductsOpen((prev) => !prev); setIsCapabilitiesOpen(false); }} className="p-0.5 text-slate-700 hover:text-[#E5322D]">
+                      <ChevronDown size={14} className={`transition-transform duration-200 ${isProductsOpen ? "rotate-180" : ""}`} />
+                    </button>
+                  </div>
+                ) : item.hasCapabilitiesDropdown ? (
+                  <button type="button" aria-expanded={isCapabilitiesOpen} onClick={() => { setIsCapabilitiesOpen((prev) => !prev); setIsProductsOpen(false); }} className={`flex items-center gap-1 whitespace-nowrap text-[13px] font-medium transition-colors ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900 hover:text-[#E5322D]"}`}>
+                    {item.label}<ChevronDown size={14} className={isCapabilitiesOpen ? "rotate-180" : ""} />
                   </button>
                 ) : (
                   <Link
@@ -233,7 +188,7 @@ export function Navbar() {
                   >
                     <div className="px-3 pb-2 pt-2">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#E5322D]">
-                        Farteks Capabilities
+                        Our Capabilities
                       </p>
                       <p className="mt-1 text-xs leading-5 text-slate-500">
                         Explore our applications, manufacturing and quality capabilities.

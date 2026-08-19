@@ -23,9 +23,9 @@ export default function ProductGroupsPage() {
             );
 
             return (
-              <Link key={group.id} href={`/products/group/${group.id}`}>
+              <Link key={group.id} href={group.id === "custom-hydraulic" ? "/custom-parts" : `/products/group/${group.id}`} className={group.id === "custom-hydraulic" ? "lg:col-span-3" : ""}>
                 <div
-                  className={`group relative overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer`}
+                  className={`group relative overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer ${group.id === "custom-hydraulic" ? "custom-feature-card" : ""}`}
                   style={{
                     animationDelay: `${idx * 100}ms`,
                   }}
@@ -39,7 +39,7 @@ export default function ProductGroupsPage() {
                       </div>
 
                       {/* Group Name */}
-                      <h3 className="text-2xl font-bold text-slate-900 mb-2 group-hover:text-orange-500 transition-colors">
+                      <h3 className={`mb-2 text-slate-900 group-hover:text-orange-500 transition-colors ${group.id === "custom-hydraulic" ? "text-3xl font-extrabold md:text-4xl" : "text-2xl font-bold"}`}>
                         {group.name}
                       </h3>
 
