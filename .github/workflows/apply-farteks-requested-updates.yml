@@ -1,15 +1,15 @@
 name: Apply Farteks requested updates
 
 on:
-  push:
-    branches: [main]
+  pull_request:
+    types: [opened, synchronize]
 
 permissions:
   contents: write
 
 jobs:
   apply:
-    if: ${{ !startsWith(github.event.head_commit.message, 'Apply Farteks website requested updates') }}
+    if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -41,11 +41,11 @@ jobs:
           Path('public/images/logos').mkdir(parents=True,exist_ok=True)
           out.save('public/images/logos/logos3.jpg','JPEG',quality=92,optimize=True)
           PY
-      - name: Commit final changes
+      - name: Commit final changes to PR branch
         run: |
           rm -f .farteks-update.patch.gz.b64 .farteks-logos3.jpg.b64 .github/workflows/apply-farteks-requested-updates.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m "Apply Farteks website requested updates"
-          git push origin main
+          git push origin HEAD:${GITHUB_HEAD_REF}
