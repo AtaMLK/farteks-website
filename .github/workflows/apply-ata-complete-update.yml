@@ -1,0 +1,176 @@
+name: Apply Ata complete Farteks update
+
+on:
+  push:
+    branches: [ata/farteks-complete-update]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: ${{ !startsWith(github.event.head_commit.message, 'Apply Ata complete Farteks update') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply requested changes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          root=Path('.')
+
+          # Product data
+          p=root/'src/data/products-data.ts'
+          s=p.read_text(encoding='utf-8')
+          s=s.replace('  productNumber: number;\n','  productCode: string;\n  availableMaterials?: string[];\n')
+          s,n=re.subn(r'\n  \{\n    id: "trunnion",\n    productNumber: 15,.*?\n  \},\n(?=  \{\n    id: "end-plug-with-oil-hole")','\n',s,flags=re.S)
+          if n!=1: raise RuntimeError(f'trunnion removal count={n}')
+          codes={
+            'custom-made-hydraulic':'GDC-CUSTOM-','gland-cast-iron-din1691':'GDC-B-','steel-gland':'GDC-CB-','piston':'GDC-P-','piston-with-thread':'GDC-PV-','piston-with-guide-ring':'GDC-PV-Y','gland-cast-iron-std2-new':'GDC-B-','piston-steel-std2-new':'GDC-P-','piston-with-thread-steel-std2-new':'GDC-PV-','mobile-crane-rod-gland':'GDC-UK-','mobile-crane-rod-gland-large':'GDC-MB-','mobile-crane-piston':'GDC-UP-','mobile-crane-rod-nut':'GDC-S-','mobile-crane-nut':'GDC-S-','end-plug-with-oil-hole':'GDC-AKR-','end-plug':'GDC-AK-','bsp-weldable-port':'GDC-KM-','unf-weldable-nipple':'GDC-KN-','weldable-metric-elbow':'GDC-MKD-','weldable-metric-nipple':'GDC-KN-Metric-','metric-weldable-port':'GDC-KMM-','rod-end':'PR-','weldable-rod-end':'S-','rod-end-secondary':'S-','iso-cetop-front-head':'BY.CF.','iso-cetop-end-head':'BY.CE.','iso-cetop-nut':'BY.N.','flange':'BY.FL.','end-plug-with-oil-hole-bush-type':'BY.PB.','weldable-with-oil-hole-end-plug-spherical-bearing':'BY.WB.','weldable-forks':'BY.WF.','threaded-forks':'BY.TF.','bearings':'GE','bushing':'BY.B.','copper-washer':'BY.CW-','steel-single-acting-cylinder-piston':'GDC-PV-T-','steel-with-nutring-cylinder-piston':'GDC-PV-N-','custom-gland':'GDC-CUSTOM-','custom-rod-end':'GDC-CUSTOM-','hydraulic-pump-drums':'GDC-PD-','elastic-gear-couplings':'GDC-DA-','elbow-pump-adapters':'GDC-DPA-','flat-pump-adapters':'GDC-DPA-','maintenance-covers':'GDC-BK-','hydraulic-oil-tanks':'GDC-YT-'}
+          mats={
+            'steel-gland':['CK45 / C45','S355J2','11SMn30','11SMnPb30'],'piston':['CK45 / C45','S355J2','11SMn30','11SMnPb30'],'piston-with-thread':['CK45 / C45','S355J2','11SMn30','11SMnPb30'],'piston-with-guide-ring':['CK45 / C45','S355J2','11SMn30','11SMnPb30'],'piston-steel-std2-new':['CK45 / C45','S355J2','11SMn30','11SMnPb30'],'piston-with-thread-steel-std2-new':['CK45 / C45','S355J2','11SMn30','11SMnPb30'],'mobile-crane-piston':['CK45 / C45','S355J2','11SMn30','11SMnPb30'],'steel-single-acting-cylinder-piston':['CK45 / C45','S355J2','11SMn30','11SMnPb30'],'steel-with-nutring-cylinder-piston':['CK45 / C45','S355J2','11SMn30','11SMnPb30'],'gland-cast-iron-din1691':['DIN GG25 / EN-GJL-250'],'gland-cast-iron-std2-new':['DIN GG25 / EN-GJL-250'],'elbow-pump-adapters':['EN-GJL-250','EN-GJS-400','EN-GJS-500']}
+          obj=re.compile(r'\n  \{\n    id: "([^"]+)"(?P<body>.*?)(?=\n  \{\n    id: "|\n\];\n)',re.S)
+          def esc(x): return '"'+x.replace('\\','\\\\').replace('"','\\"')+'"'
+          def repl(m):
+              pid=m.group(1); body=m.group('body')
+              if pid not in codes: raise RuntimeError('Missing code for '+pid)
+              body=re.sub(r'\n    productNumber: \d+,',f'\n    productCode: "{codes[pid]}",',body,count=1)
+              if pid in mats: body=re.sub(r'(\n    productCode: "[^"]+",)',r'\1\n    availableMaterials: ['+', '.join(esc(x) for x in mats[pid])+'],',body,count=1)
+              return '\n  {\n    id: "'+pid+'"'+body
+          s,n=obj.subn(repl,s)
+          if n!=len(codes): raise RuntimeError(f'product object count={n}, expected={len(codes)}')
+          s=s.replace('category: "STD.1" | "STD.2" | "MC" | "RE" | "ISO" | "TRU" | "UNI" | "CUSTOM",','category: "STD.1" | "STD.2" | "MC" | "RE" | "ISO" | "UNI" | "CUSTOM",')
+          s=s.replace('italian group component  (STD.2)','Standard 2').replace('italian group component (STD.2)','Standard 2')
+          s=s.replace('name: "Hydraulic Oil Tanks",\n    category: "UNI",\n    description:\n      "Seamless weldless hydraulic oil tanks in capacities from 6 to 250 liters.",','name: "Hydraulic Oil Tanks – Seamless / Weldless",\n    category: "UNI",\n    description:\n      "Seamless / weldless hydraulic oil tanks in capacities from 6 to 250 liters.",')
+          if 'productNumber' in s: raise RuntimeError('productNumber remains')
+          p.write_text(s,encoding='utf-8')
+
+          # Product groups: Custom first, remove old UNI and Trunnion groups, retain hydraulic power unit components.
+          p=root/'src/data/product-groups.ts'; s=p.read_text(encoding='utf-8')
+          header=s.split('export const PRODUCT_GROUPS: ProductGroup[] = [',1)[0]
+          footer=s.split('export function getProductGroup',1)[1]
+          arr='''export const PRODUCT_GROUPS: ProductGroup[] = [
+            { id: "custom-hydraulic", name: "Custom Hydraulic Components", description: "Custom-made hydraulic cylinder components produced for OEM partners according to their parameters, materials, drawings, specifications and quality requirements.", order: 1, products: ["custom-gland", "custom-rod-end"] },
+            { id: "std1", name: "Standard 1 Components", description: "Standard hydraulic cylinder components (Cast Iron & Steel)", order: 2, products: ["gland-cast-iron-din1691","steel-gland","piston","piston-with-thread","piston-with-guide-ring","end-plug-with-oil-hole","end-plug","bsp-weldable-port","unf-weldable-nipple","weldable-metric-elbow","weldable-metric-nipple","metric-weldable-port"] },
+            { id: "std2", name: "Standard 2", description: "Standard 2 hydraulic cylinder components with enhanced specifications", order: 3, products: ["gland-cast-iron-std2-new","piston-steel-std2-new","piston-with-thread-steel-std2-new"] },
+            { id: "mobile-crane", name: "Mobile Crane", description: "Specialized components for mobile crane applications", order: 4, products: ["mobile-crane-rod-gland","mobile-crane-rod-gland-large","mobile-crane-piston","mobile-crane-rod-nut","mobile-crane-nut"] },
+            { id: "rod-end", name: "Rod End", description: "Rod end and ball joint components", order: 5, products: ["rod-end","weldable-rod-end","rod-end-secondary","end-plug-with-oil-hole-bush-type","weldable-with-oil-hole-end-plug-spherical-bearing"] },
+            { id: "iso-cylinder", name: "ISO Cylinder", description: "ISO/CETOP standard cylinder components and accessories", order: 6, products: ["iso-cetop-front-head","iso-cetop-end-head","iso-cetop-nut","flange","weldable-forks","threaded-forks","bearings","bushing","copper-washer"] },
+            { id: "hydraulic-unit", name: "Hydraulic Power Unit Components", description: "Components for hydraulic power units, including pump drums, elastic gear couplings, oil tanks, maintenance covers, elbow pump adapters and flat pump adapters.", order: 7, products: ["hydraulic-pump-drums","elastic-gear-couplings","hydraulic-oil-tanks","maintenance-covers","elbow-pump-adapters","flat-pump-adapters"] },
+          ];
+          '''
+          p.write_text(header+arr+'export function getProductGroup'+footer,encoding='utf-8')
+
+          # Product detail and SEO.
+          p=root/'src/app/(website)/products/[id]/ProductDetailClient.tsx'; s=p.read_text(encoding='utf-8').replace('{product.productNumber}','{product.productCode}').replace('Product Number','Product Code').replace('Available Variants','Available main materials')
+          old='''              {/* Variants */}\n              <div className="border-b border-slate-200 pb-5">\n                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">\n                  Available main materials\n                </p>\n\n                <p className="text-sm font-semibold text-slate-900 sm:text-base">\n                  {product.specs.length} size combinations\n                </p>\n              </div>'''
+          new='''              {/* Main materials */}\n              <div className="border-b border-slate-200 pb-5">\n                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Available main materials</p>\n                <div className="flex flex-wrap gap-2">\n                  {(product.availableMaterials ?? ["Available upon request"]).map((material) => (\n                    <span key={material} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 sm:text-sm">{material}</span>\n                  ))}\n                </div>\n              </div>'''
+          if old in s: s=s.replace(old,new)
+          marker='''              {/* Specification Parameters */}'''
+          if marker in s:
+              tail=s.split(marker,1)[1]
+              end='''              </div>\n            </div>\n          </div>\n        </div>'''
+              if end in tail and 'Production by drawing is available' not in tail:
+                  tail=tail.replace(end,'''                </div>\n                <div className="mt-4 inline-flex items-center rounded-full border border-[#392B87]/15 bg-[#392B87]/5 px-3 py-1.5 text-xs font-bold text-[#392B87]">Production by drawing is available</div>\n              </div>\n            </div>\n          </div>\n        </div>''',1)
+                  s=s.split(marker,1)[0]+marker+tail
+          p.write_text(s,encoding='utf-8')
+          p=root/'src/app/(website)/products/[id]/page.tsx'; s=p.read_text(encoding='utf-8').replace('sku: product.productNumber || product.id,','sku: product.productCode || product.id,'); p.write_text(s,encoding='utf-8')
+
+          # Custom content and canonical route.
+          p=root/'src/app/(website)/products/custom-parts/page.tsx'; s=p.read_text(encoding='utf-8')
+          s=s.replace('Custom hydraulic cylinder components produced from drawings,\n              samples and application requirements.','We are producing “custom made hydraulic cylinder components” generally for our OEM partners according to their parameters, main material, special specifications, drawings, quality and quality control requests.')
+          s=s.replace('''            <p className="mt-6 max-w-xl text-base leading-7 text-black/60 sm:mt-8 sm:text-lg sm:leading-8">\n              We are producing “custom made hydraulic cylinder components” generally for our OEM partners according to their parameters, main material, special specifications, drawings, quality and quality control requests.\n            </p>''','''            <div className="mt-6 max-w-3xl space-y-4 text-base leading-7 text-black/60 sm:mt-8 sm:text-lg sm:leading-8">\n              <p>We are producing “custom made hydraulic cylinder components” generally for our OEM partners according to their parameters, main material, special specifications, drawings, quality and quality control requests.</p>\n              <p>Thanks to our large CNC machine park, fully equipped quality control tools and lab, and highly experienced engineering team, we are supplying custom made equipment to the world’s No.1 OEMs according to their requirements and needs.</p>\n              <p>Our custom made production service covers all requests starting from main material selection and production until final packing according to their instructions.</p>\n            </div>''')
+          p.write_text(s,encoding='utf-8')
+          p=root/'src/app/(website)/custom-parts/page.tsx'; p.parent.mkdir(parents=True,exist_ok=True); p.write_text('export { default } from "../products/custom-parts/page";\n',encoding='utf-8')
+          for fp in root.rglob('*'):
+              if fp.is_file() and fp.suffix in {'.ts','.tsx'}:
+                  t=fp.read_text(encoding='utf-8'); nt=t.replace('/products/group/custom-hydraulic','/custom-parts').replace('/products/custom-parts','/custom-parts')
+                  if nt!=t: fp.write_text(nt,encoding='utf-8')
+
+          # Navbar.
+          p=root/'src/components/navigation/Navbar.tsx'; s=p.read_text(encoding='utf-8')
+          s=s.replace('import Link from "next/link";','import Link from "next/link";\nimport Image from "next/image";')
+          s=s.replace('''  const capabilityItems = [\n    {\n      label: "Industries",\n      href: "/industries",\n      description: "Applications and industries we serve",\n    },\n    {\n      label: "Manufacturing",\n      href: "/manufacturing",\n      description: "Machining and production capabilities",\n    },\n    {\n      label: "Quality",\n      href: "/quality",\n      description: "Quality control and inspection",\n    },\n  ];''','''  const capabilityItems = [\n    { label: "Quality", href: "/quality", description: "Quality control and inspection" },\n    { label: "Manufacturing", href: "/manufacturing", description: "Machining and production capabilities" },\n    { label: "Industries", href: "/industries", description: "Applications and industries we serve" },\n  ];''')
+          old='''          <Link\n            href="/home"\n            className="farteks-logo shrink-0 text-4xl font-bold tracking-[0.2em]"\n          >\n            {"FARTEKS".split("").map((letter, index) => (\n              <span\n                key={index}\n                className="farteks-letter"\n                style={{ animationDelay: `${index * 0.08}s` }}\n              >\n                {letter}\n              </span>\n            ))}\n          </Link>'''
+          new='''          <Link href="/home" className="shrink-0" aria-label="Farteks home">\n            <Image src="/images/logos/logos3.jpg" alt="GDC · Farteks Foreign Trade · FZ" width={402} height={108} priority className="h-12 w-auto object-contain sm:h-14" />\n          </Link>'''
+          if old not in s: raise RuntimeError('Navbar logo block not found')
+          s=s.replace(old,new).replace('Farteks Capabilities','Our Capabilities')
+          # Products itself is a link; chevron remains the toggle.
+          old='''                {item.hasDropdown || item.hasCapabilitiesDropdown ? (\n                  <button\n                    type="button"\n                    aria-expanded={\n                      item.hasDropdown\n                        ? isProductsOpen\n                        : isCapabilitiesOpen\n                    }\n                    onClick={() => {\n                      if (item.hasDropdown) {\n                        setIsProductsOpen((prev) => !prev);\n                        setIsCapabilitiesOpen(false);\n                      } else {\n                        setIsCapabilitiesOpen((prev) => !prev);\n                        setIsProductsOpen(false);\n                      }\n                    }}\n                    className={`flex items-center gap-1 whitespace-nowrap text-[13px] font-medium transition-colors ${\n                      pathname.startsWith(item.href)\n                        ? "text-[#E5322D]"\n                        : "text-slate-900 hover:text-[#E5322D]"\n                    }`}\n                  >\n                    {item.label}\n                    <ChevronDown\n                      size={14}\n                      className={`transition-transform duration-200 ${\n                        (item.hasDropdown && isProductsOpen) ||\n                        (item.hasCapabilitiesDropdown && isCapabilitiesOpen)\n                          ? "rotate-180"\n                          : ""\n                      }`}\n                    />\n                  </button>\n                ) : ('''
+          new='''                {item.hasDropdown ? (\n                  <div className="flex items-center gap-0.5">\n                    <Link href={item.href} className={`whitespace-nowrap text-[13px] font-medium transition-colors ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900 hover:text-[#E5322D]"}`}>{item.label}</Link>\n                    <button type="button" aria-label="Toggle Products menu" aria-expanded={isProductsOpen} onClick={() => { setIsProductsOpen((prev) => !prev); setIsCapabilitiesOpen(false); }} className="p-0.5 text-slate-700 hover:text-[#E5322D]">\n                      <ChevronDown size={14} className={`transition-transform duration-200 ${isProductsOpen ? "rotate-180" : ""}`} />\n                    </button>\n                  </div>\n                ) : item.hasCapabilitiesDropdown ? (\n                  <button type="button" aria-expanded={isCapabilitiesOpen} onClick={() => { setIsCapabilitiesOpen((prev) => !prev); setIsProductsOpen(false); }} className={`flex items-center gap-1 whitespace-nowrap text-[13px] font-medium transition-colors ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900 hover:text-[#E5322D]"}`}>\n                    {item.label}<ChevronDown size={14} className={isCapabilitiesOpen ? "rotate-180" : ""} />\n                  </button>\n                ) : ('''
+          if old not in s: raise RuntimeError('Navbar dropdown block not found')
+          s=s.replace(old,new)
+          p.write_text(s,encoding='utf-8')
+
+          # Product dropdown: custom is one direct entry with no subgroups/products.
+          p=root/'src/components/products/ProductDropdown.tsx'; s=p.read_text(encoding='utf-8')
+          s=s.replace('''          {PRODUCT_GROUPS.map((group) => {\n            const groupProducts = PRODUCTS.filter((p) =>\n              group.products.includes(p.id),\n            );\n\n            return (\n              <div key={group.id} className="group/item min-w-0">\n                <Link\n                  href={`/products/group/${group.id}`}''','''          {PRODUCT_GROUPS.map((group) => {\n            const groupProducts = PRODUCTS.filter((p) => group.products.includes(p.id));\n            const isCustom = group.id === "custom-hydraulic";\n            const href = isCustom ? "/custom-parts" : `/products/group/${group.id}`;\n\n            return (\n              <div key={group.id} className={`group/item min-w-0 ${isCustom ? "lg:col-span-2" : ""}`}>\n                <Link\n                  href={href}''')
+          s=s.replace('className="mb-4 flex min-w-0 items-center gap-2 border-b-2 border-slate-100 pb-2 transition-colors group-hover/item:border-orange-500"','className={`mb-4 flex min-w-0 items-center gap-2 border-b-2 border-slate-100 pb-2 transition-colors group-hover/item:border-orange-500 ${isCustom ? "rounded-xl border border-orange-200 bg-gradient-to-r from-orange-50 via-white to-red-50 px-4 py-3" : ""}`}')
+          s=s.replace('<h4 className="min-w-0 flex-1 truncate text-sm font-semibold text-slate-900 transition-colors group-hover/item:text-orange-500">','<h4 className={`min-w-0 flex-1 ${isCustom ? "text-base font-extrabold" : "truncate text-sm font-semibold"} text-slate-900 transition-colors group-hover/item:text-orange-500`}>')
+          start=s.find('                <div className="space-y-2">', s.find('const isCustom'))
+          end=s.find('                </div>', start)+len('                </div>')
+          if start!=-1 and end>start: s=s[:start]+('                {!isCustom && (\n                  <div className="space-y-2">'+s[start+len('                <div className="space-y-2">'):end-len('                </div>')]+ '                  </div>\n                )}')+s[end:]
+          p.write_text(s,encoding='utf-8')
+
+          # Products page featured custom card.
+          p=root/'src/app/(website)/products/page.tsx'; s=p.read_text(encoding='utf-8')
+          s=s.replace('''<Link key={group.id} href={`/products/group/${group.id}`}>''','''<Link key={group.id} href={group.id === "custom-hydraulic" ? "/custom-parts" : `/products/group/${group.id}`} className={group.id === "custom-hydraulic" ? "lg:col-span-3" : ""}>''')
+          s=s.replace('''className={`group relative overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer`}''','''className={`group relative overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer ${group.id === "custom-hydraulic" ? "custom-feature-card" : ""}`}''')
+          s=s.replace('''<h3 className="text-2xl font-bold text-slate-900 mb-2 group-hover:text-orange-500 transition-colors">''','''<h3 className={`mb-2 text-slate-900 group-hover:text-orange-500 transition-colors ${group.id === "custom-hydraulic" ? "text-3xl font-extrabold md:text-4xl" : "text-2xl font-bold"}`}>''')
+          p.write_text(s,encoding='utf-8')
+
+          # Footer logo.
+          p=root/'src/components/layout/Footer.tsx'; s=p.read_text(encoding='utf-8').replace('import Link from "next/link";','import Link from "next/link";\nimport Image from "next/image";')
+          s=s.replace('''            <div className="text-4xl font-black tracking-[-.06em]">\n              FARTEKS<span className="text-[#E5322D]">.</span>\n            </div>''','''            <div className="inline-flex max-w-full rounded-2xl bg-white p-2 shadow-lg">\n              <Image src="/images/logos/logos3.jpg" alt="GDC · Farteks Foreign Trade · FZ" width={402} height={108} className="h-auto w-[280px] max-w-full object-contain" />\n            </div>''')
+          p.write_text(s,encoding='utf-8')
+
+          # Entrance logo.
+          p=root/'src/components/entrance/page.tsx'; s=p.read_text(encoding='utf-8')
+          if 'import Image' not in s: s=s.replace('import','import Image from "next/image";\nimport',1)
+          a=s.find('        <div\n          className={`flex w-full items-center justify-center gap-6 md:gap-12 transition-all duration-1000 ${')
+          b=s.find('        </div>\n\n        {/* =====================================================\n            SPACE BETWEEN LOGOS',a)
+          if a!=-1 and b!=-1:
+              b+=len('        </div>')
+              s=s[:a]+'''        <div className={`flex w-full items-center justify-center transition-all duration-1000 ${showLogos ? "translate-y-0 opacity-100" : "-translate-y-6 opacity-0"}`}>\n          <Image src="/images/logos/logos3.jpg" alt="GDC · Farteks Foreign Trade · FZ" width={1340} height={359} priority className="h-auto w-full max-w-5xl object-contain" />\n        </div>'''+s[b:]
+          p.write_text(s,encoding='utf-8')
+
+          # Gallery: no factory overlay; remove exhibition stand numbers.
+          p=root/'src/app/(website)/gallery/page.tsx'; s=p.read_text(encoding='utf-8').replace(' — Stand 01','').replace(' — Stand 02','').replace(' — Stand 03','').replace(' — Stand 04','').replace(' — Stand 05','').replace(' — Stand 06','').replace(' — Stand 07','').replace(' — Stand 08','').replace(' — Stand 09','').replace(' — Stand 10','').replace(' — Stand 11','').replace(' — Stand 12','').replace(' — Stand 13','').replace(' — Stand 14','').replace(' — Stand 15','').replace(' — Stand 16','').replace(' — Stand 17','').replace(' — Stand 18','').replace(' — Stand 19','').replace(' — Stand 20','').replace(' — Stand 21','').replace(' — Stand 22','').replace(' — Stand 23','').replace(' — Stand 24','')
+          overlay='''              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/10" />'''
+          if overlay in s: s=s.replace(overlay,'''              {group === "exhibitions" && (\n                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-black/10" />\n              )}''',1)
+          p.write_text(s,encoding='utf-8')
+
+          # Featured card animated border.
+          p=root/'src/app/globals.css'; s=p.read_text(encoding='utf-8')
+          s+='''\n\n.custom-feature-card::before{content:"";position:absolute;inset:-1px;z-index:0;border-radius:22px;padding:1px;background:conic-gradient(from 0deg,rgba(229,50,45,.08),rgba(57,43,135,.72),rgba(229,50,45,.78),rgba(57,43,135,.12),rgba(229,50,45,.08));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:custom-card-border-spin 7s linear infinite;pointer-events:none}.custom-feature-card>*{position:relative;z-index:1}@keyframes custom-card-border-spin{to{transform:rotate(360deg)}}@media (prefers-reduced-motion:reduce){.custom-feature-card::before{animation:none}}\n'''
+          p.write_text(s,encoding='utf-8')
+
+          # Generate the combined logo from the existing source logos in the repo.
+          PY
+          python -m pip install --quiet pillow
+          python - <<'PY'
+          from PIL import Image,ImageDraw,ImageFont
+          from pathlib import Path
+          out=Image.new('RGB',(1340,359),'white')
+          def fit(path,w,h):
+              im=Image.open(path).convert('RGBA'); im.thumbnail((w,h),Image.Resampling.LANCZOS); return im
+          gdc=fit('public/images/logos/gdc-logo.png',470,285); fz=fit('public/images/logos/fz-logo.png',230,230)
+          out.paste(gdc,(55,(359-gdc.height)//2),gdc)
+          d=ImageDraw.Draw(out)
+          for y in (112,166,220): d.polygon([(635,y),(696,y-48),(696,y-20),(635,y+28)],fill=(235,0,25))
+          d.rectangle((731,76,739,275),fill=(24,24,28))
+          try: font=ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf',52)
+          except: font=ImageFont.load_default()
+          for text,y in [('Farteks',82),('Foreign',154),('Trade',226)]: d.text((772,y),text,font=font,fill=(24,24,28))
+          out.paste(fz,(1070,(359-fz.height)//2),fz)
+          Path('public/images/logos').mkdir(parents=True,exist_ok=True); out.save('public/images/logos/logos3.jpg','JPEG',quality=92,optimize=True)
+          PY
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Apply Ata complete Farteks update"
+          git push origin ata/farteks-complete-update
