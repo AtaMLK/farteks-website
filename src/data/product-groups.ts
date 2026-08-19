@@ -83,41 +83,19 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     ],
   },
   {
-    id: "trunnion",
-    name: "Trunnion",
-    description: "Trunnion mounting components for cylinder assemblies",
+    id: "hydraulic-oil-tanks",
+    name: "Seamless / Weldless Oil Tanks",
+    description: "Hydraulic oil tanks manufactured as seamless / weldless tanks for hydraulic power units.",
     order: 6,
-    products: ["trunnion"],
-  },
-  {
-    id: "UNI",
-    name: "Hydraulic Unit Components",
-    description: "Hydraulic unit components",
-    order: 6,
-    products: ["trunnion"],
+    products: ["hydraulic-oil-tanks"],
   },
   {
     id: "custom-hydraulic",
     name: "Custom Hydraulic Components",
     description:
-      "Bespoke hydraulic cylinder components manufactured to customer drawings and specifications, with engineering and OEM support.",
+      "Custom-made hydraulic cylinder components produced for OEM partners according to their drawings, materials, specifications and quality requirements.",
     order: 7,
-    products: ["custom-piston", "custom-gland", "custom-rod-end"],
-  },
-  {
-    id: "hydraulic-unit",
-    name: "Hydraulic Power Unit Components",
-    description:
-      "Components for hydraulic power units, including pump drums, elastic gear couplings, oil tanks, maintenance covers, elbow pump adapters and flat pump adapters.",
-    order: 8,
-    products: [
-      "hydraulic-pump-drums",
-      "elastic-gear-couplings",
-      "hydraulic-oil-tanks",
-      "maintenance-covers",
-      "elbow-pump-adapters",
-      "flat-pump-adapters",
-    ],
+    products: ["custom-made-hydraulic", "custom-gland", "custom-rod-end"],
   },
 ];
 
