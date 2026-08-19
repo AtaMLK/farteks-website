@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 
@@ -46,17 +47,11 @@ export function Navbar() {
     function handleClickOutside(event: MouseEvent) {
       const target = event.target as Node;
 
-      if (
-        productsRef.current &&
-        !productsRef.current.contains(target)
-      ) {
+      if (productsRef.current && !productsRef.current.contains(target)) {
         setIsProductsOpen(false);
       }
 
-      if (
-        capabilitiesRef.current &&
-        !capabilitiesRef.current.contains(target)
-      ) {
+      if (capabilitiesRef.current && !capabilitiesRef.current.contains(target)) {
         setIsCapabilitiesOpen(false);
       }
     }
@@ -99,9 +94,9 @@ export function Navbar() {
 
   const capabilityItems = [
     {
-      label: "Industries",
-      href: "/industries",
-      description: "Applications and industries we serve",
+      label: "Quality",
+      href: "/quality",
+      description: "Quality control and inspection",
     },
     {
       label: "Manufacturing",
@@ -109,9 +104,9 @@ export function Navbar() {
       description: "Machining and production capabilities",
     },
     {
-      label: "Quality",
-      href: "/quality",
-      description: "Quality control and inspection",
+      label: "Industries",
+      href: "/industries",
+      description: "Applications and industries we serve",
     },
   ];
 
@@ -125,22 +120,17 @@ export function Navbar() {
         }`}
       >
         <Container className="flex h-20 items-center justify-between gap-3">
-          <Link
-            href="/home"
-            className="farteks-logo shrink-0 text-4xl font-bold tracking-[0.2em]"
-          >
-            {"FARTEKS".split("").map((letter, index) => (
-              <span
-                key={index}
-                className="farteks-letter"
-                style={{ animationDelay: `${index * 0.08}s` }}
-              >
-                {letter}
-              </span>
-            ))}
+          <Link href="/home" className="shrink-0" aria-label="Farteks home">
+            <Image
+              src="/images/logos/logos3.jpg"
+              alt="GDC · Farteks Foreign Trade · FZ"
+              width={268}
+              height={72}
+              priority
+              className="h-auto w-[210px] sm:w-[235px]"
+            />
           </Link>
 
-          {/* Desktop navigation */}
           <nav className="hidden min-w-0 flex-1 items-center justify-center gap-5 xl:flex">
             {navItems.map((item) => (
               <div
@@ -169,22 +159,43 @@ export function Navbar() {
                   if (item.hasCapabilitiesDropdown) setIsCapabilitiesOpen(false);
                 }}
               >
-                {item.hasDropdown || item.hasCapabilitiesDropdown ? (
-                  <button
-                    type="button"
-                    aria-expanded={
-                      item.hasDropdown
-                        ? isProductsOpen
-                        : isCapabilitiesOpen
-                    }
-                    onClick={() => {
-                      if (item.hasDropdown) {
+                {item.hasDropdown ? (
+                  <div className="flex items-center gap-0.5">
+                    <Link
+                      href={item.href}
+                      className={`whitespace-nowrap text-[13px] font-medium transition-colors ${
+                        pathname.startsWith(item.href)
+                          ? "text-[#E5322D]"
+                          : "text-slate-900 hover:text-[#E5322D]"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                    <button
+                      type="button"
+                      aria-label="Open products menu"
+                      aria-expanded={isProductsOpen}
+                      onClick={() => {
                         setIsProductsOpen((prev) => !prev);
                         setIsCapabilitiesOpen(false);
-                      } else {
-                        setIsCapabilitiesOpen((prev) => !prev);
-                        setIsProductsOpen(false);
-                      }
+                      }}
+                      className="p-1 text-slate-500 transition-colors hover:text-[#E5322D]"
+                    >
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform duration-200 ${
+                          isProductsOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </div>
+                ) : item.hasCapabilitiesDropdown ? (
+                  <button
+                    type="button"
+                    aria-expanded={isCapabilitiesOpen}
+                    onClick={() => {
+                      setIsCapabilitiesOpen((prev) => !prev);
+                      setIsProductsOpen(false);
                     }}
                     className={`flex items-center gap-1 whitespace-nowrap text-[13px] font-medium transition-colors ${
                       pathname.startsWith(item.href)
@@ -196,10 +207,7 @@ export function Navbar() {
                     <ChevronDown
                       size={14}
                       className={`transition-transform duration-200 ${
-                        (item.hasDropdown && isProductsOpen) ||
-                        (item.hasCapabilitiesDropdown && isCapabilitiesOpen)
-                          ? "rotate-180"
-                          : ""
+                        isCapabilitiesOpen ? "rotate-180" : ""
                       }`}
                     />
                   </button>
@@ -233,10 +241,10 @@ export function Navbar() {
                   >
                     <div className="px-3 pb-2 pt-2">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#E5322D]">
-                        Farteks Capabilities
+                        Our Capabilities
                       </p>
                       <p className="mt-1 text-xs leading-5 text-slate-500">
-                        Explore our applications, manufacturing and quality capabilities.
+                        Explore our quality, manufacturing and industry capabilities.
                       </p>
                     </div>
 
@@ -260,7 +268,6 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop actions */}
           <div className="hidden shrink-0 items-center gap-2 xl:flex">
             <div className="w-[190px] shrink-0">
               <SearchBox />
@@ -270,7 +277,6 @@ export function Navbar() {
             </Button>
           </div>
 
-          {/* Mobile / tablet */}
           <button
             type="button"
             className="shrink-0 xl:hidden"
@@ -309,7 +315,7 @@ export function Navbar() {
                     <div key={item.href} className="space-y-3">
                       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
                         Capabilities
-                      </p>
+n                      </p>
 
                       <div className="grid gap-3 pl-3">
                         {capabilityItems.map((capability) => (
