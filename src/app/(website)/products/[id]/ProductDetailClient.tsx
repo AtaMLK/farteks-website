@@ -65,7 +65,7 @@ export default function ProductDetailClient({
               <h1
                 className="
     w-full
-    break-words
+    wrap-break-word
     text-2xl
     font-bold
     leading-tight
@@ -115,7 +115,7 @@ export default function ProductDetailClient({
                   sm:text-sm
                 "
               >
-                #{product.productNumber}
+                #{product.productCode}
               </span>
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function ProductDetailClient({
                 type="button"
                 onClick={() => setImageTab("product")}
                 className={`
-                  min-h-[46px]
+                  min-h-11.5
                   rounded-lg
                   px-3
                   py-2.5
@@ -211,7 +211,7 @@ export default function ProductDetailClient({
                 type="button"
                 onClick={() => setImageTab("drawing")}
                 className={`
-                  min-h-[46px]
+                  min-h-11.5
                   rounded-lg
                   px-3
                   py-2.5
@@ -281,26 +281,33 @@ export default function ProductDetailClient({
                 </p>
               </div>
 
-              {/* Product Number */}
+              {/* Product Code */}
               <div className="border-b border-slate-200 pb-5">
                 <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
-                  Product Number
+                  Product Code
                 </p>
 
                 <p className="break-all text-sm font-semibold text-slate-900 sm:text-base">
-                  #{product.productNumber}
+                  #{product.productCode}
                 </p>
               </div>
 
-              {/* Variants */}
+              {/* Main materials */}
               <div className="border-b border-slate-200 pb-5">
-                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
-                  Available Variants
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
+                  Available main materials
                 </p>
 
-                <p className="text-sm font-semibold text-slate-900 sm:text-base">
-                  {product.specs.length} size combinations
-                </p>
+                <div className="flex flex-wrap gap-2">
+                  {(product.availableMaterials ?? ["Available upon request"]).map((material) => (
+                    <span
+                      key={material}
+                      className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 sm:text-sm"
+                    >
+                      {material}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               {/* Specification Parameters */}
@@ -315,7 +322,7 @@ export default function ProductDetailClient({
                       key={col}
                       className="
                         max-w-full
-                        break-words
+                        wrap-break-word
                         rounded
                         bg-orange-100
                         px-2.5
@@ -328,6 +335,10 @@ export default function ProductDetailClient({
                       {col}
                     </span>
                   ))}
+                </div>
+
+                <div className="mt-4 inline-flex items-center rounded-full border border-[#392B87]/15 bg-[#392B87]/5 px-3 py-1.5 text-xs font-bold text-[#392B87]">
+                  Production by drawing is available
                 </div>
               </div>
             </div>

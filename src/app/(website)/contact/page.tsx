@@ -63,12 +63,12 @@ export default function ContactPage() {
                       />
                       <div>
                         <h3 className="font-semibold text-[#392B87]">
-                          Address
+                          Head Office
                         </h3>
                         <p className="mt-2 text-slate-600">
-                          FARTEKS Limited
+                          
                           <br />
-                          zeytinlik mahallesi , Yakut sokak No 11/10
+                          zeytinlik mahallesi , Yakut sokak No 11/10 Bakırköy 34140
                         </p>
                         <p className="mt-2 text-slate-600">Istanbul, Türkiye</p>
                       </div>
@@ -82,7 +82,7 @@ export default function ContactPage() {
                       <div>
                         <h3 className="font-semibold text-[#392B87]">Phone</h3>
                         <p className="mt-2 text-slate-600">+90 212 660 5857</p>
-                        <p className="mt-2 text-slate-600">+90 539 576 88 38</p>
+                        <p className="mt-2 text-slate-600">+90 212 660 5240</p>
                       </div>
                     </div>
 
@@ -103,6 +103,7 @@ export default function ContactPage() {
                     <div className="mt-4 space-y-2 text-slate-300">
                       <p>Monday - Friday: 9:00 AM - 6:30 PM</p>
                       <p>Saturday and Sunday: Closed</p>
+                      <p>GMT: UTC+3 - CET: UTC+2</p>
                     </div>
                   </div>
                 </div>
@@ -117,9 +118,9 @@ export default function ContactPage() {
                       Factory Address
                     </h3>
                     <p className="mt-2 text-slate-600">
-                      GDC Hidrolik
+                      
                       <br />
-                      Fevzi Çamkam Mah Alsım Cad No 55/F
+                      Fevzi Çamkam Mah Alsım Cad No 55/F Karatay
                     </p>
                     <p className="mt-2 text-slate-600">Konya, Türkiye</p>
                   </div>

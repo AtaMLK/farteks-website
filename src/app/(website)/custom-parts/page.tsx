@@ -24,7 +24,7 @@ export default function CustomPartsPage() {
     <main className="overflow-hidden bg-[#F0F0F0] text-black">
       {/* Back to Products */}
       <div className="px-5 pt-6 sm:px-6 sm:pt-8 md:px-10 lg:px-14">
-        <div className="mx-auto w-full max-w-360">
+        <div className="mx-auto w-full max-w-[1440px]">
           <Link
             href="/products"
             className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-4 py-2.5 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-[#E5322D]/30 hover:text-[#E5322D]"
@@ -37,7 +37,7 @@ export default function CustomPartsPage() {
 
       {/* Hero */}
       <section className="px-5 pb-16 pt-28 sm:px-6 sm:pb-20 sm:pt-32 md:px-10 md:pb-24 lg:px-14 lg:pt-40">
-        <div className="mx-auto grid w-full max-w-360 items-center gap-10 md:gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(360px,.8fr)] lg:gap-16">
+        <div className="mx-auto grid w-full max-w-[1440px] items-center gap-10 md:gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(360px,.8fr)] lg:gap-16">
           <div className="min-w-0">
             <p className="site-eyebrow">Custom production</p>
             <h1 className="site-page-title mt-5 max-w-4xl text-[clamp(2.75rem,12vw,6.75rem)]">
@@ -68,7 +68,7 @@ export default function CustomPartsPage() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9 }}
-            className="relative aspect-4/3 min-h-70 w-full overflow-hidden rounded-3xl bg-[#dcdcdc] sm:aspect-16/10 sm:rounded-[30px] lg:aspect-4/3 lg:min-h-0 lg:rounded-[38px]"
+            className="relative aspect-[4/3] min-h-[280px] w-full overflow-hidden rounded-[24px] bg-[#dcdcdc] sm:aspect-[16/10] sm:rounded-[30px] lg:aspect-[4/3] lg:min-h-0 lg:rounded-[38px]"
           >
             <Image
               src="/images/drawings/customproductbackground-drawing.jpg"
@@ -78,7 +78,7 @@ export default function CustomPartsPage() {
               className="object-cover object-center opacity-80"
               priority
             />
-            <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-[#392B87]/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-[#392B87]/10" />
             <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 rounded-xl bg-black/35 px-3 py-2 text-xs font-semibold text-white backdrop-blur-sm sm:bottom-7 sm:left-7 sm:right-auto sm:rounded-none sm:bg-transparent sm:p-0 sm:text-sm">
               <Wrench className="h-4 w-4 shrink-0 text-[#E5322D] sm:h-5 sm:w-5" />
               <span>Drawing → machining → inspection</span>
@@ -89,7 +89,7 @@ export default function CustomPartsPage() {
 
       {/* Process */}
       <section className="px-5 py-14 sm:px-6 sm:py-16 md:px-10 md:py-20 lg:px-14">
-        <div className="mx-auto grid w-full max-w-360 gap-4 md:grid-cols-3 md:gap-5">
+        <div className="mx-auto grid w-full max-w-[1440px] gap-4 md:grid-cols-3 md:gap-5">
           {processSteps.map(([n, title, text], i) => (
             <motion.div
               key={n}
@@ -97,7 +97,7 @@ export default function CustomPartsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ delay: i * 0.06 }}
-              className="min-w-0 rounded-3xl bg-white p-6 shadow-xl shadow-slate-200/40 sm:rounded-[30px] sm:p-8"
+              className="min-w-0 rounded-[24px] bg-white p-6 shadow-xl shadow-slate-200/40 sm:rounded-[30px] sm:p-8"
             >
               <span className="text-xs font-black text-[#E5322D]">{n}</span>
               <h2 className="mt-5 text-xl font-black leading-tight text-[#392B87] sm:mt-8 sm:text-2xl">
@@ -113,7 +113,7 @@ export default function CustomPartsPage() {
 
       {/* Requirements */}
       <section className="bg-white px-5 py-16 sm:px-6 sm:py-20 md:px-10 md:py-24 lg:px-14">
-        <div className="mx-auto grid w-full max-w-360 gap-10 md:gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="mx-auto grid w-full max-w-[1440px] gap-10 md:gap-12 lg:grid-cols-2 lg:items-center">
           <div className="min-w-0">
             <p className="text-xs font-bold uppercase tracking-[.24em] text-[#E5322D] sm:tracking-[.3em]">
               What we need
@@ -131,7 +131,7 @@ export default function CustomPartsPage() {
             </div>
           </div>
 
-          <div className="relative aspect-4/3 min-h-65 w-full overflow-hidden rounded-3xl bg-[#F0F0F0] sm:aspect-16/10 sm:rounded-[30px] lg:rounded-[34px]">
+          <div className="relative aspect-[4/3] min-h-[260px] w-full overflow-hidden rounded-[24px] bg-[#F0F0F0] sm:aspect-[16/10] sm:rounded-[30px] lg:rounded-[34px]">
             <Image
               src="/images/drawings/customproductdrawing.jpg"
               alt="Custom product drawing"

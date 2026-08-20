@@ -78,13 +78,13 @@ export function CatalogDownloadModal({
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-[100] bg-black/50"
+        className="fixed inset-0 z-100 bg-black/50"
         onClick={handleClose}
         style={{ backdropFilter: "blur(4px)" }}
       />
 
       {/* Modal */}
-      <div className="fixed left-1/2 top-1/2 z-[101] max-h-[calc(100dvh-1rem)] w-[calc(100%-1rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl bg-white p-5 shadow-2xl sm:w-[calc(100%-2rem)] sm:p-8">
+      <div className="fixed left-1/2 top-1/2 z-101 max-h-[calc(100dvh-1rem)] w-[calc(100%-1rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl bg-white p-5 shadow-2xl sm:w-[calc(100%-2rem)] sm:p-8">
         {/* Close Button */}
         <button
           type="button"
@@ -270,7 +270,7 @@ export function CatalogDownloadModal({
               {/* Error */}
               {error && (
                 <div className="flex gap-2 rounded-lg border border-red-200 bg-red-50 p-3">
-                  <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-600" />
+                  <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
 
                   <p className="text-sm text-red-700">
                     {error}

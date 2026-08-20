@@ -19,14 +19,13 @@ export default function QualityPage() {
         "Quality Management System - Ensuring consistent product quality and customer satisfaction",
     },
     {
-      title: "ISO 4414",
+      title: "European Standards (EN)",
       description:
-        "Hydraulic Fluid Power Systems - Safety requirements and guidelines",
+        "European Standards (EN) – Technical requirements and specifications for materials, products, testing, and quality.",
     },
     {
-      title: "DIN Standards",
-      description:
-        "German industrial standards for hydraulic components and manufacturing processes",
+      title: "Environmental Responsibility",
+      description: "Recycling of used diamond tools and industrial oils in accordance with environmental management practices.",
     },
     {
       title: "ASTM Standards",
@@ -38,9 +37,11 @@ export default function QualityPage() {
       description:
         "Custom specifications tailored to individual OEM partner requirements",
     },
+    
     {
-      title: "Environmental Compliance",
-      description: "RoHS, REACH, and other environmental standards compliance",
+      title: "DIN Standards",
+      description:
+        "German industrial standards for hydraulic components and manufacturing processes",
     },
   ];
 
@@ -49,37 +50,37 @@ export default function QualityPage() {
       step: "1",
       title: "Raw Material Inspection",
       description:
-        "All incoming materials are tested for chemical composition, hardness, and dimensional accuracy",
+        "All incoming materials are tested for chemical composition, hardness, and dimensional accuracy. In our production, traceability starts here: the drawing and requested instructions are added as a label to the inspected raw material, and the labeled material is tracked throughout the entire production process until completion.",
     },
     {
       step: "2",
       title: "CNC Machining",
       description:
-        "Precision manufacturing with real-time monitoring and in-process quality checks",
+        'Precision manufacturing with real-time monitoring and in-process quality checks: Production begins with quality control approval; operators perform the necessary checks every 5 pieces, while our quality experts conduct random inspections throughout the production process',
     },
     {
       step: "3",
-      title: "Dimensional Inspection",
+      title: "Dimensional Inspection In Lab",
       description:
-        "CMM and optical inspection of all critical dimensions with traceability documentation",
+        "Our quality experts randomly select parts from each production station and take them to the laboratory, where dimensional and surface quality are separately checked using dedicated inspection equipment, ensuring cross-checking with two different quality control systems.",
     },
     {
       step: "4",
-      title: "Surface Treatment",
+      title: "Surface Test",
       description:
-        "Heat treatment, coating, and surface finishing with quality verification",
+        "Surface roughness check, and treatment if requested",
     },
     {
       step: "5",
-      title: "Functional Testing",
+      title: "Debouring Station",
       description:
-        "Pressure testing and performance validation of all hydraulic components",
+        "Due to the critical importance of hydraulic system cleanliness, every manufactured part undergoes a deburring process at the end of production. This ensures that our customers can be confident in the cleanliness and reliability of their hydraulic systems.",
     },
     {
       step: "6",
       title: "Final Inspection",
       description:
-        "Complete visual inspection and packaging with quality certificates",
+        "Complete visual inspection, packaging, preparation of requested quality report and records for the customer, and filing all production data for full traceability.",
     },
   ];
 

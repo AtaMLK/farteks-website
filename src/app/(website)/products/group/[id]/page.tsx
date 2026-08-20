@@ -265,7 +265,7 @@ export default function ProductGroupDetailPage() {
             ======================================================== */}
 
             {viewMode === 'cards' && (
-              <div className="grid grid-cols-3 lg:grid-cols-4 gap-20">
+              <div className="grid grid-cols-3 lg:grid-cols-4  gap-18">
                 {groupProducts.map((product) => (
                   <ProductCard
                     key={product.id}

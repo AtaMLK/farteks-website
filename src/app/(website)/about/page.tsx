@@ -13,14 +13,22 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <main className="">
-      <PageIntro eyebrow="Farteks / company" title="About FARTEKS" description="Since 1980, FARTEKS has been manufacturing precision hydraulic cylinder components for leading OEM partners worldwide. Our commitment to quality, innovation, and customer service has made us a trusted partner in the hydraulic industry." />
+      <PageIntro eyebrow="Farteks / company" title="About Us" description="
+
+We are a group of companies operating in the hydraulic industry, covering manufacturing, sales, and international trade. The group consists of four companies: GDC Production, GDC Sales, Farteks Foreign Trade, and FZ Limited.
+
+Founded in 1983, the company started with metalworking and machinery manufacturing and has continuously expanded its production capabilities, technical expertise, and product range over the years.
+
+In 2002, GDC Hydraulic & Pneumatic Co. was established to strengthen and professionalize the group’s sales and marketing activities. Today, GDC manufactures and supplies hydraulic cylinders, hydraulic components to both domestic and international markets through direct sales and a dealership network.
+
+With a strong focus on quality, customer satisfaction, technical expertise, and continuous improvement, we continue to expand our product portfolio and global customer base. Farteks Foreign Trade and FZ Limited are the group’s of international sales and imports to customers across multiple global markets.." />
 
       <section className="bg-slate-50">
         <Container>
           <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
             <FadeIn>
               <div className="rounded-2xl bg-white p-8 shadow-card">
-                <h3 className="text-3xl font-bold text-[#392B87]">1980</h3>
+                <h3 className="text-3xl font-bold text-[#392B87]">1983</h3>
                 <p className="mt-4 text-slate-600">
                   Founded with a vision to provide quality hydraulic components
                 </p>
@@ -29,7 +37,7 @@ export default function AboutPage() {
 
             <FadeIn delay={0.1}>
               <div className="rounded-2xl bg-white p-8 shadow-card">
-                <h3 className="text-3xl font-bold text-[#392B87]">50+</h3>
+                <h3 className="text-3xl font-bold text-[#392B87]">40+</h3>
                 <p className="mt-4 text-slate-600">
                   Countries where our products are trusted and used
                 </p>

@@ -86,51 +86,24 @@ export default function EntrancePage() {
 
   return (
     <main className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-white">
-      <div className="flex w-full max-w-6xl flex-col items-center px-6 py-12">
+      <div className="flex w-full max-w-6xl flex-col items-center px-6 ">
         {/* =====================================================
             LOGOS
         ===================================================== */}
 
         <div
-          className={`flex w-full items-center justify-center gap-6 md:gap-12 transition-all duration-1000 ${
+          className={`flex w-full items-center justify-center transition-all duration-1000 ${
             showLogos ? "translate-y-0 opacity-100" : "-translate-y-6 opacity-0"
           }`}
         >
-          {/* GDC */}
-          <div className="animate-logo-left">
-            <Image
-              src="/images/logos/gdc-logo.png"
-              alt="GDC"
-              width={130}
-              height={70}
-              className="h-auto object-contain md:w-32.5"
-              priority
-            />
-          </div>
-
-          {/* FARTEKS */}
-          <div className="animate-logo-center">
-            <Image
-              src="/images/logos/farteks-logo.png"
-              alt="Farteks Foreign Trade"
-              width={230}
-              height={100}
-              className="h-auto w-[120px] object-contain md:w-[170px]"
-              priority
-            />
-          </div>
-
-          {/* FZ */}
-          <div className="animate-logo-right">
-            <Image
-              src="/images/logos/fz-logo.png"
-              alt="FZ"
-              width={90}
-              height={90}
-              className="h-auto w-[65px] object-contain md:w-[90px]"
-              priority
-            />
-          </div>
+          <Image
+            src="/images/logos/logos3.png"
+            alt="GDC · Farteks Foreign Trade · FZ"
+            width={500}
+            height={140}
+            priority
+            className="max-w-5xl object-contain"
+          />
         </div>
 
         {/* =====================================================
@@ -176,7 +149,7 @@ export default function EntrancePage() {
             showTitle ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >
-          <h1 className="min-h-[52px] text-3xl font-bold tracking-tight text-red-600 md:text-5xl">
+          <h1 className="min-h-13 text-3xl font-bold tracking-tight text-red-600 md:text-5xl">
             {displayedTitle}
 
             {showTitle && !showSubtitle && (

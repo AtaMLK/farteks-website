@@ -94,7 +94,7 @@ export function ProductsHero() {
                     className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500"
                     delay={0.08}
                   >
-                    Manufactured in Türkiye
+                    manufactured with years of experience
                   </WordAnimation>
                 )}
               </h2>
@@ -181,10 +181,10 @@ export function ProductsHero() {
             }`}
           >
             {/* Large product image background */}
-            <div className="relative h-[500px] rounded-2xl overflow-hidden bg-gradient-to-br from-orange-500/20 to-red-500/20 border border-slate-700/50">
+            <div className="relative h-125 rounded-2xl overflow-hidden bg-linear-to-br from-orange-500/20 to-red-500/20 border border-slate-700/50">
               {/* Animated lines overlay */}
               <div className="absolute inset-0 animate-pulse opacity-50">
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-orange-500/10 to-transparent animate-moveLines"></div>
+                <div className="absolute inset-0 bg-linear-to-b from-transparent via-orange-500/10 to-transparent animate-moveLines"></div>
               </div>
 
               {/* Placeholder for product image */}

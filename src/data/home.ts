@@ -12,7 +12,7 @@ export const hero = {
 
   title: "Precision Hydraulic Cylinder Components",
 
-  highlight: "Manufactured in Türkiye",
+  highlight: "manufactured with years of experience",
 
   description:
     "Trusted by hydraulic cylinder manufacturers worldwide. We produce precision-machined components for OEM partners with consistent quality and reliable delivery.",
@@ -32,7 +32,7 @@ export const hero = {
 
 export const stats = [
   {
-    value: "1980",
+    value: "1983",
     label: "Established",
   },
   {
@@ -40,7 +40,7 @@ export const stats = [
     label: "Years Experience",
   },
   {
-    value: "30+",
+    value: "40+",
     label: "Export Countries",
   },
   {
@@ -77,7 +77,7 @@ export const trustItems = [
 ];
 
 export const featuredProducts = [
- {
+  {
     title: "Hydraulic Glands",
     type: "Sealing & Guidance",
     image: "/images/products/gland-steel-single.png",
