@@ -3,24 +3,16 @@ export interface ProductGroup {
   name: string;
   description: string;
   icon?: string;
-  products: string[]; // Product IDs in this group
+  products: string[];
   order: number;
 }
 
 export const PRODUCT_GROUPS: ProductGroup[] = [
   {
-    id: "custom-hydraulic",
-    name: "Custom Hydraulic Components",
-    description:
-      "Custom-made hydraulic cylinder components produced for OEM partners according to their parameters, materials, drawings, specifications and quality requirements.",
-    order: 1,
-    products: ["custom-gland", "custom-rod-end"],
-  },
-  {
     id: "std1",
     name: "Standard 1 Components",
     description: "Standard hydraulic cylinder components (Cast Iron & Steel)",
-    order: 2,
+    order: 1,
     products: [
       "gland-cast-iron-din1691",
       "steel-gland",
@@ -39,9 +31,8 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
   {
     id: "std2",
     name: "Standard 2 Component",
-    description:
-      "Standard 2 Component hydraulic cylinder components with enhanced specifications",
-    order: 3,
+    description: "Standard 2 Component hydraulic cylinder components with enhanced specifications",
+    order: 2,
     products: [
       "gland-cast-iron-std2-new",
       "piston-steel-std2-new",
@@ -52,7 +43,7 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     id: "mobile-crane",
     name: "Mobile Crane",
     description: "Specialized components for mobile crane applications",
-    order: 4,
+    order: 3,
     products: [
       "mobile-crane-rod-gland",
       "mobile-crane-rod-gland-large",
@@ -65,7 +56,7 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     id: "rod-end",
     name: "Rod End",
     description: "Rod end and ball joint components",
-    order: 5,
+    order: 4,
     products: [
       "rod-end",
       "weldable-rod-end",
@@ -78,7 +69,7 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     id: "iso-cylinder",
     name: "ISO Cylinder",
     description: "ISO/CETOP standard cylinder components and accessories",
-    order: 6,
+    order: 5,
     products: [
       "iso-cetop-front-head",
       "iso-cetop-end-head",
@@ -94,9 +85,8 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
   {
     id: "hydraulic-unit",
     name: "Hydraulic Power Unit Components",
-    description:
-      "Components for hydraulic power units, including pump drums, elastic gear couplings, oil tanks, maintenance covers, elbow pump adapters and flat pump adapters.",
-    order: 7,
+    description: "Components for hydraulic power units, including pump drums, elastic gear couplings, oil tanks, maintenance covers, elbow pump adapters and flat pump adapters.",
+    order: 6,
     products: [
       "hydraulic-pump-drums",
       "elastic-gear-couplings",
@@ -110,7 +100,7 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
     id: "trunnion",
     name: "Trunnion",
     description: "Trunnion mounting components for cylinder assemblies",
-    order: 8,
+    order: 7,
     products: ["trunnion"],
   },
 ];
