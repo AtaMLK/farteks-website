@@ -17,7 +17,6 @@ export default function ProductGroupsPage() {
       />
 
       <div className="container mx-auto max-w-7xl px-4">
-        {/* Featured custom-production card — always first, full 12-column width */}
         <div className="mt-10 grid grid-cols-12 gap-4">
           <Link
             href="/custom-parts"
@@ -41,27 +40,20 @@ export default function ProductGroupsPage() {
                   </p>
 
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">
-                      OEM Production
-                    </span>
-                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">
-                      CNC Machining
-                    </span>
-                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">
-                      Drawing Based
-                    </span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">OEM Production</span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">CNC Machining</span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">Drawing Based</span>
                   </div>
                 </div>
 
                 <div className="ml-6 shrink-0">
-                {/*   <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 transition-all duration-300 group-hover:bg-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/30">
-                    </div> */}
-                    {/* <ArrowRight className="h-6 w-6 text-white transition-transform duration-300 group-hover:translate-x-1" /> */}
-                    <Image src="/images/logos/cylinderIcon.png"
+                  <Image
+                    src="/images/logos/cylinderIcon.png"
                     height={180}
                     width={180}
-                    alt="Cylinder image"
-                    /* className="transition-transform duration-300 group-hover:translate-x-1"  *//>
+                    alt="Hydraulic cylinder"
+                    className="object-contain"
+                  />
                 </div>
               </div>
 
@@ -70,7 +62,6 @@ export default function ProductGroupsPage() {
           </Link>
         </div>
 
-        {/* Product Groups */}
         <div className="mt-4 grid grid-cols-12 gap-4">
           {PRODUCT_GROUPS.map((group, idx) => {
             const groupProducts = Array.from(
@@ -89,36 +80,25 @@ export default function ProductGroupsPage() {
               >
                 <div
                   className="group relative h-[280px] overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
-                  style={{
-                    animationDelay: `${idx * 100}ms`,
-                  }}
+                  style={{ animationDelay: `${idx * 100}ms` }}
                 >
                   <div className="relative z-10 flex h-full items-center justify-between p-8">
                     <div className="min-w-0 flex-1">
-                      <div className="mb-2 text-sm font-semibold text-orange-500">
-                        GROUP {group.order}
-                      </div>
+                      <div className="mb-2 text-sm font-semibold text-orange-500">GROUP {group.order}</div>
 
                       <h3 className="mb-3 text-2xl font-bold text-slate-900 transition-colors group-hover:text-orange-500">
                         {group.name}
                       </h3>
 
-                      <p className="mb-5 max-w-3xl text-slate-600">
-                        {group.description}
-                      </p>
+                      <p className="mb-5 max-w-3xl text-slate-600">{group.description}</p>
 
                       <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-sm font-semibold text-slate-500">
-                          {groupProducts.length} products
-                        </span>
+                        <span className="text-sm font-semibold text-slate-500">{groupProducts.length} products</span>
 
                         {groupProducts.length > 0 && (
                           <div className="flex flex-wrap gap-1">
                             {groupProducts.slice(0, 3).map((product) => (
-                              <span
-                                key={product.id}
-                                className="rounded bg-slate-100 px-2 py-1 text-xs text-slate-600"
-                              >
+                              <span key={product.id} className="rounded bg-slate-100 px-2 py-1 text-xs text-slate-600">
                                 {product.category}
                               </span>
                             ))}
@@ -147,15 +127,14 @@ export default function ProductGroupsPage() {
           })}
         </div>
 
-        {/* Info Section */}
         <div className="mt-20 rounded-[20px] border border-slate-200 bg-gradient-to-r from-slate-50 to-white p-12">
           <div className="grid grid-cols-3 gap-8 text-center">
             <div>
-              <div className="mb-2 text-4xl font-bold text-orange-500">36</div>
+              <div className="mb-2 text-4xl font-bold text-orange-500">{PRODUCTS.length}</div>
               <div className="text-slate-600">Total Products</div>
             </div>
             <div>
-              <div className="mb-2 text-4xl font-bold text-orange-500">6</div>
+              <div className="mb-2 text-4xl font-bold text-orange-500">{PRODUCT_GROUPS.length}</div>
               <div className="text-slate-600">Categories</div>
             </div>
             <div>
