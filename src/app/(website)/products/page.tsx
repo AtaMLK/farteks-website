@@ -14,55 +14,75 @@ export default function ProductGroupsPage() {
         title="Product Categories"
         description="Browse our comprehensive range of hydraulic cylinder components organized by type."
       />
-      <div className="container max-w-7xl mx-auto px-4">
-        {/* Product Groups - Horizontal Cards */}
-        <div className="space-y-6 grid lg:grid-cols-3 lg:grid-rows-2 mt-10 gap-4">
+
+      <div className="container mx-auto max-w-7xl px-4">
+        {/* Product Groups — 12-column layout with featured Custom card */}
+        <div className="mt-10 grid grid-cols-12 gap-4">
           {PRODUCT_GROUPS.map((group, idx) => {
-            const groupProducts = PRODUCTS.filter((p) =>
-              group.products.includes(p.id),
+            const groupProducts = Array.from(
+              new Map(
+                PRODUCTS.filter((p) => group.products.includes(p.id)).map(
+                  (product) => [product.id, product],
+                ),
+              ).values(),
             );
 
+            const isCustom = group.id === "custom-hydraulic";
+
             return (
-              <Link key={group.id} href={group.id === "custom-hydraulic" ? "/custom-parts" : `/products/group/${group.id}`} className={group.id === "custom-hydraulic" ? "lg:col-span-3" : ""}>
+              <Link
+                key={group.id}
+                href={isCustom ? "/custom-parts" : `/products/group/${group.id}`}
+                className={`h-full col-span-12 ${
+                  isCustom ? "" : "sm:col-span-6 xl:col-span-4"
+                }`}
+              >
                 <div
-                  className={`group relative overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:shadow-xl hover:-translate-y-1 cursor-pointer ${group.id === "custom-hydraulic" ? "custom-feature-card" : ""}`}
+                  className={`group relative h-[280px] overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
+                    isCustom ? "custom-feature-card" : ""
+                  }`}
                   style={{
                     animationDelay: `${idx * 100}ms`,
                   }}
                 >
-                  {/* Content */}
-                  <div className="p-8 flex items-center justify-between">
-                    <div className="flex-1">
-                      {/* Group Number */}
-                      <div className="text-sm font-semibold text-orange-500 mb-2">
+                  <div className="relative z-10 flex h-full items-center justify-between p-8">
+                    <div className="min-w-0 flex-1">
+                      <div className="mb-2 text-sm font-semibold text-orange-500">
                         GROUP {group.order}
                       </div>
 
-                      {/* Group Name */}
-                      <h3 className={`mb-2 text-slate-900 transition-colors group-hover:text-orange-500 ${group.id === "custom-hydraulic" ? "text-3xl font-extrabold md:text-4xl" : "text-2xl font-bold"}`}>
+                      <h3
+                        className={`mb-3 text-slate-900 transition-colors group-hover:text-orange-500 ${
+                          isCustom
+                            ? "text-3xl font-extrabold md:text-4xl"
+                            : "text-2xl font-bold"
+                        }`}
+                      >
                         {group.name}
                       </h3>
 
-                      {/* Description */}
-                      <p className="text-slate-600 mb-4">{group.description}</p>
+                      <p className="mb-5 max-w-3xl text-slate-600">
+                        {group.description}
+                      </p>
 
-                      {/* Product Count */}
-                      <div className="inline-flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <span className="text-sm font-semibold text-slate-500">
                           {groupProducts.length} products
                         </span>
+
                         {groupProducts.length > 0 && (
-                          <div className="flex gap-1">
+                          <div className="flex flex-wrap gap-1">
                             {groupProducts.slice(0, 3).map((product) => (
                               <span
                                 key={product.id}
-                                className="text-xs px-2 py-1 bg-slate-100 text-slate-600 rounded"
+                                className="rounded bg-slate-100 px-2 py-1 text-xs text-slate-600"
                               >
                                 {product.category}
                               </span>
                             ))}
+
                             {groupProducts.length > 3 && (
-                              <span className="text-xs px-2 py-1 bg-slate-100 text-slate-600 rounded">
+                              <span className="rounded bg-slate-100 px-2 py-1 text-xs text-slate-600">
                                 +{groupProducts.length - 3}
                               </span>
                             )}
@@ -71,16 +91,14 @@ export default function ProductGroupsPage() {
                       </div>
                     </div>
 
-                    {/* Arrow Icon */}
-                    <div className="ml-8 flex-shrink-0">
-                      <div className="w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center group-hover:bg-orange-600 transition-colors">
-                        <ArrowRight className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform" />
+                    <div className="ml-6 shrink-0">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 transition-colors group-hover:bg-orange-600">
+                        <ArrowRight className="h-6 w-6 text-white transition-transform group-hover:translate-x-1" />
                       </div>
                     </div>
                   </div>
 
-                  {/* Hover Background */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-orange-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                 </div>
               </Link>
             );
@@ -88,20 +106,18 @@ export default function ProductGroupsPage() {
         </div>
 
         {/* Info Section */}
-        <div className="mt-20 bg-gradient-to-r from-slate-50 to-white rounded-[20px] border border-slate-200 p-12">
+        <div className="mt-20 rounded-[20px] border border-slate-200 bg-gradient-to-r from-slate-50 to-white p-12">
           <div className="grid grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-orange-500 mb-2">36</div>
+              <div className="mb-2 text-4xl font-bold text-orange-500">36</div>
               <div className="text-slate-600">Total Products</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-orange-500 mb-2">6</div>
+              <div className="mb-2 text-4xl font-bold text-orange-500">6</div>
               <div className="text-slate-600">Categories</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-orange-500 mb-2">
-                400+
-              </div>
+              <div className="mb-2 text-4xl font-bold text-orange-500">400+</div>
               <div className="text-slate-600">Variants</div>
             </div>
           </div>
