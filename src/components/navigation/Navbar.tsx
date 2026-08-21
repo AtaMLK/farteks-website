@@ -81,7 +81,7 @@ export function Navbar() {
             : "bg-white/80 backdrop-blur-sm"
         }`}
       >
-        <Container className="flex h-20 items-center justify-between gap-3 overflow-hidden">
+        <Container className="flex h-20 items-center justify-between gap-3 overflow-visible">
           <Link href="/home" className="flex h-full min-w-0 shrink-0 items-center">
             <Image
               src="/images/logos/logo3.png"
