@@ -121,8 +121,8 @@ export function Navbar() {
             ))}
           </Link>
 
-          {/* Desktop navigation */}
-          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-5 xl:flex">
+          {/* Full navigation stays visible until it would genuinely deform. */}
+          <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(8px,1.3vw,20px)] min-[980px]:flex">
             {navItems.map((item) => (
               <div
                 key={item.href}
@@ -239,36 +239,32 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Desktop actions */}
-          <div className="hidden shrink-0 items-center gap-2 xl:flex">
-            <div className="w-[190px] shrink-0">
+          {/* Actions: quote disappears first; search progressively shrinks, then disappears. */}
+          <div className="hidden shrink-0 items-center gap-2 min-[980px]:flex">
+            <div className="w-[clamp(110px,14vw,190px)] shrink-0 max-[1049px]:hidden">
               <SearchBox />
             </div>
-            <Button href="/contact" className="shrink-0 whitespace-nowrap px-6">
-              Request Quote
-            </Button>
-          </div>
-
-          {/* Mobile / tablet: search disappears before the burger */}
-          <div className="ml-auto flex min-w-0 items-center justify-end gap-2 xl:hidden">
-            <div className="hidden w-[150px] min-w-0 shrink-0 min-[420px]:block sm:w-[180px]">
-              <SearchBox />
+            <div className="hidden min-[1280px]:block">
+              <Button href="/contact" className="shrink-0 whitespace-nowrap px-6">
+                Request Quote
+              </Button>
             </div>
-
-            <button
-              type="button"
-              className="shrink-0 p-1"
-              onClick={() => setMobileOpen((prev) => !prev)}
-              aria-label="Toggle menu"
-              aria-expanded={mobileOpen}
-            >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
+
+          {/* Burger appears only after the full navigation can no longer fit safely. */}
+          <button
+            type="button"
+            className="ml-auto hidden shrink-0 p-1 min-[980px]:block min-[980px]:hidden"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </Container>
 
         {mobileOpen && (
-          <div className="border-t border-slate-200 bg-white xl:hidden">
+          <div className="border-t border-slate-200 bg-white min-[980px]:hidden">
             <Container className="flex flex-col gap-6 py-8">
               {navItems.map((item) => {
                 if (item.hasDropdown) {
