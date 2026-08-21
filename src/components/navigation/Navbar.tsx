@@ -254,7 +254,7 @@ export function Navbar() {
           {/* Burger appears only after the full navigation can no longer fit safely. */}
           <button
             type="button"
-            className="ml-auto hidden shrink-0 p-1 min-[980px]:block min-[980px]:hidden"
+            className="ml-auto shrink-0 p-1 min-[980px]:hidden"
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
