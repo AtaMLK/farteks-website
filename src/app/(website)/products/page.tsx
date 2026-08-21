@@ -5,6 +5,7 @@ import { PRODUCT_GROUPS } from "@/data/product-groups";
 import { PRODUCTS } from "@/data/products-data";
 import { ArrowRight } from "lucide-react";
 import { PageIntro } from "@/components/ui/PageIntro";
+import Image from "next/image";
 
 export default function ProductGroupsPage() {
   return (
@@ -53,9 +54,14 @@ export default function ProductGroupsPage() {
                 </div>
 
                 <div className="ml-6 shrink-0">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 transition-all duration-300 group-hover:bg-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/30">
-                    <ArrowRight className="h-6 w-6 text-white transition-transform duration-300 group-hover:translate-x-1" />
-                  </div>
+                {/*   <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 transition-all duration-300 group-hover:bg-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/30">
+                    </div> */}
+                    {/* <ArrowRight className="h-6 w-6 text-white transition-transform duration-300 group-hover:translate-x-1" /> */}
+                    <Image src="/images/logos/cylinderIcon.png"
+                    height={180}
+                    width={180}
+                    alt="Cylinder image"
+                    /* className="transition-transform duration-300 group-hover:translate-x-1"  *//>
                 </div>
               </div>
 

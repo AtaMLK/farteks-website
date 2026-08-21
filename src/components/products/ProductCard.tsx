@@ -49,7 +49,7 @@ export function ProductCard({
       {/* IMAGE */}
       <Link
         href={href}
-        className="relative block h-[230px] overflow-hidden rounded-t-[20px] bg-slate-50 sm:h-[245px] lg:h-[265px]"
+        className="relative block h-40 overflow-hidden rounded-t-[20px] bg-white sm:h-61.25 lg:h-[265px]"
         aria-label={`View ${title}`}
       >
         <Image

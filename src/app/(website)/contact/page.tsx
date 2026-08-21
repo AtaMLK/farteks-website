@@ -66,9 +66,9 @@ export default function ContactPage() {
                           Head Office
                         </h3>
                         <p className="mt-2 text-slate-600">
-                          
                           <br />
-                          zeytinlik mahallesi , Yakut sokak No 11/10 Bakırköy 34140
+                          zeytinlik mahallesi , Yakut sokak No 11/10 Bakırköy
+                          34140
                         </p>
                         <p className="mt-2 text-slate-600">Istanbul, Türkiye</p>
                       </div>
@@ -93,7 +93,14 @@ export default function ContactPage() {
                       />
                       <div>
                         <h3 className="font-semibold text-[#392B87]">Email</h3>
-                        <p className="mt-2 text-slate-600">info@farteks.com</p>
+                        <p className="mt-2 text-slate-600">
+                          <a
+                            href="mailto:info@farteks.com"
+                            className="transition-colors hover:text-orange-500"
+                          >
+                            info@farteks.com
+                          </a>
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -118,7 +125,6 @@ export default function ContactPage() {
                       Factory Address
                     </h3>
                     <p className="mt-2 text-slate-600">
-                      
                       <br />
                       Fevzi Çamkam Mah Alsım Cad No 55/F Karatay
                     </p>
