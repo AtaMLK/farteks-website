@@ -129,14 +129,14 @@ export default function QualityPage() {
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {processes.map((process) => (
               <FadeItem key={process.step}>
-                <div className="flex h-[330px] flex-col overflow-hidden rounded-2xl border-2 border-[#392B87] p-8">
+                <div className="flex h-[420px] flex-col overflow-hidden rounded-2xl border-2 border-[#392B87] p-8">
                   <div className="mb-4 inline-flex h-12 w-12 shrink-0 items-center justify-center self-start rounded-full bg-[#392B87] text-lg font-bold text-white">
                     {process.step}
                   </div>
                   <h3 className="shrink-0 text-lg font-bold text-[#392B87]">
                     {process.title}
                   </h3>
-                  <p className="mt-4 overflow-hidden text-slate-600">
+                  <p className="mt-4 text-slate-600">
                     {process.description}
                   </p>
                 </div>
