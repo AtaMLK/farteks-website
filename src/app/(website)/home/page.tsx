@@ -15,11 +15,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-
       <Stats />
-
       <Trusted />
-
       <ProductPreview />
 
       {/* Company film — deliberately treated as an editorial feature, not a generic video block. */}
@@ -74,8 +71,11 @@ export default function HomePage() {
                     src="/videos/GDC-Farteks.mp4"
                     poster="/images/factory/manufacturing.jpg"
                     controls
+                    controlsList="nodownload"
+                    disablePictureInPicture
                     preload="metadata"
                     playsInline
+                    onContextMenu={(event) => event.preventDefault()}
                     aria-label="Farteks company introduction video"
                   />
 
@@ -101,15 +101,10 @@ export default function HomePage() {
       </section>
 
       <Manufacturing />
-
       <Industries />
-
       <Quality />
-
       <Export />
-
       <GalleryPreview />
-
       <CTA />
     </>
   );
