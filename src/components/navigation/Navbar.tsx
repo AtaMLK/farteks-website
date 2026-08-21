@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -24,16 +25,10 @@ export function Navbar() {
   const capabilitiesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setSolid(window.scrollY > 20);
-    };
-
+    const handleScroll = () => setSolid(window.scrollY > 20);
     handleScroll();
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -49,20 +44,13 @@ export function Navbar() {
       if (productsRef.current && !productsRef.current.contains(target)) {
         setIsProductsOpen(false);
       }
-
-      if (
-        capabilitiesRef.current &&
-        !capabilitiesRef.current.contains(target)
-      ) {
+      if (capabilitiesRef.current && !capabilitiesRef.current.contains(target)) {
         setIsCapabilitiesOpen(false);
       }
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const navItems = [
@@ -79,49 +67,32 @@ export function Navbar() {
   ];
 
   const capabilityItems = [
-    {
-      label: "Industries",
-      href: "/industries",
-      description: "Applications and industries we serve",
-    },
-    {
-      label: "Manufacturing",
-      href: "/manufacturing",
-      description: "Machining and production capabilities",
-    },
-    {
-      label: "Quality",
-      href: "/quality",
-      description: "Quality control and inspection",
-    },
+    { label: "Industries", href: "/industries", description: "Applications and industries we serve" },
+    { label: "Manufacturing", href: "/manufacturing", description: "Machining and production capabilities" },
+    { label: "Quality", href: "/quality", description: "Quality control and inspection" },
   ];
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        className={`fixed inset-x-0 top-0 z-50 overflow-visible transition-all duration-300 ${
           solid
             ? "border-b border-slate-200 bg-white/95 backdrop-blur-xl"
             : "bg-white/80 backdrop-blur-sm"
         }`}
       >
-        <Container className="flex h-20 items-center justify-between gap-3">
-          <Link
-            href="/home"
-            className="farteks-logo shrink-0 text-4xl font-bold tracking-[0.2em]"
-          >
-            {"FARTEKS".split("").map((letter, index) => (
-              <span
-                key={index}
-                className="farteks-letter"
-                style={{ animationDelay: `${index * 0.08}s` }}
-              >
-                {letter}
-              </span>
-            ))}
+        <Container className="flex h-20 items-center justify-between gap-3 overflow-hidden">
+          <Link href="/home" className="flex h-full min-w-0 shrink-0 items-center">
+            <Image
+              src="/images/logos/logo3.png"
+              alt="Farteks logo"
+              width={220}
+              height={64}
+              priority
+              className="h-auto max-h-14 w-auto max-w-[220px] object-contain"
+            />
           </Link>
 
-          {/* Full navigation stays visible until it would genuinely deform. */}
           <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(8px,1.3vw,20px)] min-[980px]:flex">
             {navItems.map((item) => (
               <div
@@ -139,7 +110,6 @@ export function Navbar() {
                     setIsProductsOpen(true);
                     setIsCapabilitiesOpen(false);
                   }
-
                   if (item.hasCapabilitiesDropdown) {
                     setIsCapabilitiesOpen(true);
                     setIsProductsOpen(false);
@@ -153,9 +123,7 @@ export function Navbar() {
                 {item.hasDropdown || item.hasCapabilitiesDropdown ? (
                   <button
                     type="button"
-                    aria-expanded={
-                      item.hasDropdown ? isProductsOpen : isCapabilitiesOpen
-                    }
+                    aria-expanded={item.hasDropdown ? isProductsOpen : isCapabilitiesOpen}
                     onClick={() => {
                       if (item.hasDropdown) {
                         setIsProductsOpen((prev) => !prev);
@@ -218,7 +186,6 @@ export function Navbar() {
                         Explore our applications, manufacturing and quality capabilities.
                       </p>
                     </div>
-
                     {capabilityItems.map((capability) => (
                       <Link
                         key={capability.href}
@@ -239,7 +206,6 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Actions: quote disappears first; search progressively shrinks, then disappears. */}
           <div className="hidden shrink-0 items-center gap-2 min-[980px]:flex">
             <div className="w-[clamp(110px,14vw,190px)] shrink-0 max-[1049px]:hidden">
               <SearchBox />
@@ -251,7 +217,6 @@ export function Navbar() {
             </div>
           </div>
 
-          {/* Burger appears only after the full navigation can no longer fit safely. */}
           <button
             type="button"
             className="ml-auto shrink-0 p-1 min-[980px]:hidden"
@@ -274,9 +239,7 @@ export function Navbar() {
                         href={item.href}
                         onClick={() => setMobileOpen(false)}
                         className={`font-medium transition-colors hover:text-[#E5322D] ${
-                          pathname.startsWith(item.href)
-                            ? "text-[#E5322D]"
-                            : "text-slate-900"
+                          pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900"
                         }`}
                       >
                         {item.label}
@@ -291,7 +254,6 @@ export function Navbar() {
                       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
                         Capabilities
                       </p>
-
                       <div className="grid gap-3 pl-3">
                         {capabilityItems.map((capability) => (
                           <Link
@@ -318,9 +280,7 @@ export function Navbar() {
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className={`font-medium transition-colors hover:text-[#E5322D] ${
-                      pathname.startsWith(item.href)
-                        ? "text-[#E5322D]"
-                        : "text-slate-900"
+                      pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900"
                     }`}
                   >
                     {item.label}
