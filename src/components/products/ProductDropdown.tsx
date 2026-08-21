@@ -22,7 +22,7 @@ export function ProductDropdown({ isOpen, onDownloadCatalog }: ProductDropdownPr
           <Link href="/custom-parts" className="text-base font-semibold text-slate-900 transition-colors hover:text-[#E5322D]">
             Custom Hydraulic Components
           </Link>
-          <Link href="/products" aria-label="View all products" className="text-slate-400 transition-colors hover:text-[#E5322D]">
+          <Link href="/custom-parts" aria-label="View custom hydraulic components" className="text-slate-400 transition-colors hover:text-[#E5322D]">
             <ChevronRight size={19} />
           </Link>
         </div>

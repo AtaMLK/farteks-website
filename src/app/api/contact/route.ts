@@ -21,24 +21,20 @@ export async function POST(request: Request) {
       );
     }
 
+    const apiKey = process.env.RESEND_API_KEY;
+
+    if (!apiKey) {
+      console.error("RESEND_API_KEY is not configured.");
+      return NextResponse.json(
+        { error: "Email service is temporarily unavailable. Please try again later." },
+        { status: 503 }
+      );
+    }
+
     const emailSubject =
       type === "quote"
         ? `Quote Request — ${subject || "Farteks Website"}`
         : `Contact Message — ${subject || "Farteks Website"}`;
-
-    // Resend is optional for now. The site and contact form can run
-    // without RESEND_API_KEY. When the key is added, messages are sent normally.
-    const apiKey = process.env.RESEND_API_KEY;
-
-    if (!apiKey) {
-      console.warn("RESEND_API_KEY is not configured. Contact message was received but not emailed.");
-
-      return NextResponse.json({
-        success: true,
-        emailSent: false,
-        message: "Your message was received. Email notifications are temporarily unavailable.",
-      });
-    }
 
     const resend = new Resend(apiKey);
 
@@ -69,36 +65,23 @@ export async function POST(request: Request) {
               </div>
 
               <div style="padding:32px;">
-
                 <table style="width:100%;border-collapse:collapse;">
                   <tr>
-                    <td style="padding:10px 0;font-weight:bold;width:140px;">
-                      Name
-                    </td>
-                    <td style="padding:10px 0;">
-                      ${escapeHtml(name)}
-                    </td>
+                    <td style="padding:10px 0;font-weight:bold;width:140px;">Name</td>
+                    <td style="padding:10px 0;">${escapeHtml(name)}</td>
                   </tr>
 
                   <tr>
-                    <td style="padding:10px 0;font-weight:bold;">
-                      Email
-                    </td>
-                    <td style="padding:10px 0;">
-                      ${escapeHtml(email)}
-                    </td>
+                    <td style="padding:10px 0;font-weight:bold;">Email</td>
+                    <td style="padding:10px 0;">${escapeHtml(email)}</td>
                   </tr>
 
                   ${
                     phone
                       ? `
                     <tr>
-                      <td style="padding:10px 0;font-weight:bold;">
-                        Phone
-                      </td>
-                      <td style="padding:10px 0;">
-                        ${escapeHtml(phone)}
-                      </td>
+                      <td style="padding:10px 0;font-weight:bold;">Phone</td>
+                      <td style="padding:10px 0;">${escapeHtml(phone)}</td>
                     </tr>
                   `
                       : ""
@@ -108,21 +91,15 @@ export async function POST(request: Request) {
                     subject
                       ? `
                     <tr>
-                      <td style="padding:10px 0;font-weight:bold;">
-                        Subject
-                      </td>
-                      <td style="padding:10px 0;">
-                        ${escapeHtml(subject)}
-                      </td>
+                      <td style="padding:10px 0;font-weight:bold;">Subject</td>
+                      <td style="padding:10px 0;">${escapeHtml(subject)}</td>
                     </tr>
                   `
                       : ""
                   }
 
                   <tr>
-                    <td style="padding:10px 0;font-weight:bold;">
-                      Request Type
-                    </td>
+                    <td style="padding:10px 0;font-weight:bold;">Request Type</td>
                     <td style="padding:10px 0;">
                       ${escapeHtml(type === "quote" ? "Request Quote" : "Message")}
                     </td>
@@ -138,13 +115,11 @@ export async function POST(request: Request) {
                     ${escapeHtml(message)}
                   </div>
                 </div>
-
               </div>
 
               <div style="padding:20px 32px;background:#f8fafc;color:#64748b;font-size:12px;">
                 Sent from farteks.com contact form.
               </div>
-
             </div>
           </body>
         </html>
@@ -180,6 +155,6 @@ function escapeHtml(value: string) {
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
+    .replace(/\"/g, "&quot;")
     .replace(/'/g, "&#039;");
 }
