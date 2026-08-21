@@ -16,8 +16,56 @@ export default function ProductGroupsPage() {
       />
 
       <div className="container mx-auto max-w-7xl px-4">
-        {/* Product Groups — 12-column layout with featured Custom card */}
+        {/* Featured custom-production card — always first, full 12-column width */}
         <div className="mt-10 grid grid-cols-12 gap-4">
+          <Link
+            href="/custom-parts"
+            className="col-span-12 h-full"
+            aria-label="Open Custom Hydraulic Cylinder page"
+          >
+            <div className="custom-feature-card group relative h-[280px] overflow-hidden rounded-[20px] border bg-gradient-to-r from-white via-white to-slate-50 transition-all duration-500 hover:-translate-y-1">
+              <div className="relative z-10 flex h-full items-center justify-between p-8 sm:p-10 lg:p-12">
+                <div className="min-w-0 flex-1">
+                  <div className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-orange-500">
+                    Custom Production
+                  </div>
+
+                  <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-slate-900 transition-colors group-hover:text-orange-500 md:text-4xl lg:text-5xl">
+                    Custom Hydraulic Cylinder
+                  </h2>
+
+                  <p className="mb-5 max-w-3xl text-base leading-7 text-slate-600 md:text-lg">
+                    Custom-made hydraulic cylinder components produced to your drawings,
+                    specifications, materials and quality requirements.
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">
+                      OEM Production
+                    </span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">
+                      CNC Machining
+                    </span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">
+                      Drawing Based
+                    </span>
+                  </div>
+                </div>
+
+                <div className="ml-6 shrink-0">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 transition-all duration-300 group-hover:bg-orange-600 group-hover:shadow-lg group-hover:shadow-orange-500/30">
+                    <ArrowRight className="h-6 w-6 text-white transition-transform duration-300 group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-orange-500/5 via-transparent to-[#392B87]/5 opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
+            </div>
+          </Link>
+        </div>
+
+        {/* Product Groups */}
+        <div className="mt-4 grid grid-cols-12 gap-4">
           {PRODUCT_GROUPS.map((group, idx) => {
             const groupProducts = Array.from(
               new Map(
@@ -27,20 +75,14 @@ export default function ProductGroupsPage() {
               ).values(),
             );
 
-            const isCustom = group.id === "custom-hydraulic";
-
             return (
               <Link
                 key={group.id}
-                href={isCustom ? "/custom-parts" : `/products/group/${group.id}`}
-                className={`h-full col-span-12 ${
-                  isCustom ? "" : "sm:col-span-6 xl:col-span-4"
-                }`}
+                href={`/products/group/${group.id}`}
+                className="col-span-12 h-full sm:col-span-6 xl:col-span-4"
               >
                 <div
-                  className={`group relative h-[280px] overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl ${
-                    isCustom ? "custom-feature-card" : ""
-                  }`}
+                  className="group relative h-[280px] overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl"
                   style={{
                     animationDelay: `${idx * 100}ms`,
                   }}
@@ -51,13 +93,7 @@ export default function ProductGroupsPage() {
                         GROUP {group.order}
                       </div>
 
-                      <h3
-                        className={`mb-3 text-slate-900 transition-colors group-hover:text-orange-500 ${
-                          isCustom
-                            ? "text-3xl font-extrabold md:text-4xl"
-                            : "text-2xl font-bold"
-                        }`}
-                      >
+                      <h3 className="mb-3 text-2xl font-bold text-slate-900 transition-colors group-hover:text-orange-500">
                         {group.name}
                       </h3>
 
