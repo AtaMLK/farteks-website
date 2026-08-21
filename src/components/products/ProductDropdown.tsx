@@ -19,10 +19,10 @@ export function ProductDropdown({ isOpen, onDownloadCatalog }: ProductDropdownPr
     >
       <div className="mx-auto w-full max-w-7xl px-6 py-10">
         <div className="mb-8 flex items-center justify-between rounded-xl border border-slate-200 bg-gradient-to-r from-orange-50 via-white to-red-50 px-5 py-4 shadow-sm">
-          <Link href="/products" className="text-base font-semibold text-slate-900 transition-colors hover:text-[#E5322D]">
+          <Link href="/custom-parts" className="text-base font-semibold text-slate-900 transition-colors hover:text-[#E5322D]">
             Custom Hydraulic Components
           </Link>
-          <Link href="/products" aria-label="View all products" className="text-slate-400 transition-colors hover:text-[#E5322D]">
+          <Link href="/custom-parts" aria-label="View custom hydraulic components" className="text-slate-400 transition-colors hover:text-[#E5322D]">
             <ChevronRight size={19} />
           </Link>
         </div>
