@@ -36,7 +36,23 @@ export function ProductDropdown({
         }
       `}
     >
-      <div className="mx-auto w-full max-w-7xl px-6 py-8">
+      <div className="mx-auto w-full max-w-7xl px-6 py-10">
+        <div className="mb-8 flex items-center justify-between rounded-xl border border-slate-200 bg-gradient-to-r from-orange-50 via-white to-red-50 px-5 py-4 shadow-sm">
+          <Link
+            href="/products"
+            className="text-base font-semibold text-slate-900 transition-colors hover:text-[#E5322D]"
+          >
+            Custom Hydraulic Components
+          </Link>
+          <Link
+            href="/products"
+            aria-label="View all products"
+            className="text-slate-400 transition-colors hover:text-[#E5322D]"
+          >
+            <ChevronRight size={19} />
+          </Link>
+        </div>
+
         <div className="grid min-w-0 grid-cols-6 gap-6">
           {PRODUCT_GROUPS.map((group) => {
             const groupProducts = PRODUCTS.filter((p) =>
@@ -84,7 +100,6 @@ export function ProductDropdown({
           })}
         </div>
 
-        {/* Quick Links */}
         <div className="mt-8 flex items-center justify-between border-t border-slate-200 pt-8">
           <div className="rounded-3xl border border-orange-200 bg-gradient-to-br from-orange-50 to-red-50 px-5 py-4">
             <h4 className="mb-3 text-sm font-bold text-slate-900">
