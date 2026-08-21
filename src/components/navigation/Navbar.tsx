@@ -46,10 +46,7 @@ export function Navbar() {
     function handleClickOutside(event: MouseEvent) {
       const target = event.target as Node;
 
-      if (
-        productsRef.current &&
-        !productsRef.current.contains(target)
-      ) {
+      if (productsRef.current && !productsRef.current.contains(target)) {
         setIsProductsOpen(false);
       }
 
@@ -69,32 +66,16 @@ export function Navbar() {
   }, []);
 
   const navItems = [
-    {
-      label: "Products",
-      href: "/products",
-      hasDropdown: true,
-    },
-    {
-      label: "Gallery",
-      href: "/gallery",
-    },
-    {
-      label: "Resources",
-      href: "/resources",
-    },
+    { label: "Products", href: "/products", hasDropdown: true },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Resources", href: "/resources" },
     {
       label: "Capabilities",
       href: "/capabilities",
       hasCapabilitiesDropdown: true,
     },
-    {
-      label: "About",
-      href: "/about",
-    },
-    {
-      label: "Contact",
-      href: "/contact",
-    },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ];
 
   const capabilityItems = [
@@ -173,9 +154,7 @@ export function Navbar() {
                   <button
                     type="button"
                     aria-expanded={
-                      item.hasDropdown
-                        ? isProductsOpen
-                        : isCapabilitiesOpen
+                      item.hasDropdown ? isProductsOpen : isCapabilitiesOpen
                     }
                     onClick={() => {
                       if (item.hasDropdown) {
@@ -271,15 +250,21 @@ export function Navbar() {
           </div>
 
           {/* Mobile / tablet */}
-          <button
-            type="button"
-            className="shrink-0 xl:hidden"
-            onClick={() => setMobileOpen((prev) => !prev)}
-            aria-label="Toggle menu"
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="ml-auto flex min-w-0 items-center justify-end gap-2 xl:hidden">
+            <div className="w-[150px] min-w-0 shrink sm:w-[180px]">
+              <SearchBox />
+            </div>
+
+            <button
+              type="button"
+              className="shrink-0 p-1"
+              onClick={() => setMobileOpen((prev) => !prev)}
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </Container>
 
         {mobileOpen && (
