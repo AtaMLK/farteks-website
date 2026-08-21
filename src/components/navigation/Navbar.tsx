@@ -57,53 +57,34 @@ export function Navbar() {
     { label: "Products", href: "/products", hasDropdown: true },
     { label: "Gallery", href: "/gallery" },
     { label: "Resources", href: "/resources" },
-    {
-      label: "Capabilities",
-      href: "/capabilities",
-      hasCapabilitiesDropdown: true,
-    },
+    { label: "Capabilities", href: "/capabilities", hasCapabilitiesDropdown: true },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ];
 
   const capabilityItems = [
+    { label: "Quality", href: "/quality", description: "Quality control and inspection" },
     { label: "Industries", href: "/industries", description: "Applications and industries we serve" },
     { label: "Manufacturing", href: "/manufacturing", description: "Machining and production capabilities" },
-    { label: "Quality", href: "/quality", description: "Quality control and inspection" },
   ];
 
   return (
     <>
       <header
         className={`fixed inset-x-0 top-0 z-50 overflow-visible transition-all duration-300 ${
-          solid
-            ? "border-b border-slate-200 bg-white/95 backdrop-blur-xl"
-            : "bg-white/80 backdrop-blur-sm"
+          solid ? "border-b border-slate-200 bg-white/95 backdrop-blur-xl" : "bg-white/80 backdrop-blur-sm"
         }`}
       >
         <Container className="flex h-20 items-center justify-between gap-3 overflow-visible">
           <Link href="/home" className="flex h-full min-w-0 shrink-0 items-center">
-            <Image
-              src="/images/logos/logo3.png"
-              alt="Farteks logo"
-              width={220}
-              height={64}
-              priority
-              className="h-auto max-h-14 w-auto max-w-[220px] object-contain"
-            />
+            <Image src="/images/logos/logo3.png" alt="Farteks logo" width={220} height={64} priority className="h-auto max-h-14 w-auto max-w-[220px] object-contain" />
           </Link>
 
           <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(8px,1.3vw,20px)] min-[980px]:flex">
             {navItems.map((item) => (
               <div
                 key={item.href}
-                ref={
-                  item.hasDropdown
-                    ? productsRef
-                    : item.hasCapabilitiesDropdown
-                      ? capabilitiesRef
-                      : undefined
-                }
+                ref={item.hasDropdown ? productsRef : item.hasCapabilitiesDropdown ? capabilitiesRef : undefined}
                 className="relative"
                 onMouseEnter={() => {
                   if (item.hasDropdown) {
@@ -133,71 +114,29 @@ export function Navbar() {
                         setIsProductsOpen(false);
                       }
                     }}
-                    className={`flex items-center gap-1 whitespace-nowrap text-[13px] font-medium transition-colors ${
-                      pathname.startsWith(item.href)
-                        ? "text-[#E5322D]"
-                        : "text-slate-900 hover:text-[#E5322D]"
-                    }`}
+                    className={`flex items-center gap-1 whitespace-nowrap text-[13px] font-medium transition-colors ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900 hover:text-[#E5322D]"}`}
                   >
                     {item.label}
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform duration-200 ${
-                        (item.hasDropdown && isProductsOpen) ||
-                        (item.hasCapabilitiesDropdown && isCapabilitiesOpen)
-                          ? "rotate-180"
-                          : ""
-                      }`}
-                    />
+                    <ChevronDown size={14} className={`transition-transform duration-200 ${((item.hasDropdown && isProductsOpen) || (item.hasCapabilitiesDropdown && isCapabilitiesOpen)) ? "rotate-180" : ""}`} />
                   </button>
                 ) : (
-                  <Link
-                    href={item.href}
-                    className={`whitespace-nowrap text-[13px] font-medium transition-colors ${
-                      pathname.startsWith(item.href)
-                        ? "text-[#E5322D]"
-                        : "text-slate-900 hover:text-[#E5322D]"
-                    }`}
-                  >
+                  <Link href={item.href} className={`whitespace-nowrap text-[13px] font-medium transition-colors ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900 hover:text-[#E5322D]"}`}>
                     {item.label}
                   </Link>
                 )}
 
-                {item.hasDropdown && (
-                  <ProductDropdown
-                    isOpen={isProductsOpen}
-                    onDownloadCatalog={() => setIsCatalogModalOpen(true)}
-                  />
-                )}
+                {item.hasDropdown && <ProductDropdown isOpen={isProductsOpen} onDownloadCatalog={() => setIsCatalogModalOpen(true)} />}
 
                 {item.hasCapabilitiesDropdown && (
-                  <div
-                    className={`absolute left-1/2 top-full z-50 mt-0 w-[310px] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl transition-all duration-200 ${
-                      isCapabilitiesOpen
-                        ? "visible translate-y-0 opacity-100"
-                        : "invisible -translate-y-2 opacity-0"
-                    }`}
-                  >
+                  <div className={`absolute left-1/2 top-full z-50 mt-0 w-[310px] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl transition-all duration-200 ${isCapabilitiesOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"}`}>
                     <div className="px-3 pb-2 pt-2">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#E5322D]">
-                        Farteks Capabilities
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-slate-500">
-                        Explore our applications, manufacturing and quality capabilities.
-                      </p>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#E5322D]">Farteks Capabilities</p>
+                      <p className="mt-1 text-xs leading-5 text-slate-500">Explore our applications, manufacturing and quality capabilities.</p>
                     </div>
                     {capabilityItems.map((capability) => (
-                      <Link
-                        key={capability.href}
-                        href={capability.href}
-                        className="block rounded-xl px-3 py-3 transition-colors hover:bg-slate-50"
-                      >
-                        <span className="block text-sm font-semibold text-slate-900 hover:text-[#E5322D]">
-                          {capability.label}
-                        </span>
-                        <span className="mt-0.5 block text-xs text-slate-500">
-                          {capability.description}
-                        </span>
+                      <Link key={capability.href} href={capability.href} className="block rounded-xl px-3 py-3 transition-colors hover:bg-slate-50">
+                        <span className="block text-sm font-semibold text-slate-900 hover:text-[#E5322D]">{capability.label}</span>
+                        <span className="mt-0.5 block text-xs text-slate-500">{capability.description}</span>
                       </Link>
                     ))}
                   </div>
@@ -207,23 +146,11 @@ export function Navbar() {
           </nav>
 
           <div className="hidden shrink-0 items-center gap-2 min-[980px]:flex">
-            <div className="w-[clamp(110px,14vw,190px)] shrink-0 max-[1049px]:hidden">
-              <SearchBox />
-            </div>
-            <div className="hidden min-[1280px]:block">
-              <Button href="/contact" className="shrink-0 whitespace-nowrap px-6">
-                Request Quote
-              </Button>
-            </div>
+            <div className="w-[clamp(110px,14vw,190px)] shrink-0 max-[1049px]:hidden"><SearchBox /></div>
+            <div className="hidden min-[1280px]:block"><Button href="/contact" className="shrink-0 whitespace-nowrap px-6">Request Quote</Button></div>
           </div>
 
-          <button
-            type="button"
-            className="ml-auto shrink-0 p-1 min-[980px]:hidden"
-            onClick={() => setMobileOpen((prev) => !prev)}
-            aria-label="Toggle menu"
-            aria-expanded={mobileOpen}
-          >
+          <button type="button" className="ml-auto shrink-0 p-1 min-[980px]:hidden" onClick={() => setMobileOpen((prev) => !prev)} aria-label="Toggle menu" aria-expanded={mobileOpen}>
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </Container>
@@ -232,86 +159,25 @@ export function Navbar() {
           <div className="border-t border-slate-200 bg-white min-[980px]:hidden">
             <Container className="flex flex-col gap-6 py-8">
               {navItems.map((item) => {
-                if (item.hasDropdown) {
-                  return (
-                    <div key={item.href}>
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileOpen(false)}
-                        className={`font-medium transition-colors hover:text-[#E5322D] ${
-                          pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900"
-                        }`}
-                      >
-                        {item.label}
-                      </Link>
+                if (item.hasDropdown) return <div key={item.href}><Link href={item.href} onClick={() => setMobileOpen(false)} className={`font-medium transition-colors hover:text-[#E5322D] ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900"}`}>{item.label}</Link></div>;
+                if (item.hasCapabilitiesDropdown) return (
+                  <div key={item.href} className="space-y-3">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Capabilities</p>
+                    <div className="grid gap-3 pl-3">
+                      {capabilityItems.map((capability) => <Link key={capability.href} href={capability.href} onClick={() => setMobileOpen(false)} className={`font-medium transition-colors hover:text-[#E5322D] ${pathname.startsWith(capability.href) ? "text-[#E5322D]" : "text-slate-900"}`}>{capability.label}</Link>)}
                     </div>
-                  );
-                }
-
-                if (item.hasCapabilitiesDropdown) {
-                  return (
-                    <div key={item.href} className="space-y-3">
-                      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-                        Capabilities
-                      </p>
-                      <div className="grid gap-3 pl-3">
-                        {capabilityItems.map((capability) => (
-                          <Link
-                            key={capability.href}
-                            href={capability.href}
-                            onClick={() => setMobileOpen(false)}
-                            className={`font-medium transition-colors hover:text-[#E5322D] ${
-                              pathname.startsWith(capability.href)
-                                ? "text-[#E5322D]"
-                                : "text-slate-900"
-                            }`}
-                          >
-                            {capability.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`font-medium transition-colors hover:text-[#E5322D] ${
-                      pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900"
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
+                  </div>
                 );
+                return <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className={`font-medium transition-colors hover:text-[#E5322D] ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900"}`}>{item.label}</Link>;
               })}
-
-              <button
-                type="button"
-                onClick={() => {
-                  setMobileOpen(false);
-                  setIsCatalogModalOpen(true);
-                }}
-                className="flex w-full items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left font-semibold text-slate-900 transition hover:border-[#E5322D] hover:text-[#E5322D]"
-              >
-                Download Catalog
-                <span aria-hidden="true">↗</span>
-              </button>
-
-              <Button href="/contact" className="w-full rounded-3xl">
-                Request Quote
-              </Button>
+              <button type="button" onClick={() => { setMobileOpen(false); setIsCatalogModalOpen(true); }} className="flex w-full items-center justify-between rounded-2xl border border-slate-200 px-4 py-3 text-left font-semibold text-slate-900 transition hover:border-[#E5322D] hover:text-[#E5322D]">Download Catalog<span aria-hidden="true">↗</span></button>
+              <Button href="/contact" className="w-full rounded-3xl">Request Quote</Button>
             </Container>
           </div>
         )}
       </header>
 
-      <CatalogDownloadModal
-        isOpen={isCatalogModalOpen}
-        onClose={() => setIsCatalogModalOpen(false)}
-      />
+      <CatalogDownloadModal isOpen={isCatalogModalOpen} onClose={() => setIsCatalogModalOpen(false)} />
     </>
   );
 }
