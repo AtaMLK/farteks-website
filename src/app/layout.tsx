@@ -1,78 +1,59 @@
-import type { Metadata, Viewport } from 'next';
-import { Archivo } from 'next/font/google';
+import type { Metadata, Viewport } from "next";
+import { Archivo } from "next/font/google";
 
-import { GoogleAnalytics } from '@/hooks/useGoogleAnalytics';
+import { GoogleAnalytics } from "@/hooks/useGoogleAnalytics";
 
-import './globals.css';
+import "./globals.css";
 
-const archivo = Archivo({ subsets: ['latin'], variable: '--font-heading', display: 'swap' });
+const archivo = Archivo({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
 
-const baseUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://farteks.com';
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://farteks.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
 
   title: {
-    default:
-      'Farteks | Hydraulic Cylinder Components Manufacturer',
-    template: '%s | Farteks',
+    default: "Farteks | Hydraulic Cylinder Components Manufacturer",
+    template: "%s | Farteks",
   },
 
   description:
-    'Farteks manufactures high-quality hydraulic cylinder components for OEM partners worldwide. Hydraulic glands, pistons, rod ends and precision-machined components manufactured in Turkey.',
+    "Farteks manufactures high-quality hydraulic cylinder components for OEM partners worldwide. Hydraulic glands, pistons, rod ends and precision-machined components manufactured in Turkey.",
 
   keywords: [
-    'hydraulic cylinder components',
-    'hydraulic cylinder parts',
-    'hydraulic gland',
-    'hydraulic piston',
-    'hydraulic rod end',
-    'hydraulic cylinder manufacturer',
-    'OEM hydraulic components',
-    'hydraulic parts supplier',
-    'hydraulic components Turkey',
-    'mobile crane components',
-    'precision machined components',
+    "hydraulic cylinder components",
+    "hydraulic cylinder parts",
+    "hydraulic gland",
+    "hydraulic piston",
+    "hydraulic rod end",
+    "hydraulic cylinder manufacturer",
+    "OEM hydraulic components",
+    "hydraulic parts supplier",
+    "hydraulic components Turkey",
+    "mobile crane components",
+    "precision machined components",
   ],
 
-  alternates: {
-    canonical: '/',
-  },
-
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
+    type: "website",
+    locale: "en_US",
     url: baseUrl,
-    siteName: 'Farteks',
-
-    title:
-      'Farteks | Hydraulic Cylinder Components Manufacturer',
-
+    siteName: "Farteks",
+    title: "Farteks | Hydraulic Cylinder Components Manufacturer",
     description:
-      'High-quality hydraulic cylinder components manufactured in Turkey for OEM and industrial applications.',
-
+      "High-quality hydraulic cylinder components manufactured in Turkey for OEM and industrial applications.",
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: 'Farteks Hydraulic Cylinder Components',
-        type: 'image/jpeg',
+        alt: "Farteks Hydraulic Cylinder Components",
       },
     ],
-  },
-
-  twitter: {
-    card: 'summary_large_image',
-
-    title:
-      'Farteks | Hydraulic Cylinder Components Manufacturer',
-
-    description:
-      'Premium hydraulic cylinder components manufactured in Turkey.',
-
-    images: ['/images/twitter-image.jpg'],
   },
 
   verification: {
@@ -82,138 +63,87 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
-
     googleBot: {
       index: true,
       follow: true,
-      'max-snippet': -1,
-      'max-image-preview': 'large',
-      'max-video-preview': -1,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
     },
   },
 
-  creator: 'Farteks',
-  publisher: 'Farteks',
+  creator: "Farteks",
+  publisher: "Farteks",
 
   formatDetection: {
     telephone: true,
     address: true,
     email: true,
   },
-
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-  },
-
-  manifest: '/site.webmanifest',
 };
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  colorScheme: 'light',
-  themeColor: '#392B87',
+  colorScheme: "light",
+  themeColor: "#392B87",
 };
 
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
-export default function RootLayout({
-  children,
-}: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Preconnect */}
-        <link
-          rel="preconnect"
-          href="https://fonts.googleapis.com"
-        />
-
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
 
-        <link
-          rel="preconnect"
-          href="https://www.googletagmanager.com"
-        />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
-        {/* DNS Prefetch */}
-        <link
-          rel="dns-prefetch"
-          href="https://www.google-analytics.com"
-        />
-
-        <link
-          rel="dns-prefetch"
-          href="https://www.googletagmanager.com"
-        />
-
-        {/* Apple Web App */}
-        <meta
-          name="apple-mobile-web-app-capable"
-          content="yes"
-        />
-
+        <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
-
-        <meta
-          name="apple-mobile-web-app-title"
-          content="Farteks"
-        />
+        <meta name="apple-mobile-web-app-title" content="Farteks" />
       </head>
 
       <body className={`${archivo.variable} antialiased`}>
-        {/* Google Analytics */}
         <GoogleAnalytics />
 
-        
+        {children}
 
-        {/* Main Content */}
-        <main className="min-h-screen">
-          {children}
-        </main>
-
-        
-
-        {/* Organization JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-
-              name: 'Farteks',
-
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Farteks",
               url: baseUrl,
-
               logo: `${baseUrl}/images/logos/farteks-logo.png`,
-
               description:
-                'Hydraulic cylinder components manufacturer based in Turkey.',
-
+                "Hydraulic cylinder components manufacturer based in Turkey.",
               address: {
-                '@type': 'PostalAddress',
-                addressCountry: 'TR',
+                "@type": "PostalAddress",
+                addressCountry: "TR",
               },
-
               contactPoint: {
-                '@type': 'ContactPoint',
-                contactType: 'sales',
+                "@type": "ContactPoint",
+                contactType: "sales",
                 url: `${baseUrl}/contact`,
               },
-            }).replace(/</g, '\\u003c'),
+            }).replace(/</g, "\\u003c"),
           }}
         />
       </body>
