@@ -71,10 +71,7 @@ export function Footer() {
               >
                 Rod ends
               </Link>
-              <Link
-                className="block hover:text-white"
-                href="/custom-parts"
-              >
+              <Link className="block hover:text-white" href="/custom-parts">
                 Custom parts
               </Link>
             </div>
@@ -88,7 +85,13 @@ export function Footer() {
                 <MapPin size={17} /> Istanbul · Türkiye
               </p>
               <p className="flex gap-3">
-                <Mail size={17} /> info@farteks.com
+                <Mail size={17} />{" "}
+                <a
+                  href="mailto:info@farteks.com"
+                  className="transition-colors hover:text-orange-500"
+                >
+                  info@farteks.com
+                </a>
               </p>
               <p className="flex gap-3">
                 <Phone size={17} /> +90 212 660 58 57

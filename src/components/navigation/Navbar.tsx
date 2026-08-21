@@ -77,7 +77,7 @@ export function Navbar() {
       >
         <Container className="flex h-20 items-center justify-between gap-3 overflow-visible">
           <Link href="/home" className="flex h-full min-w-0 shrink-0 items-center">
-            <Image src="/images/logos/logo3.png" alt="Farteks logo" width={220} height={64} priority className="h-auto max-h-14 w-auto max-w-[220px] object-contain" />
+            <Image src="/images/logos/logos3.png" alt="Farteks logo" width={220} height={64} priority className="h-auto max-h-24 w-auto max-w-[220px] object-contain" />
           </Link>
 
           <nav className="hidden min-w-0 flex-1 items-center justify-center gap-[clamp(8px,1.3vw,20px)] min-[980px]:flex">
