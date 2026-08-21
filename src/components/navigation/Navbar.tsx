@@ -172,7 +172,7 @@ export function Navbar() {
 
                 {item.hasCapabilitiesDropdown && (
                   <div
-                    className={`absolute left-1/2 top-full z-50 mt-4 w-[310px] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl transition-all duration-200 ${
+                    className={`absolute left-1/2 top-full z-50 mt-0 w-[310px] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl transition-all duration-200 ${
                       isCapabilitiesOpen
                         ? "visible translate-y-0 opacity-100"
                         : "invisible -translate-y-2 opacity-0"
