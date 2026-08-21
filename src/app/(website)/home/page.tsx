@@ -75,7 +75,6 @@ export default function HomePage() {
                     disablePictureInPicture
                     preload="metadata"
                     playsInline
-                    onContextMenu={(event) => event.preventDefault()}
                     aria-label="Farteks company introduction video"
                   />
 
