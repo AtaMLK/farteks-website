@@ -84,7 +84,7 @@ export default function HomePage() {
                     GDC × FARTEKS
                   </div>
 
-                  <div className="pointer-events-none absolute bottom-5 right-5 hidden items-center gap-2 rounded-full border border-white/10 bg-black/35 px-3 py-2 text-[9px] font-bold uppercase tracking-[0.18em] text-white/60 backdrop-blur-md sm:flex">
+                  <div className="pointer-events-none absolute right-5 top-5 hidden items-center gap-2 rounded-full border border-white/10 bg-black/35 px-3 py-2 text-[9px] font-bold uppercase tracking-[0.18em] text-white/60 backdrop-blur-md sm:flex">
                     <Play size={11} fill="currentColor" />
                     Company introduction
                   </div>
