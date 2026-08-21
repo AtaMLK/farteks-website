@@ -25,7 +25,8 @@ export default function QualityPage() {
     },
     {
       title: "Environmental Responsibility",
-      description: "Recycling of used diamond tools and industrial oils in accordance with environmental management practices.",
+      description:
+        "Recycling of used diamond tools and industrial oils in accordance with environmental management practices.",
     },
     {
       title: "ASTM Standards",
@@ -37,7 +38,6 @@ export default function QualityPage() {
       description:
         "Custom specifications tailored to individual OEM partner requirements",
     },
-    
     {
       title: "DIN Standards",
       description:
@@ -56,7 +56,7 @@ export default function QualityPage() {
       step: "2",
       title: "CNC Machining",
       description:
-        'Precision manufacturing with real-time monitoring and in-process quality checks: Production begins with quality control approval; operators perform the necessary checks every 5 pieces, while our quality experts conduct random inspections throughout the production process',
+        "Precision manufacturing with real-time monitoring and in-process quality checks: Production begins with quality control approval; operators perform the necessary checks every 5 pieces, while our quality experts conduct random inspections throughout the production process",
     },
     {
       step: "3",
@@ -67,8 +67,7 @@ export default function QualityPage() {
     {
       step: "4",
       title: "Surface Test",
-      description:
-        "Surface roughness check, and treatment if requested",
+      description: "Surface roughness check, and treatment if requested",
     },
     {
       step: "5",
@@ -85,8 +84,12 @@ export default function QualityPage() {
   ];
 
   return (
-    <main className="">
-      <PageIntro eyebrow="Farteks / quality" title="Quality Assurance" description="Quality is not just a process at FARTEKS - it's a commitment. Every component is manufactured and tested to exceed OEM standards and customer expectations." />
+    <main>
+      <PageIntro
+        eyebrow="Farteks / quality"
+        title="Quality Assurance"
+        description="Quality is not just a process at FARTEKS - it's a commitment. Every component is manufactured and tested to exceed OEM standards and customer expectations."
+      />
 
       <section className="bg-slate-50">
         <Container>
@@ -100,11 +103,13 @@ export default function QualityPage() {
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {standards.map((std) => (
                 <FadeItem key={std.title}>
-                  <div className="rounded-2xl bg-white p-8 shadow-card">
+                  <div className="flex h-[300px] flex-col rounded-2xl bg-white p-8 shadow-card">
                     <h3 className="text-lg font-bold text-[#392B87]">
                       {std.title}
                     </h3>
-                    <p className="mt-4 text-slate-600">{std.description}</p>
+                    <p className="mt-4 flex-1 overflow-hidden text-slate-600">
+                      {std.description}
+                    </p>
                   </div>
                 </FadeItem>
               ))}
@@ -124,14 +129,16 @@ export default function QualityPage() {
           <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {processes.map((process) => (
               <FadeItem key={process.step}>
-                <div className="rounded-2xl border-2 border-[#392B87] p-8">
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#392B87] text-lg font-bold text-white">
+                <div className="flex h-[330px] flex-col overflow-hidden rounded-2xl border-2 border-[#392B87] p-8">
+                  <div className="mb-4 inline-flex h-12 w-12 shrink-0 items-center justify-center self-start rounded-full bg-[#392B87] text-lg font-bold text-white">
                     {process.step}
                   </div>
-                  <h3 className="text-lg font-bold text-[#392B87]">
+                  <h3 className="shrink-0 text-lg font-bold text-[#392B87]">
                     {process.title}
                   </h3>
-                  <p className="mt-4 text-slate-600">{process.description}</p>
+                  <p className="mt-4 overflow-hidden text-slate-600">
+                    {process.description}
+                  </p>
                 </div>
               </FadeItem>
             ))}
