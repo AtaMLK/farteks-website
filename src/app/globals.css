@@ -266,44 +266,68 @@ section{
 }
 
 /* Featured custom-components card */
+@property --custom-orbit-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .custom-feature-card{
   isolation:isolate;
+  overflow:visible !important;
   border-color:rgba(57,43,135,.18);
   box-shadow:0 12px 40px rgba(57,43,135,.07);
 }
 
+/* A restrained moving highlight — more like a premium light sweep than a spinning border. */
 .custom-feature-card::before{
   content:"";
   position:absolute;
-  inset:0;
+  inset:-1px;
   z-index:0;
-  padding:2px;
-  border-radius:20px;
+  padding:1.5px;
+  border-radius:21px;
   background:conic-gradient(
-    from 0deg,
-    rgba(229,50,45,.08) 0deg,
-    #E5322D 55deg,
-    #392B87 125deg,
-    rgba(229,50,45,.25) 190deg,
-    rgba(57,43,135,.08) 250deg,
-    #E5322D 315deg,
-    rgba(229,50,45,.08) 360deg
+    from var(--custom-orbit-angle),
+    transparent 0deg,
+    transparent 286deg,
+    rgba(229,50,45,.08) 304deg,
+    #E5322D 320deg,
+    rgba(255,255,255,.95) 330deg,
+    #392B87 341deg,
+    rgba(57,43,135,.12) 351deg,
+    transparent 360deg
   );
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
   mask-composite:exclude;
-  animation:custom-card-border-spin 6s linear infinite;
+  animation:custom-card-orbit 7s linear infinite;
   pointer-events:none;
 }
 
+/* Soft shadow that follows the moving highlight. */
 .custom-feature-card::after{
   content:"";
   position:absolute;
-  inset:10px;
+  inset:-2px;
   z-index:0;
-  border-radius:16px;
-  background:radial-gradient(circle at 15% 50%,rgba(229,50,45,.06),transparent 42%),radial-gradient(circle at 85% 50%,rgba(57,43,135,.06),transparent 42%);
-  opacity:.9;
+  padding:2px;
+  border-radius:22px;
+  background:conic-gradient(
+    from var(--custom-orbit-angle),
+    transparent 0deg,
+    transparent 286deg,
+    rgba(229,50,45,.12) 307deg,
+    rgba(229,50,45,.55) 324deg,
+    rgba(57,43,135,.45) 341deg,
+    transparent 360deg
+  );
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  filter:blur(7px);
+  opacity:.6;
+  animation:custom-card-orbit 7s linear infinite;
   pointer-events:none;
 }
 
@@ -312,8 +336,8 @@ section{
   z-index:1;
 }
 
-@keyframes custom-card-border-spin{
-  to{ transform:rotate(360deg); }
+@keyframes custom-card-orbit{
+  to{ --custom-orbit-angle:360deg; }
 }
 
 .custom-feature-card:hover{
@@ -321,5 +345,6 @@ section{
 }
 
 @media (prefers-reduced-motion:reduce){
-  .custom-feature-card::before{ animation:none; }
+  .custom-feature-card::before,
+  .custom-feature-card::after{ animation:none; }
 }
