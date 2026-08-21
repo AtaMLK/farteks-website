@@ -249,9 +249,9 @@ export function Navbar() {
             </Button>
           </div>
 
-          {/* Mobile / tablet */}
+          {/* Mobile / tablet: search disappears before the burger */}
           <div className="ml-auto flex min-w-0 items-center justify-end gap-2 xl:hidden">
-            <div className="w-[150px] min-w-0 shrink sm:w-[180px]">
+            <div className="hidden w-[150px] min-w-0 shrink-0 min-[420px]:block sm:w-[180px]">
               <SearchBox />
             </div>
 
