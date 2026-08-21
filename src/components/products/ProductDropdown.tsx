@@ -55,8 +55,15 @@ export function ProductDropdown({
 
         <div className="grid min-w-0 grid-cols-6 gap-6">
           {PRODUCT_GROUPS.map((group) => {
-            const groupProducts = PRODUCTS.filter((p) =>
-              group.products.includes(p.id),
+            // A product can accidentally appear more than once in the source
+            // list. Deduplicate by id before rendering so React always gets
+            // one stable item per product inside each group.
+            const groupProducts = Array.from(
+              new Map(
+                PRODUCTS.filter((p) => group.products.includes(p.id)).map(
+                  (product) => [product.id, product],
+                ),
+              ).values(),
             );
 
             return (
@@ -78,7 +85,7 @@ export function ProductDropdown({
                 <div className="space-y-2">
                   {groupProducts.slice(0, 5).map((product) => (
                     <Link
-                      key={product.id}
+                      key={`${group.id}-${product.id}`}
                       href={`/products/${product.id}`}
                       className="block truncate text-xs text-slate-600 transition-colors hover:font-semibold hover:text-orange-500"
                     >
