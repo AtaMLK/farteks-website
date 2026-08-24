@@ -100,24 +100,48 @@ export function Navbar() {
                   if (item.hasCapabilitiesDropdown) setIsCapabilitiesOpen(false);
                 }}
               >
-                {item.hasDropdown || item.hasCapabilitiesDropdown ? (
-                  <button
-                    type="button"
-                    aria-expanded={item.hasDropdown ? isProductsOpen : isCapabilitiesOpen}
-                    onClick={() => {
-                      if (item.hasDropdown) {
+                {item.hasDropdown ? (
+                  <div className="flex items-center gap-0.5">
+                    <Link
+                      href={item.href}
+                      className={`whitespace-nowrap text-[13px] font-medium transition-colors ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900 hover:text-[#E5322D]"}`}
+                    >
+                      {item.label}
+                    </Link>
+                    <button
+                      type="button"
+                      aria-label="Toggle Products menu"
+                      aria-expanded={isProductsOpen}
+                      onClick={() => {
                         setIsProductsOpen((prev) => !prev);
                         setIsCapabilitiesOpen(false);
-                      } else {
+                      }}
+                      className="rounded p-0.5 text-slate-900 transition-colors hover:text-[#E5322D]"
+                    >
+                      <ChevronDown size={14} className={`transition-transform duration-200 ${isProductsOpen ? "rotate-180" : ""}`} />
+                    </button>
+                  </div>
+                ) : item.hasCapabilitiesDropdown ? (
+                  <div className="flex items-center gap-0.5">
+                    <Link
+                      href={item.href}
+                      className={`whitespace-nowrap text-[13px] font-medium transition-colors ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900 hover:text-[#E5322D]"}`}
+                    >
+                      {item.label}
+                    </Link>
+                    <button
+                      type="button"
+                      aria-label="Toggle Capabilities menu"
+                      aria-expanded={isCapabilitiesOpen}
+                      onClick={() => {
                         setIsCapabilitiesOpen((prev) => !prev);
                         setIsProductsOpen(false);
-                      }
-                    }}
-                    className={`flex items-center gap-1 whitespace-nowrap text-[13px] font-medium transition-colors ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900 hover:text-[#E5322D]"}`}
-                  >
-                    {item.label}
-                    <ChevronDown size={14} className={`transition-transform duration-200 ${((item.hasDropdown && isProductsOpen) || (item.hasCapabilitiesDropdown && isCapabilitiesOpen)) ? "rotate-180" : ""}`} />
-                  </button>
+                      }}
+                      className="rounded p-0.5 text-slate-900 transition-colors hover:text-[#E5322D]"
+                    >
+                      <ChevronDown size={14} className={`transition-transform duration-200 ${isCapabilitiesOpen ? "rotate-180" : ""}`} />
+                    </button>
+                  </div>
                 ) : (
                   <Link href={item.href} className={`whitespace-nowrap text-[13px] font-medium transition-colors ${pathname.startsWith(item.href) ? "text-[#E5322D]" : "text-slate-900 hover:text-[#E5322D]"}`}>
                     {item.label}
@@ -162,6 +186,7 @@ export function Navbar() {
                 if (item.hasCapabilitiesDropdown) return (
                   <div key={item.href} className="space-y-3">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Capabilities</p>
+                    <Link href={item.href} onClick={() => setMobileOpen(false)} className="block font-medium text-slate-900 transition-colors hover:text-[#E5322D]">All capabilities</Link>
                     <div className="grid gap-3 pl-3">
                       {capabilityItems.map((capability) => <Link key={capability.href} href={capability.href} onClick={() => setMobileOpen(false)} className={`font-medium transition-colors hover:text-[#E5322D] ${pathname.startsWith(capability.href) ? "text-[#E5322D]" : "text-slate-900"}`}>{capability.label}</Link>)}
                     </div>
