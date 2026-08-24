@@ -31,7 +31,7 @@ export default function ProductGroupsPage() {
                   </div>
 
                   <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-slate-900 transition-colors group-hover:text-orange-500 md:text-4xl lg:text-5xl">
-                    Custom Hydraulic Cylinder
+                    Custom Hydraulic Cylinder Components
                   </h2>
 
                   <p className="mb-5 max-w-3xl text-base leading-7 text-slate-600 md:text-lg">
@@ -46,15 +46,11 @@ export default function ProductGroupsPage() {
                   </div>
                 </div>
 
-                <div className="ml-6 shrink-0">
-                  <Image
-                    src="/images/logos/cylinderIcon.png"
-                    height={180}
-                    width={180}
-                    alt="Hydraulic cylinder"
-                    className="object-contain"
-                  />
-                </div>
+               <div className="ml-6 shrink-0">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 transition-colors group-hover:bg-orange-600">
+                        <ArrowRight className="h-6 w-6 text-white transition-transform group-hover:translate-x-1" />
+                      </div>
+                    </div>
               </div>
 
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-orange-500/5 via-transparent to-[#392B87]/5 opacity-70 transition-opacity duration-500 group-hover:opacity-100" />

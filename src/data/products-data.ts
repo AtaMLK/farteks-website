@@ -42,8 +42,8 @@ export const PRODUCTS: Product[] = [
   {
     id: "gland-cast-iron-din1691",
     productCode: "GDC-B-",
-    availableMaterials: ["DIN GG25 / EN-GJL-250"],
-    name: "Gland (Cast Iron GG25/GG26 DIN 1691)",
+    availableMaterials: ["Cast Iron GG25 / GG26 DIN 1691"],
+    name: "Cast Iron Gland",
     category: "STD.1",
     description: "Cast iron glands with multiple size variants",
     groupName: "Standard Components (STD.1)",
@@ -3408,8 +3408,8 @@ export const PRODUCTS: Product[] = [
   {
     id: "gland-cast-iron-std2-new",
     productCode: "GDC-B-",
-    availableMaterials: ["DIN GG25 / EN-GJL-250"],
-    name: "Gland (Cast Iron GG25/GG26 DIN 1691) - NEW",
+    availableMaterials: ["Cast Iron GG25/GG26 DIN 1691"],
+    name: "Cast Iron Gland - NEW",
     category: "STD.2",
     description: "New standard cast iron glands STD.2 series",
     groupName: "Standard 2 Component",

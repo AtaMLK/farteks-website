@@ -14,7 +14,7 @@ export function Footer() {
           <div>
             <div className="inline-flex max-w-full rounded-2xl bg-white p-2 shadow-lg">
               <Image
-                src="/images/logos/logos3.png"
+                src="/images/logos/fotter-logo.png"
                 alt="GDC · Farteks Foreign Trade · FZ"
                 width={150}
                 height={37}
