@@ -18,6 +18,19 @@ interface ProductDetailClientProps {
   product: Product;
 }
 
+function normalizeDrawingImagePath(path: string): string {
+  const cleanPath = path.split("?")[0];
+  const extensionIndex = cleanPath.lastIndexOf(".");
+  const extension = extensionIndex > -1 ? cleanPath.slice(extensionIndex) : ".png";
+  const withoutExtension = extensionIndex > -1 ? cleanPath.slice(0, extensionIndex) : cleanPath;
+
+  if (withoutExtension.endsWith("-drawing")) {
+    return `${withoutExtension}.png`;
+  }
+
+  return `${withoutExtension}-drawing.png`;
+}
+
 export default function ProductDetailClient({
   product,
 }: ProductDetailClientProps) {
@@ -25,8 +38,8 @@ export default function ProductDetailClient({
 
   const related = getRelatedProducts(product.id, 4);
 
-  const currentImage =
-    imageTab === "product" ? product.image : product.drawingImage;
+  const drawingImage = normalizeDrawingImagePath(product.drawingImage);
+  const currentImage = imageTab === "product" ? product.image : drawingImage;
 
   const currentImageAlt =
     imageTab === "product" ? product.name : `${product.name} Technical Drawing`;
@@ -36,12 +49,12 @@ export default function ProductDetailClient({
   return (
     <div className="min-h-screen overflow-x-hidden bg-slate-50">
       <Container>
-        <div className="pt-24 pb-5 sm:pt-10 sm:pb-8">
+        <div className="relative z-10 pt-28 pb-5 sm:pt-12 sm:pb-8">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-orange-500 sm:text-base"
+            className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-x-0.5 hover:border-orange-300 hover:text-orange-500 hover:shadow-md sm:text-base"
           >
-            <ArrowLeft size={18} />
+            <ArrowLeft size={18} className="transition-transform duration-200 group-hover:-translate-x-0.5" />
             Back to Products
           </Link>
         </div>
