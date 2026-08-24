@@ -65,7 +65,6 @@ export function Navbar() {
   const capabilityItems = [
     { label: "Quality", href: "/quality", description: "Quality control and inspection" },
     { label: "Industries", href: "/industries", description: "Applications and industries we serve" },
-    { label: "Manufacturing", href: "/manufacturing", description: "Machining and production capabilities" },
   ];
 
   return (
@@ -131,7 +130,7 @@ export function Navbar() {
                   <div className={`absolute left-1/2 top-full z-50 mt-0 w-[310px] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl transition-all duration-200 ${isCapabilitiesOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0"}`}>
                     <div className="px-3 pb-2 pt-2">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#E5322D]">Farteks Capabilities</p>
-                      <p className="mt-1 text-xs leading-5 text-slate-500">Explore our applications, manufacturing and quality capabilities.</p>
+                      <p className="mt-1 text-xs leading-5 text-slate-500">Explore our applications and quality capabilities.</p>
                     </div>
                     {capabilityItems.map((capability) => (
                       <Link key={capability.href} href={capability.href} className="block rounded-xl px-3 py-3 transition-colors hover:bg-slate-50">
