@@ -2,6 +2,7 @@
 
 import { getRelatedProducts } from "@/data/products-data";
 import { getAvailableMaterials } from "@/data/product-materials";
+import { PRODUCT_GROUPS } from "@/data/product-groups";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -38,6 +39,10 @@ export default function ProductDetailClient({
 
   const related = getRelatedProducts(product.id, 4);
 
+  const parentGroup = PRODUCT_GROUPS.find((group) => group.products.includes(product.id));
+  const backHref = parentGroup ? `/products/group/${parentGroup.id}` : "/products";
+  const backLabel = parentGroup ? `Back to ${parentGroup.name}` : "Back to Products";
+
   const drawingImage = normalizeDrawingImagePath(product.drawingImage);
   const currentImage = imageTab === "product" ? product.image : drawingImage;
 
@@ -51,11 +56,11 @@ export default function ProductDetailClient({
       <Container>
         <div className="sticky top-20 z-40 mt-20 pb-5 sm:mt-20 sm:pb-8">
           <Link
-            href="/products"
+            href={backHref}
             className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-x-0.5 hover:border-orange-300 hover:text-orange-500 hover:shadow-md sm:text-base"
           >
             <ArrowLeft size={18} className="transition-transform duration-200 group-hover:-translate-x-0.5" />
-            Back to Products
+            {backLabel}
           </Link>
         </div>
 
