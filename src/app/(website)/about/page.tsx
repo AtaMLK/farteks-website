@@ -35,14 +35,15 @@ export default function AboutPage() {
             </FadeIn>
 
             <FadeIn delay={0.15}>
-              <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-card sm:p-8">
+              <div className="flex w-full items-center justify-center lg:min-h-[420px]">
                 <Image
                   src="/images/logos/logos3.png"
                   alt="GDC, FARTEKS Foreign Trade and FZ Limited group logos"
                   width={650}
                   height={170}
                   priority
-                  className="h-auto w-full object-contain"
+                  unoptimized
+                  className="h-auto w-full max-w-lg object-contain drop-shadow-sm"
                 />
               </div>
             </FadeIn>
