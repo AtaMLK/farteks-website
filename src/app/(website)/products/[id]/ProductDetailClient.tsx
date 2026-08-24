@@ -1,6 +1,7 @@
 "use client";
 
 import { getRelatedProducts } from "@/data/products-data";
+import { getAvailableMaterials } from "@/data/product-materials";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -29,6 +30,8 @@ export default function ProductDetailClient({
 
   const currentImageAlt =
     imageTab === "product" ? product.name : `${product.name} Technical Drawing`;
+
+  const availableMaterials = getAvailableMaterials(product);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-slate-50">
@@ -129,7 +132,7 @@ export default function ProductDetailClient({
               <div className="border-b border-slate-200 pb-5">
                 <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Available main materials</p>
                 <div className="flex flex-wrap gap-2">
-                  {(product.availableMaterials ?? ["Available upon request"]).map((material) => (
+                  {availableMaterials.map((material) => (
                     <span key={material} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 sm:text-sm">
                       {material}
                     </span>
