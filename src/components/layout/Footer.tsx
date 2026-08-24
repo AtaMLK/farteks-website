@@ -40,9 +40,6 @@ export function Footer() {
               <Link className="block hover:text-white" href="/about">
                 About
               </Link>
-              <Link className="block hover:text-white" href="/manufacturing">
-                Manufacturing
-              </Link>
               <Link className="block hover:text-white" href="/quality">
                 Quality
               </Link>
