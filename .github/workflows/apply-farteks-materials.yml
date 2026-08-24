@@ -1,0 +1,165 @@
+name: Apply Farteks materials and About image
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: ${{ !contains(github.event.head_commit.message, 'Apply Farteks product materials') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update product materials and About hero
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          data_path = Path('src/data/products-data.ts')
+          text = data_path.read_text(encoding='utf-8')
+          lines = text.splitlines()
+
+          steel = [
+              'CK45 / C45',
+              'S355 (By Request)',
+              '11SMn30 (By Request)',
+              '11SMnPb30 (By Request)',
+          ]
+          cast_iron = [
+              'EN-GJL-250',
+              'EN-GJS-400 (By Request)',
+              'EN-GJS-500 (By Request)',
+          ]
+
+          known_steel_ids = {
+              'steel-gland',
+              'piston',
+              'piston-with-thread',
+              'piston-with-guide-ring',
+              'piston-steel-std2-new',
+              'piston-with-thread-steel-std2-new',
+              'mobile-crane-piston',
+              'steel-single-acting-cylinder-piston',
+              'steel-with-nutring-cylinder-piston',
+              'trunnion',
+          }
+
+          out = []
+          current_id = ''
+          material_indexes = set()
+          object_name_indexes = []
+
+          for i, line in enumerate(lines):
+              match = re.match(r'\s*id:\s*"([^"]+)"', line)
+              if match:
+                  current_id = match.group(1)
+
+              if line.strip().startswith('availableMaterials:'):
+                  material_indexes.add(i)
+                  lower_id = current_id.lower()
+                  context = '\n'.join(lines[max(0, i - 12): i + 1])
+                  steelish = (
+                      current_id in known_steel_ids
+                      or 'port' in lower_id
+                      or 'akr' in lower_id
+                      or 'af' in lower_id
+                      or 'trunnion' in lower_id
+                      or 'steel' in context.lower()
+                  )
+                  values = steel if steelish else cast_iron
+                  indent = line[:len(line) - len(line.lstrip())]
+                  out.append(indent + 'availableMaterials: [' + ', '.join('"' + v + '"' for v in values) + '],')
+              else:
+                  out.append(line)
+
+          # Add materials to every product object that did not already have the field.
+          result = []
+          current_id = ''
+          pending_object_start = None
+          has_material = False
+          for i, line in enumerate(out):
+              match = re.match(r'\s*id:\s*"([^"]+)"', line)
+              if match:
+                  current_id = match.group(1)
+                  has_material = False
+                  pending_object_start = i
+
+              if line.strip().startswith('availableMaterials:'):
+                  has_material = True
+
+              if re.match(r'\s*name:\s*"', line) and current_id and not has_material:
+                  lower_id = current_id.lower()
+                  steelish = (
+                      current_id in known_steel_ids
+                      or 'port' in lower_id
+                      or 'akr' in lower_id
+                      or 'af' in lower_id
+                      or 'trunnion' in lower_id
+                  )
+                  values = steel if steelish else cast_iron
+                  indent = line[:len(line) - len(line.lstrip())]
+                  result.append(indent + 'availableMaterials: [' + ', '.join('"' + v + '"' for v in values) + '],')
+                  has_material = True
+
+              result.append(line)
+
+          data_path.write_text('\n'.join(result) + '\n', encoding='utf-8')
+
+          about_path = Path('src/app/(website)/about/page.tsx')
+          about = about_path.read_text(encoding='utf-8')
+          about = about.replace('import { Container } from "@/components/layout/Container";', 'import Image from "next/image";\n\nimport { Container } from "@/components/layout/Container";')
+          about = about.replace('import { FadeIn } from "@/components/animations/FadeIn";', 'import { FadeIn } from "@/components/animations/FadeIn";\nimport { WordAnimation } from "@/components/animations/WordAnimation";')
+
+          start = about.index('      <PageIntro eyebrow="Farteks / company"')
+          end = about.index('\n\n      <section className="bg-slate-50">', start)
+          hero = '''      <section className="site-page-intro">
+        <Container>
+          <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+            <FadeIn>
+              <div className="max-w-4xl">
+                <p className="site-eyebrow">Farteks / company</p>
+                <WordAnimation className="site-page-title mt-5">About Us</WordAnimation>
+                <p className="site-page-description">
+                  We are a group of companies operating in the hydraulic industry, covering manufacturing, sales, and international trade. The group consists of four companies: GDC Production, GDC Sales, Farteks Foreign Trade, and FZ Limited.
+                  <br /><br />
+                  Founded in 1983, the company started with metalworking and machinery manufacturing and has continuously expanded its production capabilities, technical expertise, and product range over the years.
+                  <br /><br />
+                  In 2002, GDC Hydraulic &amp; Pneumatic Co. was established to strengthen and professionalize the group’s sales and marketing activities. Today, GDC manufactures and supplies hydraulic cylinders, hydraulic components to both domestic and international markets through direct sales and a dealership network.
+                  <br /><br />
+                  With a strong focus on quality, customer satisfaction, technical expertise, and continuous improvement, we continue to expand our product portfolio and global customer base. Farteks Foreign Trade and FZ Limited are the group’s of international sales and imports to customers across multiple global markets..
+                </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.15}>
+              <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-card sm:p-8">
+                <Image
+                  src="/images/logos/logos3.png"
+                  alt="GDC, FARTEKS Foreign Trade and FZ Limited group logos"
+                  width={650}
+                  height={170}
+                  priority
+                  className="h-auto w-full object-contain"
+                />
+              </div>
+            </FadeIn>
+          </div>
+        </Container>
+      </section>'''
+          about = about[:start] + hero + about[end:]
+          about_path.write_text(about, encoding='utf-8')
+
+      - name: Commit and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/apply-farteks-materials.yml
+          git add src/data/products-data.ts 'src/app/(website)/about/page.tsx'
+          git commit -m "Apply Farteks product materials and About image"
+          git push origin main
