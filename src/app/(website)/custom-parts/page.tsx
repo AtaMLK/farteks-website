@@ -71,11 +71,11 @@ export default function CustomPartsPage() {
             className="relative aspect-[4/3] min-h-[280px] w-full overflow-hidden rounded-[24px] bg-[#dcdcdc] sm:aspect-[16/10] sm:rounded-[30px] lg:aspect-[4/3] lg:min-h-0 lg:rounded-[38px]"
           >
             <Image
-              src="/images/drawings/customproductbackground-drawing.jpg"
-              alt="Custom hydraulic component drawing"
+              src="/images/multidrawings.jpg"
+              alt="Multiple hydraulic cylinder component drawings"
               fill
               sizes="(max-width: 767px) 100vw, (max-width: 1023px) 80vw, 45vw"
-              className="object-cover object-center opacity-80"
+              className="object-cover object-center opacity-90"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-[#392B87]/10" />
