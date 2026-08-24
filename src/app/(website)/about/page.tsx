@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 import { Container } from "@/components/layout/Container";
-import { PageIntro } from "@/components/ui/PageIntro";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { WordAnimation } from "@/components/animations/WordAnimation";
 import { Button } from "@/components/ui/Button";
 
 export const metadata = {
@@ -12,16 +14,41 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="">
-      <PageIntro eyebrow="Farteks / company" title="About Us" description="
+    <main>
+      <section className="site-page-intro">
+        <Container>
+          <div className="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+            <FadeIn>
+              <div className="max-w-4xl">
+                <p className="site-eyebrow">Farteks / company</p>
+                <WordAnimation className="site-page-title mt-5">About Us</WordAnimation>
+                <p className="site-page-description">
+                  We are a group of companies operating in the hydraulic industry, covering manufacturing, sales, and international trade. The group consists of four companies: GDC Production, GDC Sales, Farteks Foreign Trade, and FZ Limited.
+                  <br /><br />
+                  Founded in 1983, the company started with metalworking and machinery manufacturing and has continuously expanded its production capabilities, technical expertise, and product range over the years.
+                  <br /><br />
+                  In 2002, GDC Hydraulic &amp; Pneumatic Co. was established to strengthen and professionalize the group’s sales and marketing activities. Today, GDC manufactures and supplies hydraulic cylinders, hydraulic components to both domestic and international markets through direct sales and a dealership network.
+                  <br /><br />
+                  With a strong focus on quality, customer satisfaction, technical expertise, and continuous improvement, we continue to expand our product portfolio and global customer base. Farteks Foreign Trade and FZ Limited are the group’s of international sales and imports to customers across multiple global markets..
+                </p>
+              </div>
+            </FadeIn>
 
-We are a group of companies operating in the hydraulic industry, covering manufacturing, sales, and international trade. The group consists of four companies: GDC Production, GDC Sales, Farteks Foreign Trade, and FZ Limited.
-
-Founded in 1983, the company started with metalworking and machinery manufacturing and has continuously expanded its production capabilities, technical expertise, and product range over the years.
-
-In 2002, GDC Hydraulic & Pneumatic Co. was established to strengthen and professionalize the group’s sales and marketing activities. Today, GDC manufactures and supplies hydraulic cylinders, hydraulic components to both domestic and international markets through direct sales and a dealership network.
-
-With a strong focus on quality, customer satisfaction, technical expertise, and continuous improvement, we continue to expand our product portfolio and global customer base. Farteks Foreign Trade and FZ Limited are the group’s of international sales and imports to customers across multiple global markets.." />
+            <FadeIn delay={0.15}>
+              <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-card sm:p-8">
+                <Image
+                  src="/images/logos/logos3.png"
+                  alt="GDC, FARTEKS Foreign Trade and FZ Limited group logos"
+                  width={650}
+                  height={170}
+                  priority
+                  className="h-auto w-full object-contain"
+                />
+              </div>
+            </FadeIn>
+          </div>
+        </Container>
+      </section>
 
       <section className="bg-slate-50">
         <Container>
@@ -124,7 +151,9 @@ With a strong focus on quality, customer satisfaction, technical expertise, and 
         <Container>
           <div className="text-center">
             <FadeIn>
-              <h2 className="site-section-title text-white mx-auto">Ready to Partner With Us?</h2>
+              <h2 className="site-section-title mx-auto text-white">
+                Ready to Partner With Us?
+              </h2>
               <p className="mt-4 text-xl text-slate-200">
                 Contact us today to discuss your hydraulic component needs.
               </p>
