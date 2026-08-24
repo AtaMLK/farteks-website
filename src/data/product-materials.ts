@@ -13,30 +13,22 @@ export const CAST_IRON_MATERIALS = [
   "EN-GJS-500 (By Request)",
 ] as const;
 
-const STEEL_PRODUCT_IDS = new Set([
-  "steel-gland",
-  "piston",
-  "piston-with-thread",
-  "piston-with-guide-ring",
-  "piston-steel-std2-new",
-  "piston-with-thread-steel-std2-new",
-  "mobile-crane-piston",
-  "steel-single-acting-cylinder-piston",
-  "steel-with-nutring-cylinder-piston",
-  "trunnion",
-]);
-
-export function getAvailableMaterials(product: Product): readonly string[] {
+function isSteelProduct(product: Product): boolean {
   const id = product.id.toLowerCase();
   const name = product.name.toLowerCase();
+  const productCode = product.productCode.toLowerCase();
 
-  const isSteel =
-    STEEL_PRODUCT_IDS.has(product.id) ||
+  return (
+    productCode.startsWith("gdc-af") ||
+    productCode.startsWith("gdc-ak") ||
     id.includes("port") ||
-    id.includes("akr") ||
-    id.includes("af") ||
     id.includes("trunnion") ||
-    name.includes("steel");
+    name.includes("piston") ||
+    name.includes("steel gland") ||
+    name.includes("steel")
+  );
+}
 
-  return isSteel ? STEEL_MATERIALS : CAST_IRON_MATERIALS;
+export function getAvailableMaterials(product: Product): readonly string[] {
+  return isSteelProduct(product) ? STEEL_MATERIALS : CAST_IRON_MATERIALS;
 }
