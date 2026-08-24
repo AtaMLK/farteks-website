@@ -49,7 +49,7 @@ export default function ProductDetailClient({
   return (
     <div className="min-h-screen overflow-x-hidden bg-slate-50">
       <Container>
-        <div className="relative z-10 pt-28 pb-5 sm:pt-12 sm:pb-8">
+        <div className="sticky top-20 z-40 mt-20 pb-5 sm:mt-20 sm:pb-8">
           <Link
             href="/products"
             className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-x-0.5 hover:border-orange-300 hover:text-orange-500 hover:shadow-md sm:text-base"
