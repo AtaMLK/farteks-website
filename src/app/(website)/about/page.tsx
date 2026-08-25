@@ -34,7 +34,7 @@ export default function AboutPage() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.15}>
+           {/*  <FadeIn delay={0.15}>
               <div className="flex w-full items-center justify-center lg:min-h-[420px]">
                 <Image
                   src="/images/logos/logos3.png"
@@ -46,7 +46,7 @@ export default function AboutPage() {
                   className="h-auto w-full max-w-lg object-contain drop-shadow-sm"
                 />
               </div>
-            </FadeIn>
+            </FadeIn> */}
           </div>
         </Container>
       </section>
