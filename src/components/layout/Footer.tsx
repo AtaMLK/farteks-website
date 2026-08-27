@@ -12,15 +12,33 @@ export function Footer() {
       <div className="relative mx-auto max-w-360 px-5 py-20 md:px-10 lg:px-14">
         <div className="grid gap-14 lg:grid-cols-[1.5fr_.7fr_.7fr_1fr]">
           <div>
-            <div className="inline-flex max-w-full rounded-2xl bg-white p-2 shadow-lg">
+            <div className="inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3 shadow-[0_12px_40px_rgba(0,0,0,0.22)] backdrop-blur-sm">
+              <span className="sr-only">GDC, Farteks Foreign Trade and FZ</span>
               <Image
-                src="/images/logos/fotter-logo.png"
-                alt="GDC · Farteks Foreign Trade · FZ"
-                width={150}
-                height={37}
-                className=" max-w-full object-contain"
+                src="/images/logos/gdc-logo.png"
+                alt="GDC"
+                width={70}
+                height={38}
+                className="h-8 w-auto object-contain"
+              />
+              <span className="h-8 w-px bg-white/15" aria-hidden="true" />
+              <Image
+                src="/images/logos/farteks-logo.png"
+                alt="Farteks Foreign Trade"
+                width={78}
+                height={32}
+                className="h-7 w-auto object-contain"
+              />
+              <span className="h-8 w-px bg-white/15" aria-hidden="true" />
+              <Image
+                src="/images/logos/fz-logo.png"
+                alt="FZ"
+                width={38}
+                height={38}
+                className="h-8 w-8 object-contain"
               />
             </div>
+
             <p className="mt-6 max-w-md leading-7 text-white/55">
               Precision hydraulic cylinder components for OEM partners,
               engineered and manufactured in Türkiye.
@@ -56,16 +74,10 @@ export function Footer() {
               <Link className="block hover:text-white" href="/products">
                 All products
               </Link>
-              <Link
-                className="block hover:text-white"
-                href="/products/group/std1"
-              >
+              <Link className="block hover:text-white" href="/products/group/std1">
                 Standard components
               </Link>
-              <Link
-                className="block hover:text-white"
-                href="/products/group/rod-end"
-              >
+              <Link className="block hover:text-white" href="/products/group/rod-end">
                 Rod ends
               </Link>
               <Link className="block hover:text-white" href="/custom-parts">
@@ -83,10 +95,7 @@ export function Footer() {
               </p>
               <p className="flex gap-3">
                 <Mail size={17} />{" "}
-                <a
-                  href="mailto:info@farteks.com"
-                  className="transition-colors hover:text-orange-500"
-                >
+                <a href="mailto:info@farteks.com" className="transition-colors hover:text-orange-500">
                   info@farteks.com
                 </a>
               </p>
@@ -97,9 +106,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-16 flex flex-col justify-between gap-3 border-t border-white/10 pt-7 text-xs text-white/35 md:flex-row">
-          <span>
-            © {new Date().getFullYear()} FARTEKS. All rights reserved.
-          </span>
+          <span>© {new Date().getFullYear()} FARTEKS. All rights reserved.</span>
           <span>Hydraulic components · OEM manufacturing · Export</span>
         </div>
       </div>
