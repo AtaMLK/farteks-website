@@ -60,10 +60,6 @@ export function useProductSearch(query: string): SearchResult[] {
       }
 
       if (specificationMatch) {
-        const groupImage = group
-          ? PRODUCTS.find((item) => group.products.includes(item.id))?.image
-          : undefined;
-
         results.push({
           id: `spec-${product.id}`,
           type: "spec",
@@ -73,7 +69,10 @@ export function useProductSearch(query: string): SearchResult[] {
           }`,
           href: `/products/${product.id}`,
           category: product.category,
-          image: groupImage || product.image,
+          // A specification result belongs to the product being described.
+          // Using the first image from the group could show an unrelated
+          // product image (especially when several products share a group).
+          image: product.image,
           groupName: group?.name,
         });
       }
