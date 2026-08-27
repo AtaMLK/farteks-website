@@ -7853,7 +7853,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: "hydraulic-pump-drums",
-    productCode: "GDC-PD-",
+    productCode: "0K- , 1K- , 2K-",
     name: "Hydraulic Pump Drums",
     category: "UNI",
     description:
