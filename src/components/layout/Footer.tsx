@@ -15,9 +15,9 @@ export function Footer() {
             <Image
               src="/images/logos/fotter-logo.png"
               alt="GDC · Farteks Foreign Trade · FZ"
-              width={150}
-              height={37}
-              className="h-auto w-[150px] object-contain"
+              width={260}
+              height={64}
+              className="h-auto w-[260px] max-w-full object-contain"
             />
 
             <p className="mt-6 max-w-md leading-7 text-white/55">
@@ -32,57 +32,28 @@ export function Footer() {
             </Link>
           </div>
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.25em] text-[#E5322D]">
-              Explore
-            </p>
+            <p className="text-xs font-bold uppercase tracking-[.25em] text-[#E5322D]">Explore</p>
             <div className="mt-6 space-y-4 text-sm text-white/65">
-              <Link className="block hover:text-white" href="/about">
-                About
-              </Link>
-              <Link className="block hover:text-white" href="/quality">
-                Quality
-              </Link>
-              <Link className="block hover:text-white" href="/gallery">
-                Gallery
-              </Link>
+              <Link className="block hover:text-white" href="/about">About</Link>
+              <Link className="block hover:text-white" href="/quality">Quality</Link>
+              <Link className="block hover:text-white" href="/gallery">Gallery</Link>
             </div>
           </div>
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.25em] text-[#E5322D]">
-              Products
-            </p>
+            <p className="text-xs font-bold uppercase tracking-[.25em] text-[#E5322D]">Products</p>
             <div className="mt-6 space-y-4 text-sm text-white/65">
-              <Link className="block hover:text-white" href="/products">
-                All products
-              </Link>
-              <Link className="block hover:text-white" href="/products/group/std1">
-                Standard components
-              </Link>
-              <Link className="block hover:text-white" href="/products/group/rod-end">
-                Rod ends
-              </Link>
-              <Link className="block hover:text-white" href="/custom-parts">
-                Custom parts
-              </Link>
+              <Link className="block hover:text-white" href="/products">All products</Link>
+              <Link className="block hover:text-white" href="/products/group/std1">Standard components</Link>
+              <Link className="block hover:text-white" href="/products/group/rod-end">Rod ends</Link>
+              <Link className="block hover:text-white" href="/custom-parts">Custom parts</Link>
             </div>
           </div>
           <div>
-            <p className="text-xs font-bold uppercase tracking-[.25em] text-[#E5322D]">
-              Contact
-            </p>
+            <p className="text-xs font-bold uppercase tracking-[.25em] text-[#E5322D]">Contact</p>
             <div className="mt-6 space-y-4 text-sm text-white/65">
-              <p className="flex gap-3">
-                <MapPin size={17} /> Istanbul · Türkiye
-              </p>
-              <p className="flex gap-3">
-                <Mail size={17} />{" "}
-                <a href="mailto:info@farteks.com" className="transition-colors hover:text-orange-500">
-                  info@farteks.com
-                </a>
-              </p>
-              <p className="flex gap-3">
-                <Phone size={17} /> +90 212 660 58 57
-              </p>
+              <p className="flex gap-3"><MapPin size={17} /> Istanbul · Türkiye</p>
+              <p className="flex gap-3"><Mail size={17} />{" "}<a href="mailto:info@farteks.com" className="transition-colors hover:text-orange-500">info@farteks.com</a></p>
+              <p className="flex gap-3"><Phone size={17} /> +90 212 660 58 57</p>
             </div>
           </div>
         </div>
