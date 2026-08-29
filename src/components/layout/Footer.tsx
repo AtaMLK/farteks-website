@@ -17,7 +17,7 @@ export function Footer() {
               alt="GDC · Farteks Foreign Trade · FZ"
               width={260}
               height={64}
-              className="h-auto w-[260px] max-w-full object-contain"
+              className="h-auto w-[260px] max-w-full object-contain mix-blend-screen"
             />
 
             <p className="mt-6 max-w-md leading-7 text-white/55">
