@@ -16,7 +16,7 @@ export function PageIntro({ eyebrow, title, description, className = "", introIm
     <section className={`site-page-intro ${className}`}>
       <Container>
         <FadeIn>
-          <div className={introImages?.length ? "grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-16" : "max-w-4xl"}>
+          <div className={introImages?.length ? "grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_390px] lg:gap-12" : "max-w-4xl"}>
             <div className="min-w-0">
               {eyebrow && <p className="site-eyebrow">{eyebrow}</p>}
               <WordAnimation className="site-page-title mt-5">{title}</WordAnimation>
@@ -24,24 +24,24 @@ export function PageIntro({ eyebrow, title, description, className = "", introIm
             </div>
 
             {introImages?.length ? (
-              <div className="flex items-center justify-center gap-3 sm:gap-5 lg:justify-end">
-                {introImages.slice(0, 3).map((src, index) => (
-                  <div
-                    key={src}
-                    className={`relative aspect-square overflow-hidden rounded-full border border-white bg-white shadow-[0_8px_28px_rgba(15,23,42,0.12)] ${
-                      index === 1 ? "h-28 w-28 sm:h-32 sm:w-32 lg:h-36 lg:w-36" : "h-20 w-20 sm:h-24 sm:w-24 lg:h-28 lg:w-28"
-                    }`}
-                  >
-                    <Image
-                      src={src}
-                      alt=""
-                      fill
-                      sizes="144px"
-                      className="object-cover"
-                      priority={index === 0}
-                    />
-                  </div>
-                ))}
+              <div className="relative mx-auto h-[210px] w-full max-w-[390px] lg:mx-0">
+                {introImages.slice(0, 3).map((src, index) => {
+                  const positions = [
+                    "left-[14%] top-0 h-24 w-24 sm:h-28 sm:w-28",
+                    "left-[38%] top-[64px] h-28 w-28 sm:h-32 sm:w-32",
+                    "right-[2%] bottom-0 h-24 w-24 sm:h-28 sm:w-28",
+                  ];
+
+                  return (
+                    <div
+                      key={src}
+                      className={`absolute overflow-hidden rounded-full border-2 border-white bg-white shadow-[0_10px_30px_rgba(15,23,42,0.16)] transition-transform duration-300 hover:-translate-y-1 ${positions[index]}`}
+                      style={{ zIndex: 3 - index }}
+                    >
+                      <Image src={src} alt="" fill sizes="144px" className="object-cover" priority={index === 0} />
+                    </div>
+                  );
+                })}
               </div>
             ) : null}
           </div>
