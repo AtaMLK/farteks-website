@@ -17,11 +17,7 @@ export default function ProductGroupsPage() {
 
       <div className="container mx-auto max-w-7xl px-4">
         <div className="mt-10 grid grid-cols-12 gap-4">
-          <Link
-            href="/custom-parts"
-            className="col-span-12 h-full"
-            aria-label="Open Custom Hydraulic Cylinder page"
-          >
+          <Link href="/custom-parts" className="col-span-12 h-full" aria-label="Open Custom Hydraulic Cylinder page">
             <div className="custom-feature-card group relative h-[280px] overflow-hidden rounded-[20px] border bg-gradient-to-r from-white via-white to-slate-50 transition-all duration-500 hover:-translate-y-1">
               <div className="relative z-10 flex h-full items-center justify-between p-8 sm:p-10 lg:p-12">
                 <div className="min-w-0 flex-1">
@@ -53,19 +49,19 @@ export default function ProductGroupsPage() {
 
             return (
               <Link key={group.id} href={`/products/group/${group.id}`} className="col-span-12 h-full sm:col-span-6 xl:col-span-4">
-                <div className="group relative h-[280px] overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl" style={{ animationDelay: `${idx * 100}ms` }}>
-                  <div className="relative z-10 flex h-full items-center justify-between p-8">
-                    <div className="flex min-w-0 flex-1 flex-col">
-                      <div className="mb-2 h-5 text-sm font-semibold text-orange-500">GROUP {group.order}</div>
-                      <h3 className="mb-3 min-h-14 text-2xl font-bold leading-7 text-slate-900 transition-colors group-hover:text-orange-500">{group.name}</h3>
-                      <p className="mb-5 min-h-14 max-w-3xl text-slate-600">{group.description}</p>
+                <div className="group relative h-[250px] overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl sm:h-[260px] lg:h-[280px]" style={{ animationDelay: `${idx * 100}ms` }}>
+                  <div className="relative z-10 grid h-full grid-cols-[minmax(0,1fr)_56px] gap-4 p-6 sm:p-7 lg:p-8">
+                    <div className="flex min-w-0 flex-col">
+                      <div className="mb-2 h-5 shrink-0 text-xs font-semibold text-orange-500">GROUP {group.order}</div>
+                      <h3 className="mb-3 line-clamp-2 min-h-[56px] text-2xl font-bold leading-7 text-slate-900 transition-colors group-hover:text-orange-500">{group.name}</h3>
+                      <p className="mb-3 line-clamp-2 min-h-[40px] text-sm leading-5 text-slate-600 lg:line-clamp-3 lg:min-h-[60px]">{group.description}</p>
                       <div className="mt-auto">
-                        <span className="text-sm font-semibold text-slate-500">{groupProducts.length} products</span>
+                        <span className="text-xs font-semibold text-slate-500">{groupProducts.length} products</span>
                       </div>
                     </div>
-                    <div className="ml-6 shrink-0">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 transition-colors group-hover:bg-orange-600">
-                        <ArrowRight className="h-6 w-6 text-white transition-transform group-hover:translate-x-1" />
+                    <div className="flex items-start justify-end pt-[48px]">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-orange-500 transition-colors group-hover:bg-orange-600 sm:h-12 sm:w-12">
+                        <ArrowRight className="h-5 w-5 text-white transition-transform group-hover:translate-x-1" />
                       </div>
                     </div>
                   </div>
