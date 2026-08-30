@@ -40,6 +40,9 @@ const exhibitionImages = [
   "/images/gallery/exhibitions/7.JPG",
   "/images/gallery/exhibitions/8.JPG",
   "/images/gallery/exhibitions/9.JPG",
+  "/images/gallery/exhibitions/30.JPG",
+  "/images/gallery/exhibitions/28.JPG",
+  "/images/gallery/exhibitions/29.JPG",
 ];
 
 const allImages = [...factoryImages, ...exhibitionImages];
