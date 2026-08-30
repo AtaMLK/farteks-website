@@ -7631,10 +7631,10 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description:
       "Steel single-acting cylinder pistons manufactured from SAE 1040 / SAE 1050 steel according to the catalog dimensions.",
-    groupName: "Standard 1 Components",
-    image: "/images/products/piston.png",
-    singleImage: "/images/products/piston-single.png",
-    drawingImage: "/images/drawings/piston-single-drawing.png",
+    groupName: "Standard Components (STD.1)",   
+    image: "/images/products/steel-single-acting-cylinder-piston.png",
+    singleImage: "/images/products/steel-single-acting-cylinder-piston-single.png",
+    drawingImage: "/images/drawings/steel-single-acting-cylinder-piston-single-drawing.png",
     specColumns: [
       "CODE",
       "WIPER",
@@ -7745,10 +7745,10 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description:
       "Steel double-acting cylinder pistons with nutring configuration manufactured from SAE 1040 / SAE 1050 steel according to the catalog dimensions.",
-    groupName: "Standard 1 Components",
-    image: "/images/products/piston-with-guide-ring.png",
-    singleImage: "/images/products/piston-with-guide-ring-single.png",
-    drawingImage: "/images/drawings/piston-with-guide-ring-drawing.png",
+    groupName: "Standard Components (STD.1)",
+    image: "/images/products/steel-with-nutring-cylinder-piston.png",
+    singleImage: "/images/products/steel-with-nutring-cylinder-piston-single.png",
+    drawingImage: "/images/drawings/steel-with-nutring-cylinder-piston-drawing.png",
     specColumns: [
       "CODE",
       "NUTRING",
