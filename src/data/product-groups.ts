@@ -19,6 +19,8 @@ export const PRODUCT_GROUPS: ProductGroup[] = [
       "piston",
       "piston-with-thread",
       "piston-with-guide-ring",
+      "steel-single-acting-cylinder-piston",
+      "steel-with-nutring-cylinder-piston",
       "end-plug-with-oil-hole",
       "end-plug",
       "bsp-weldable-port",
