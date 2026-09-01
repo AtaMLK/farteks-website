@@ -36,8 +36,8 @@ class SmtpClient {
 
   private attach(socket: Socket | tls.TLSSocket) {
     socket.setEncoding("utf8");
-    socket.on("data", (chunk: string) => {
-      this.buffer += chunk;
+    socket.on("data", (chunk) => {
+      this.buffer += String(chunk);
       this.flushResponses();
     });
     socket.on("error", (error) => {
@@ -76,12 +76,13 @@ class SmtpClient {
   async command(command: string, expected: number | number[]) {
     this.socket.write(`${command}\r\n`);
     const response = await this.waitResponse();
-    const code = Number(response.slice(-3 - (response.endsWith("\r\n") ? 2 : 0), 3));
-    const actualCode = Number(response.match(/(\d{3}) [^\r\n]*$/)?.[1] ?? response.slice(0, 3));
+    const actualCode = Number(
+      response.match(/(\d{3}) [^\r\n]*$/)?.[1] ?? response.slice(0, 3),
+    );
     const allowed = Array.isArray(expected) ? expected : [expected];
 
     if (!allowed.includes(actualCode)) {
-      throw new Error(`SMTP command failed (${actualCode || code}): ${response}`);
+      throw new Error(`SMTP command failed (${actualCode}): ${response}`);
     }
 
     return response;
@@ -99,7 +100,7 @@ class SmtpClient {
     });
 
     await new Promise<void>((resolve, reject) => {
-      secureSocket.once("secureConnect", () => resolve());
+      secureSocket.once("secureConnect", resolve);
       secureSocket.once("error", reject);
     });
 
@@ -192,6 +193,7 @@ export async function sendSmtpEmail(message: SmtpMessage) {
   const config = getConfig();
   const socket = await connect(config);
   const client = new SmtpClient(socket);
+  let connectionIsEncrypted = config.secure;
 
   try {
     const greeting = await client.waitResponse();
@@ -201,14 +203,19 @@ export async function sendSmtpEmail(message: SmtpMessage) {
 
     let capabilities = await client.command("EHLO farteks.com", 250);
 
-    if (!config.secure && capabilities.toUpperCase().includes("STARTTLS")) {
+    if (!connectionIsEncrypted) {
+      if (!capabilities.toUpperCase().includes("STARTTLS")) {
+        throw new Error("SMTP server does not offer STARTTLS on this connection.");
+      }
+
       await client.command("STARTTLS", 220);
       await client.upgradeToTls(config.host);
+      connectionIsEncrypted = true;
       capabilities = await client.command("EHLO farteks.com", 250);
     }
 
-    if (!config.secure && !capabilities.toUpperCase().includes("STARTTLS")) {
-      throw new Error("SMTP server does not offer STARTTLS on this non-secure connection.");
+    if (!connectionIsEncrypted) {
+      throw new Error("SMTP authentication requires an encrypted connection.");
     }
 
     await client.command("AUTH LOGIN", 334);
