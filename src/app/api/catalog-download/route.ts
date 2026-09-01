@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { sendSmtpEmail } from "@/lib/smtp";
 
 export async function POST(request: Request) {
   try {
@@ -13,26 +13,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-
-    if (!apiKey) {
-      console.error("RESEND_API_KEY is not configured for catalog leads.");
-      return NextResponse.json(
-        { success: false, error: "Catalog service is temporarily unavailable." },
-        { status: 503 },
-      );
-    }
-
     const normalizedFirstName = String(firstName).trim();
     const normalizedLastName = String(lastName).trim();
     const normalizedCompanyName = String(companyName).trim();
     const normalizedEmail = String(email).trim().toLowerCase();
 
-    const resend = new Resend(apiKey);
-
-    const { data, error } = await resend.emails.send({
-      from: "FARTEKS Website <website@farteks.com>",
-      to: ["info@farteks.com", "support@farteks.com"],
+    await sendSmtpEmail({
       replyTo: normalizedEmail,
       subject: `New Catalog Download — ${normalizedCompanyName}`,
       html: `
@@ -75,22 +61,13 @@ export async function POST(request: Request) {
       `,
     });
 
-    if (error) {
-      console.error("Resend catalog lead error:", error);
-      return NextResponse.json(
-        { success: false, error: "Unable to process the catalog download." },
-        { status: 500 },
-      );
-    }
-
     return NextResponse.json({
       success: true,
       message: "Catalog download approved.",
       emailSent: true,
-      id: data?.id,
     });
   } catch (error) {
-    console.error("Catalog download error:", error);
+    console.error("Catalog SMTP error:", error);
 
     return NextResponse.json(
       { success: false, error: "Unable to process catalog request." },
