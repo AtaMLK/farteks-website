@@ -2885,9 +2885,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "Standard pistons with multiple size combinations",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/Piston.png",
-    singleImage: "/images/products/Piston-single.png",
-    drawingImage: "/images/drawings/Piston-drawing.png",
+    image: "/images/products/piston.png",
+    singleImage: "/images/products/piston-single.png",
+    drawingImage: "/images/drawings/piston-drawing.png",
     specColumns: ["CODE", "D", "D1", "L", "kg"],
 
     specs: [
