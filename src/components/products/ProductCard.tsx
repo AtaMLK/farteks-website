@@ -43,13 +43,12 @@ export function ProductCard({
 
   return (
     <article
-      className="group relative w-full overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl sm:overflow-visible"
+      className="group relative flex h-full w-full flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl sm:overflow-visible"
       onTouchStart={handleTouch}
     >
-      {/* IMAGE */}
       <Link
         href={href}
-        className="relative block h-[230px] overflow-hidden rounded-t-[20px] bg-wh'te sm:h-[245px] lg:h-[265px]"
+        className="relative block h-[230px] shrink-0 overflow-hidden rounded-t-[20px] bg-white sm:h-[245px] lg:h-[265px]"
         aria-label={`View ${title}`}
       >
         <Image
@@ -58,7 +57,7 @@ export function ProductCard({
           fill
           priority={false}
           sizes="(max-width: 639px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          className="object-contain p-5 sm:p-6 lg:p-8 transition-transform duration-700 ease-out sm:group-hover:scale-[1.04]"
+          className="object-contain p-5 transition-transform duration-700 ease-out sm:p-6 lg:p-8 sm:group-hover:scale-[1.04]"
         />
 
         {badge && (
@@ -67,7 +66,6 @@ export function ProductCard({
           </div>
         )}
 
-        {/* MOBILE: image-only card overlay */}
         <div
           className={`absolute inset-0 z-10 flex flex-col justify-end bg-linear-to-t from-black/90 via-black/55 to-transparent p-4 transition-opacity duration-300 sm:hidden ${
             revealed ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
@@ -104,8 +102,7 @@ export function ProductCard({
         </div>
       </Link>
 
-      {/* DESKTOP / TABLET: content stays below the image */}
-      <div className="hidden min-h-[150px] flex-col justify-between p-5 sm:flex lg:min-h-[165px] lg:p-6">
+      <div className="hidden min-h-[150px] flex-1 flex-col justify-between p-5 sm:flex lg:min-h-[165px] lg:p-6">
         <div className="min-w-0">
           {badge && (
             <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-orange-500 lg:text-xs">
