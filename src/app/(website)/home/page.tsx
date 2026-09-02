@@ -2,7 +2,6 @@ import { Hero } from "@/components/home/Hero";
 import { Trusted } from "@/components/home/Trusted";
 import { Stats } from "@/components/home/Stats";
 import { ProductPreview } from "@/components/home/ProductPreview";
-import { Manufacturing } from "@/components/home/Manufacturing";
 import { Industries } from "@/components/home/Industries";
 import { Quality } from "@/components/home/Quality";
 import { Export } from "@/components/home/Export";
@@ -19,7 +18,7 @@ export default function HomePage() {
       <Trusted />
       <ProductPreview />
 
-      {/* Company film — deliberately treated as an editorial feature, not a generic video block. */}
+      {/* Company film — the only video feature on the homepage. */}
       <section className="overflow-hidden bg-[#181617] py-24 text-white sm:py-32 lg:py-40">
         <div className="mx-auto max-w-[1440px] px-5 md:px-10 lg:px-14">
           <div className="grid items-center gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
@@ -99,7 +98,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Manufacturing />
       <Industries />
       <Quality />
       <Export />
