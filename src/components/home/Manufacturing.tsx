@@ -166,7 +166,7 @@ export function Manufacturing() {
           <video
             ref={videoRef}
             className="absolute inset-0 h-full w-full object-cover object-center opacity-[0.92] sm:object-center"
-            src="/videos/manufacturing-cylinder.mp4"
+            src="/videos/GDC-Farteks.mp4"
             poster="/images/factory/manufacturing.jpg"
             muted
             playsInline
