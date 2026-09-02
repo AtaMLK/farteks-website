@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 export const alt = "Farteks Hydraulic Cylinder Components Manufacturer";
 export const size = {
