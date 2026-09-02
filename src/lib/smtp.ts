@@ -189,6 +189,43 @@ function formatMailbox(name: string, email: string) {
   return `${encodeHeader(name)} <${sanitizeHeader(email)}>`;
 }
 
+function getAuthMechanisms(capabilities: string) {
+  const authLine = capabilities
+    .split("\r\n")
+    .find((line) => /^250[- ]AUTH(?:[ =]|$)/i.test(line));
+
+  if (!authLine) return [];
+
+  const value = authLine.replace(/^250[- ]AUTH(?:[ =])?/i, "");
+  return value
+    .split(/\s+/)
+    .map((method) => method.trim().toUpperCase())
+    .filter(Boolean);
+}
+
+async function authenticate(client: SmtpClient, capabilities: string, config: MailConfig) {
+  const mechanisms = getAuthMechanisms(capabilities);
+
+  // Prefer PLAIN when the server advertises it. Some mail servers accept
+  // AUTH LOGIN interactively but reject it for certain mailbox policies.
+  if (mechanisms.includes("PLAIN")) {
+    const credentials = Buffer.from(`\u0000${config.user}\u0000${config.pass}`, "utf8").toString("base64");
+    await client.command(`AUTH PLAIN ${credentials}`, 235);
+    return;
+  }
+
+  if (mechanisms.includes("LOGIN")) {
+    await client.command("AUTH LOGIN", 334);
+    await client.command(Buffer.from(config.user, "utf8").toString("base64"), 334);
+    await client.command(Buffer.from(config.pass, "utf8").toString("base64"), 235);
+    return;
+  }
+
+  throw new Error(
+    `SMTP server does not advertise a supported authentication method. Advertised AUTH methods: ${mechanisms.join(", ") || "none"}`,
+  );
+}
+
 export async function sendSmtpEmail(message: SmtpMessage) {
   const config = getConfig();
   const socket = await connect(config);
@@ -218,9 +255,7 @@ export async function sendSmtpEmail(message: SmtpMessage) {
       throw new Error("SMTP authentication requires an encrypted connection.");
     }
 
-    await client.command("AUTH LOGIN", 334);
-    await client.command(Buffer.from(config.user).toString("base64"), 334);
-    await client.command(Buffer.from(config.pass).toString("base64"), 235);
+    await authenticate(client, capabilities, config);
 
     await client.command(`MAIL FROM:<${sanitizeHeader(config.fromEmail)}>`, 250);
     for (const recipient of config.to) {
