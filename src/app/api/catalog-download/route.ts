@@ -1,38 +1,59 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import { sendSmtpEmail } from "@/lib/smtp";
+import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
+import { verifyTurnstileToken } from "@/lib/turnstile";
 
 export async function POST(request: Request) {
+  const clientIp = getClientIp(request);
+  const rateLimit = checkRateLimit(`catalog:${clientIp}`);
+
+  if (!rateLimit.allowed) {
+    return NextResponse.json(
+      { success: false, error: "Too many requests. Please try again later." },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rateLimit.retryAfterSeconds) },
+      },
+    );
+  }
+
   try {
     const body = await request.json();
-    const { firstName, lastName, companyName, email } = body;
+    const { firstName, lastName, companyName, email, turnstileToken } = body;
 
-    if (!firstName || !lastName || !companyName || !email) {
+    const normalizedFirstName = String(firstName ?? "").trim();
+    const normalizedLastName = String(lastName ?? "").trim();
+    const normalizedCompanyName = String(companyName ?? "").trim();
+    const normalizedEmail = String(email ?? "").trim().toLowerCase();
+
+    if (!normalizedFirstName || !normalizedLastName || !normalizedCompanyName || !normalizedEmail) {
       return NextResponse.json(
         { success: false, error: "All fields are required." },
         { status: 400 },
       );
     }
 
-    const apiKey = process.env.RESEND_API_KEY;
-
-    if (!apiKey) {
-      console.error("RESEND_API_KEY is not configured for catalog leads.");
+    if (normalizedFirstName.length > 100 || normalizedLastName.length > 100 || normalizedCompanyName.length > 200 || normalizedEmail.length > 254) {
       return NextResponse.json(
-        { success: false, error: "Catalog service is temporarily unavailable." },
-        { status: 503 },
+        { success: false, error: "One or more fields are too long." },
+        { status: 400 },
       );
     }
 
-    const normalizedFirstName = String(firstName).trim();
-    const normalizedLastName = String(lastName).trim();
-    const normalizedCompanyName = String(companyName).trim();
-    const normalizedEmail = String(email).trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
+      return NextResponse.json({ success: false, error: "Please enter a valid email address." }, { status: 400 });
+    }
 
-    const resend = new Resend(apiKey);
+    const turnstileValid = await verifyTurnstileToken(String(turnstileToken ?? ""), clientIp);
 
-    const { data, error } = await resend.emails.send({
-      from: "FARTEKS Website <website@farteks.com>",
-      to: ["info@farteks.com", "support@farteks.com"],
+    if (!turnstileValid) {
+      return NextResponse.json(
+        { success: false, error: "Security verification failed. Please try again." },
+        { status: 403 },
+      );
+    }
+
+    await sendSmtpEmail({
       replyTo: normalizedEmail,
       subject: `New Catalog Download — ${normalizedCompanyName}`,
       html: `
@@ -44,30 +65,14 @@ export async function POST(request: Request) {
                 <div style="font-size:12px;letter-spacing:3px;font-weight:bold;color:#E5322D;">FARTEKS</div>
                 <h1 style="margin:10px 0 0;font-size:28px;">New Catalog Download</h1>
               </div>
-
               <div style="padding:32px;">
                 <table style="width:100%;border-collapse:collapse;">
-                  <tr>
-                    <td style="padding:10px 0;font-weight:bold;width:150px;">First Name</td>
-                    <td style="padding:10px 0;">${escapeHtml(normalizedFirstName)}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:10px 0;font-weight:bold;">Last Name</td>
-                    <td style="padding:10px 0;">${escapeHtml(normalizedLastName)}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:10px 0;font-weight:bold;">Company</td>
-                    <td style="padding:10px 0;">${escapeHtml(normalizedCompanyName)}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:10px 0;font-weight:bold;">Email</td>
-                    <td style="padding:10px 0;">${escapeHtml(normalizedEmail)}</td>
-                  </tr>
+                  <tr><td style="padding:10px 0;font-weight:bold;width:150px;">First Name</td><td style="padding:10px 0;">${escapeHtml(normalizedFirstName)}</td></tr>
+                  <tr><td style="padding:10px 0;font-weight:bold;">Last Name</td><td style="padding:10px 0;">${escapeHtml(normalizedLastName)}</td></tr>
+                  <tr><td style="padding:10px 0;font-weight:bold;">Company</td><td style="padding:10px 0;">${escapeHtml(normalizedCompanyName)}</td></tr>
+                  <tr><td style="padding:10px 0;font-weight:bold;">Email</td><td style="padding:10px 0;">${escapeHtml(normalizedEmail)}</td></tr>
                 </table>
-
-                <div style="margin-top:30px;padding-top:25px;border-top:1px solid #e5e7eb;color:#64748b;font-size:13px;line-height:1.6;">
-                  This lead was submitted through the Farteks website catalog download form.
-                </div>
+                <div style="margin-top:30px;padding-top:25px;border-top:1px solid #e5e7eb;color:#64748b;font-size:13px;line-height:1.6;">This lead was submitted through the Farteks website catalog download form.</div>
               </div>
             </div>
           </body>
@@ -75,23 +80,13 @@ export async function POST(request: Request) {
       `,
     });
 
-    if (error) {
-      console.error("Resend catalog lead error:", error);
-      return NextResponse.json(
-        { success: false, error: "Unable to process the catalog download." },
-        { status: 500 },
-      );
-    }
-
     return NextResponse.json({
       success: true,
       message: "Catalog download approved.",
       emailSent: true,
-      id: data?.id,
     });
   } catch (error) {
-    console.error("Catalog download error:", error);
-
+    console.error("Catalog SMTP error:", error);
     return NextResponse.json(
       { success: false, error: "Unable to process catalog request." },
       { status: 500 },

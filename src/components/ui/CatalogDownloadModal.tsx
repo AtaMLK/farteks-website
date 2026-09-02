@@ -1,7 +1,8 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useCallback, useState } from "react";
 import { useEmailValidation } from "@/hooks/useEmailValidation";
+import { TurnstileWidget } from "@/components/ui/TurnstileWidget";
 import {
   X,
   Mail,
@@ -29,6 +30,7 @@ export function CatalogDownloadModal({
   const [lastName, setLastName] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
 
   const {
     validateAndDownload,
@@ -36,6 +38,10 @@ export function CatalogDownloadModal({
     error,
     success,
   } = useEmailValidation();
+
+  const handleTurnstileToken = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -46,6 +52,7 @@ export function CatalogDownloadModal({
         lastName,
         companyName,
         email,
+        turnstileToken,
       },
       catalogUrl
     );
@@ -56,6 +63,7 @@ export function CatalogDownloadModal({
         setLastName("");
         setCompanyName("");
         setEmail("");
+        setTurnstileToken("");
         onClose();
       }, 1500);
     }
@@ -68,6 +76,7 @@ export function CatalogDownloadModal({
     setLastName("");
     setCompanyName("");
     setEmail("");
+    setTurnstileToken("");
 
     onClose();
   };
@@ -76,16 +85,13 @@ export function CatalogDownloadModal({
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className="fixed inset-0 z-100 bg-black/50"
         onClick={handleClose}
         style={{ backdropFilter: "blur(4px)" }}
       />
 
-      {/* Modal */}
       <div className="fixed left-1/2 top-1/2 z-101 max-h-[calc(100dvh-1rem)] w-[calc(100%-1rem)] max-w-md -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-2xl bg-white p-5 shadow-2xl sm:w-[calc(100%-2rem)] sm:p-8">
-        {/* Close Button */}
         <button
           type="button"
           onClick={handleClose}
@@ -96,7 +102,6 @@ export function CatalogDownloadModal({
           <X className="h-5 w-5 text-slate-500" />
         </button>
 
-        {/* Success State */}
         {success ? (
           <div className="py-6 text-center">
             <div className="mb-4 flex justify-center">
@@ -109,9 +114,7 @@ export function CatalogDownloadModal({
               Download Started!
             </h3>
 
-            <p className="text-slate-600">
-              Your catalog is being downloaded.
-            </p>
+            <p className="text-slate-600">Your catalog is being downloaded.</p>
 
             <p className="mt-4 text-sm text-slate-500">
               Thank you for your interest in Farteks.
@@ -119,7 +122,6 @@ export function CatalogDownloadModal({
           </div>
         ) : (
           <>
-            {/* Header */}
             <div className="mb-6 text-center">
               <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-orange-100">
                 <Mail className="h-6 w-6 text-orange-500" />
@@ -134,163 +136,117 @@ export function CatalogDownloadModal({
               </p>
             </div>
 
-            {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
-              {/* First + Last Name */}
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {/* First Name */}
                 <div>
-                  <label
-                    htmlFor="catalog-first-name"
-                    className="mb-2 block text-sm font-semibold text-slate-900"
-                  >
+                  <label htmlFor="catalog-first-name" className="mb-2 block text-sm font-semibold text-slate-900">
                     First Name
                   </label>
-
                   <div className="relative">
                     <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-
                     <input
                       id="catalog-first-name"
                       name="firstName"
                       type="text"
                       value={firstName}
-                      onChange={(e) =>
-                        setFirstName(e.target.value)
-                      }
+                      onChange={(e) => setFirstName(e.target.value)}
                       placeholder="John"
                       autoComplete="given-name"
                       disabled={isLoading}
                       className={`w-full rounded-lg border-2 py-3 pl-10 pr-3 transition-colors focus:outline-none ${
-                        error
-                          ? "border-red-500 bg-red-50"
-                          : "border-slate-200 bg-white hover:border-slate-300 focus:border-orange-500 focus:bg-orange-50"
+                        error ? "border-red-500 bg-red-50" : "border-slate-200 bg-white hover:border-slate-300 focus:border-orange-500 focus:bg-orange-50"
                       }`}
                     />
                   </div>
                 </div>
 
-                {/* Last Name */}
                 <div>
-                  <label
-                    htmlFor="catalog-last-name"
-                    className="mb-2 block text-sm font-semibold text-slate-900"
-                  >
+                  <label htmlFor="catalog-last-name" className="mb-2 block text-sm font-semibold text-slate-900">
                     Last Name
                   </label>
-
                   <div className="relative">
                     <User className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-
                     <input
                       id="catalog-last-name"
                       name="lastName"
                       type="text"
                       value={lastName}
-                      onChange={(e) =>
-                        setLastName(e.target.value)
-                      }
+                      onChange={(e) => setLastName(e.target.value)}
                       placeholder="Smith"
                       autoComplete="family-name"
                       disabled={isLoading}
                       className={`w-full rounded-lg border-2 py-3 pl-10 pr-3 transition-colors focus:outline-none ${
-                        error
-                          ? "border-red-500 bg-red-50"
-                          : "border-slate-200 bg-white hover:border-slate-300 focus:border-orange-500 focus:bg-orange-50"
+                        error ? "border-red-500 bg-red-50" : "border-slate-200 bg-white hover:border-slate-300 focus:border-orange-500 focus:bg-orange-50"
                       }`}
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Company */}
               <div>
-                <label
-                  htmlFor="catalog-company"
-                  className="mb-2 block text-sm font-semibold text-slate-900"
-                >
+                <label htmlFor="catalog-company" className="mb-2 block text-sm font-semibold text-slate-900">
                   Company Name
                 </label>
-
                 <div className="relative">
                   <Building2 className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-
                   <input
                     id="catalog-company"
                     name="companyName"
                     type="text"
                     value={companyName}
-                    onChange={(e) =>
-                      setCompanyName(e.target.value)
-                    }
+                    onChange={(e) => setCompanyName(e.target.value)}
                     placeholder="ABC Hydraulics"
                     autoComplete="organization"
                     disabled={isLoading}
                     className={`w-full rounded-lg border-2 py-3 pl-10 pr-3 transition-colors focus:outline-none ${
-                      error
-                        ? "border-red-500 bg-red-50"
-                        : "border-slate-200 bg-white hover:border-slate-300 focus:border-orange-500 focus:bg-orange-50"
+                      error ? "border-red-500 bg-red-50" : "border-slate-200 bg-white hover:border-slate-300 focus:border-orange-500 focus:bg-orange-50"
                     }`}
                   />
                 </div>
               </div>
 
-              {/* Email */}
               <div>
-                <label
-                  htmlFor="catalog-email"
-                  className="mb-2 block text-sm font-semibold text-slate-900"
-                >
+                <label htmlFor="catalog-email" className="mb-2 block text-sm font-semibold text-slate-900">
                   Business Email
                 </label>
-
                 <div className="relative">
                   <Mail className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-
                   <input
                     id="catalog-email"
                     name="email"
                     type="email"
                     value={email}
-                    onChange={(e) =>
-                      setEmail(e.target.value)
-                    }
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@company.com"
                     autoComplete="email"
                     disabled={isLoading}
                     className={`w-full rounded-lg border-2 py-3 pl-10 pr-3 transition-colors focus:outline-none ${
-                      error
-                        ? "border-red-500 bg-red-50"
-                        : "border-slate-200 bg-white hover:border-slate-300 focus:border-orange-500 focus:bg-orange-50"
+                      error ? "border-red-500 bg-red-50" : "border-slate-200 bg-white hover:border-slate-300 focus:border-orange-500 focus:bg-orange-50"
                     }`}
                   />
                 </div>
               </div>
 
-              {/* Error */}
+              <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
+                <TurnstileWidget onToken={handleTurnstileToken} />
+              </div>
+
               {error && (
                 <div className="flex gap-2 rounded-lg border border-red-200 bg-red-50 p-3">
                   <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
-
-                  <p className="text-sm text-red-700">
-                    {error}
-                  </p>
+                  <p className="text-sm text-red-700">{error}</p>
                 </div>
               )}
 
-              {/* Privacy / Info */}
               <p className="text-xs leading-relaxed text-slate-500">
-                Your information is used to process this catalog
-                download and may be used by Farteks to respond to
-                your business inquiry.
+                Your information is used to process this catalog download and may be used by Farteks to respond to your business inquiry.
               </p>
 
-              {/* Submit */}
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={isLoading || !turnstileToken}
                 className={`flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 font-semibold transition-all ${
-                  isLoading
+                  isLoading || !turnstileToken
                     ? "cursor-not-allowed bg-slate-300 text-slate-500"
                     : "bg-orange-500 text-white shadow-lg hover:bg-orange-600 hover:shadow-xl active:scale-[0.98]"
                 }`}
@@ -308,7 +264,6 @@ export function CatalogDownloadModal({
                 )}
               </button>
 
-              {/* Cancel */}
               <button
                 type="button"
                 onClick={handleClose}

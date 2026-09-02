@@ -7,6 +7,7 @@ export interface CatalogLeadData {
   lastName: string;
   companyName: string;
   email: string;
+  turnstileToken: string;
 }
 
 export function useEmailValidation() {
@@ -31,10 +32,6 @@ export function useEmailValidation() {
     const companyName = lead.companyName.trim();
     const email = lead.email.trim().toLowerCase();
 
-    /* ---------------------------------------------------------------------- */
-    /* Validation                                                             */
-    /* ---------------------------------------------------------------------- */
-
     if (!firstName) {
       setError("Please enter your first name.");
       return false;
@@ -56,9 +53,12 @@ export function useEmailValidation() {
     }
 
     if (!isValidEmail(email)) {
-      setError(
-        "Please enter a valid email address (e.g. name@company.com)."
-      );
+      setError("Please enter a valid email address (e.g. name@company.com).");
+      return false;
+    }
+
+    if (!lead.turnstileToken) {
+      setError("Please complete the security verification.");
       return false;
     }
 
@@ -69,23 +69,18 @@ export function useEmailValidation() {
     setIsLoading(true);
 
     try {
-      /* -------------------------------------------------------------------- */
-      /* Send lead to our API                                                 */
-      /* -------------------------------------------------------------------- */
-
       const response = await fetch("/api/catalog-download", {
         method: "POST",
-
         headers: {
           "Content-Type": "application/json",
         },
-
         body: JSON.stringify({
           firstName,
           lastName,
           companyName,
           email,
           catalogUrl,
+          turnstileToken: lead.turnstileToken,
         }),
       });
 
@@ -101,35 +96,22 @@ export function useEmailValidation() {
         // API did not return JSON.
       }
 
-      /* -------------------------------------------------------------------- */
-      /* API failed                                                            */
-      /* -------------------------------------------------------------------- */
-
       if (!response.ok || data.success !== true) {
         throw new Error(
-          data.error ||
-            data.message ||
-            "Unable to process the catalog download."
+          data.error || data.message || "Unable to process the catalog download."
         );
       }
-
-      /* -------------------------------------------------------------------- */
-      /* IMPORTANT: Download ONLY after successful API response                */
-      /* -------------------------------------------------------------------- */
 
       const link = document.createElement("a");
       link.href = catalogUrl;
       link.download = "Farteks-Catalog.pdf";
       link.rel = "noopener";
 
-      // Keep the browser download in the same user interaction flow.
-      // This also works when the catalog is served as a static public asset.
       document.body.appendChild(link);
       link.click();
       link.remove();
 
       setSuccess(true);
-
       return true;
     } catch (err) {
       setError(
@@ -137,7 +119,6 @@ export function useEmailValidation() {
           ? err.message
           : "An unexpected error occurred. Please try again."
       );
-
       return false;
     } finally {
       setIsLoading(false);
