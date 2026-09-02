@@ -35,7 +35,7 @@ export function ProductCard({ title, description, image, href, badge, variants }
       className="group relative flex h-full w-full flex-col overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-slate-300 hover:shadow-xl sm:overflow-visible"
       onTouchStart={handleTouch}
     >
-      <Link href={href} className="relative block h-[230px] shrink-0 overflow-hidden rounded-t-[20px] bg-white sm:h-[245px] lg:h-[265px]" aria-label={`View ${title}`}>
+      <Link href={href} className="relative block h-[190px] shrink-0 overflow-hidden rounded-t-[20px] bg-white sm:h-[205px] lg:h-[220px]" aria-label={`View ${title}`}>
         <Image src={image} alt={title} fill priority={false} sizes="(max-width: 639px) 50vw, (max-width: 1024px) 33vw, 25vw" className="object-contain p-5 transition-transform duration-700 ease-out sm:p-6 lg:p-8 sm:group-hover:scale-[1.04]" />
         {badge && <div className="absolute left-3 top-3 z-20 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-slate-700 shadow-sm backdrop-blur-sm sm:left-4 sm:top-4 sm:text-xs">{badge}</div>}
         <div className={`absolute inset-0 z-10 flex flex-col justify-end bg-linear-to-t from-black/90 via-black/55 to-transparent p-4 transition-opacity duration-300 sm:hidden ${revealed ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}>
