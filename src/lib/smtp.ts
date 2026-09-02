@@ -190,15 +190,17 @@ function formatMailbox(name: string, email: string) {
 }
 
 function getAuthMechanisms(capabilities: string) {
-  const authLine = capabilities
+  const authLines = capabilities
     .split("\r\n")
-    .find((line) => /^250[- ]AUTH(?:[ =]|$)/i.test(line));
+    .filter((line) => /^250[- ]AUTH(?:[ =]|$)/i.test(line));
 
-  if (!authLine) return [];
+  if (!authLines.length) return [];
 
-  const value = authLine.replace(/^250[- ]AUTH(?:[ =])?/i, "");
-  return value
-    .split(/\s+/)
+  return authLines
+    .flatMap((line) => {
+      const value = line.replace(/^250[- ]AUTH(?:[ =])?/i, "");
+      return value.split(/\s+/);
+    })
     .map((method) => method.trim().toUpperCase())
     .filter(Boolean);
 }
@@ -206,18 +208,22 @@ function getAuthMechanisms(capabilities: string) {
 async function authenticate(client: SmtpClient, capabilities: string, config: MailConfig) {
   const mechanisms = getAuthMechanisms(capabilities);
 
-  // Prefer PLAIN when the server advertises it. Some mail servers accept
-  // AUTH LOGIN interactively but reject it for certain mailbox policies.
-  if (mechanisms.includes("PLAIN")) {
-    const credentials = Buffer.from(`\u0000${config.user}\u0000${config.pass}`, "utf8").toString("base64");
-    await client.command(`AUTH PLAIN ${credentials}`, 235);
-    return;
-  }
-
+  // Outlook/POP-SMTP servers commonly expose both LOGIN and PLAIN.
+  // Prefer LOGIN because it matches the traditional username/password
+  // authentication used by this mailbox configuration.
   if (mechanisms.includes("LOGIN")) {
     await client.command("AUTH LOGIN", 334);
     await client.command(Buffer.from(config.user, "utf8").toString("base64"), 334);
     await client.command(Buffer.from(config.pass, "utf8").toString("base64"), 235);
+    return;
+  }
+
+  if (mechanisms.includes("PLAIN")) {
+    const credentials = Buffer.from(
+      `\u0000${config.user}\u0000${config.pass}`,
+      "utf8",
+    ).toString("base64");
+    await client.command(`AUTH PLAIN ${credentials}`, 235);
     return;
   }
 
