@@ -31,6 +31,7 @@ export function CatalogDownloadModal({
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
   const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
 
   const {
     validateAndDownload,
@@ -66,6 +67,9 @@ export function CatalogDownloadModal({
         setTurnstileToken("");
         onClose();
       }, 1500);
+    } else {
+      setTurnstileToken("");
+      setTurnstileResetKey((key) => key + 1);
     }
   };
 
@@ -77,6 +81,7 @@ export function CatalogDownloadModal({
     setCompanyName("");
     setEmail("");
     setTurnstileToken("");
+    setTurnstileResetKey((key) => key + 1);
 
     onClose();
   };
@@ -228,7 +233,10 @@ export function CatalogDownloadModal({
               </div>
 
               <div className="rounded-xl border border-slate-100 bg-slate-50 p-3">
-                <TurnstileWidget onToken={handleTurnstileToken} />
+                <TurnstileWidget
+                  onToken={handleTurnstileToken}
+                  resetKey={turnstileResetKey}
+                />
               </div>
 
               {error && (
