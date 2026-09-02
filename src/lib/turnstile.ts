@@ -39,5 +39,12 @@ export async function verifyTurnstileToken(token: string, remoteIp?: string) {
     "error-codes"?: string[];
   };
 
+  if (!result.success) {
+    console.warn("Turnstile verification rejected", {
+      hostname: result.hostname,
+      errorCodes: result["error-codes"] ?? [],
+    });
+  }
+
   return result.success === true;
 }
