@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 export const hero = {
-  badge: "OEM Hydraulic Components Since 1980",
+  badge: "Manufacturing Heritage Since 1983",
   title: "Precision Hydraulic Cylinder Components",
   highlight: "manufactured with years of experience",
   description:
@@ -25,7 +25,7 @@ export const hero = {
 };
 
 export const stats = [
-  { value: "1983", label: "Established" },
+  { value: "1983", label: "Manufacturing Heritage" },
   { value: "40+", label: "Years Experience" },
   { value: "40+", label: "Export Countries" },
   { value: "OEM", label: "Manufacturing" },

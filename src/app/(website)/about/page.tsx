@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { Container } from "@/components/layout/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { FadeIn } from "@/components/animations/FadeIn";
@@ -7,9 +5,9 @@ import { WordAnimation } from "@/components/animations/WordAnimation";
 import { Button } from "@/components/ui/Button";
 
 export const metadata = {
-  title: "About - FARTEKS",
+  title: "About Farteks | Hydraulic Components & OEM Manufacturing",
   description:
-    "Learn about FARTEKS, a leading manufacturer of hydraulic cylinder components since 1980.",
+    "Learn about the Farteks group, its manufacturing heritage since 1983, hydraulic expertise, OEM production and international trade activities.",
 };
 
 export default function AboutPage() {
@@ -25,28 +23,14 @@ export default function AboutPage() {
                 <p className="site-page-description">
                   We are a group of companies operating in the hydraulic industry, covering manufacturing, sales, and international trade. The group consists of four companies: GDC Production, GDC Sales, Farteks Foreign Trade, and FZ Limited.
                   <br /><br />
-                  Founded in 1983, the company started with metalworking and machinery manufacturing and has continuously expanded its production capabilities, technical expertise, and product range over the years.
+                  Founded in 1983, the group began with metalworking and machinery manufacturing and has continuously expanded its production capabilities, technical expertise, and product range over the years.
                   <br /><br />
-                  In 2002, GDC Hydraulic &amp; Pneumatic Co. was established to strengthen and professionalize the group’s sales and marketing activities. Today, GDC manufactures and supplies hydraulic cylinders, hydraulic components to both domestic and international markets through direct sales and a dealership network.
+                  In 2002, GDC Hydraulic &amp; Pneumatic Co. was established to strengthen and professionalize the group&apos;s sales and marketing activities. Today, GDC manufactures and supplies hydraulic cylinders and hydraulic components to domestic and international markets through direct sales and a dealership network.
                   <br /><br />
-                  With a strong focus on quality, customer satisfaction, technical expertise, and continuous improvement, we continue to expand our product portfolio and global customer base. Farteks Foreign Trade and FZ Limited are the group’s of international sales and imports to customers across multiple global markets..
+                  With a strong focus on quality, customer satisfaction, technical expertise, and continuous improvement, we continue to expand our product portfolio and global customer base. Farteks Foreign Trade and FZ Limited support the group&apos;s international sales and import activities across multiple global markets.
                 </p>
               </div>
             </FadeIn>
-
-           {/*  <FadeIn delay={0.15}>
-              <div className="flex w-full items-center justify-center lg:min-h-[420px]">
-                <Image
-                  src="/images/logos/logos3.png"
-                  alt="GDC, FARTEKS Foreign Trade and FZ Limited group logos"
-                  width={650}
-                  height={170}
-                  priority
-                  unoptimized
-                  className="h-auto w-full max-w-lg object-contain drop-shadow-sm"
-                />
-              </div>
-            </FadeIn> */}
           </div>
         </Container>
       </section>
@@ -58,7 +42,7 @@ export default function AboutPage() {
               <div className="rounded-2xl bg-white p-8 shadow-card">
                 <h3 className="text-3xl font-bold text-[#392B87]">1983</h3>
                 <p className="mt-4 text-slate-600">
-                  Founded with a vision to provide quality hydraulic components
+                  Manufacturing heritage beginning with metalworking and machinery production
                 </p>
               </div>
             </FadeIn>
@@ -89,58 +73,42 @@ export default function AboutPage() {
           <SectionTitle
             eyebrow="Our Mission"
             title="Delivering Excellence in Every Component"
-            description="We are committed to manufacturing precision hydraulic components that meet the highest international standards while maintaining competitive pricing and exceptional customer service."
+            description="We are committed to manufacturing precision hydraulic components that meet international requirements while maintaining competitive pricing and dependable customer service."
           />
 
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             <FadeIn>
               <div>
-                <h3 className="mb-4 text-2xl font-bold text-[#392B87]">
-                  Innovation
-                </h3>
+                <h3 className="mb-4 text-2xl font-bold text-[#392B87]">Innovation</h3>
                 <p className="leading-8 text-slate-600">
-                  We continuously invest in modern manufacturing technology and
-                  processes to stay ahead of industry standards and meet
-                  evolving customer needs.
+                  We continuously invest in modern manufacturing technology and processes to stay ahead of industry requirements and meet evolving customer needs.
                 </p>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.1}>
               <div>
-                <h3 className="mb-4 text-2xl font-bold text-[#392B87]">
-                  Quality
-                </h3>
+                <h3 className="mb-4 text-2xl font-bold text-[#392B87]">Quality</h3>
                 <p className="leading-8 text-slate-600">
-                  Every component undergoes rigorous quality control and
-                  inspection to ensure it meets OEM specifications and performs
-                  reliably in demanding applications.
+                  Every component undergoes quality control and inspection to ensure it meets OEM specifications and performs reliably in demanding applications.
                 </p>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.2}>
               <div>
-                <h3 className="mb-4 text-2xl font-bold text-[#392B87]">
-                  Reliability
-                </h3>
+                <h3 className="mb-4 text-2xl font-bold text-[#392B87]">Reliability</h3>
                 <p className="leading-8 text-slate-600">
-                  Our products are designed for durability and consistent
-                  performance, trusted by leading manufacturers across multiple
-                  industries worldwide.
+                  Our products are designed for durability and consistent performance, supporting manufacturers across multiple industries worldwide.
                 </p>
               </div>
             </FadeIn>
 
             <FadeIn delay={0.3}>
               <div>
-                <h3 className="mb-4 text-2xl font-bold text-[#392B87]">
-                  Partnership
-                </h3>
+                <h3 className="mb-4 text-2xl font-bold text-[#392B87]">Partnership</h3>
                 <p className="leading-8 text-slate-600">
-                  We view our customers as long-term partners, working closely
-                  with them to understand their needs and provide customized
-                  solutions.
+                  We view our customers as long-term partners, working closely with them to understand their requirements and provide customized solutions.
                 </p>
               </div>
             </FadeIn>
@@ -150,24 +118,19 @@ export default function AboutPage() {
 
       <section className="bg-[#392B87] text-white">
         <Container>
-          <div className="text-center">
-            <FadeIn>
-              <h2 className="site-section-title mx-auto text-white">
-                Ready to Partner With Us?
-              </h2>
+          <FadeIn>
+            <div className="text-center">
+              <h2 className="site-section-title mx-auto text-white">Ready to Partner With Us?</h2>
               <p className="mt-4 text-xl text-slate-200">
                 Contact us today to discuss your hydraulic component needs.
               </p>
               <div className="mt-8">
-                <Button
-                  href="/contact"
-                  className="bg-[#E5322D] hover:bg-[#cc2a24]"
-                >
+                <Button href="/contact" className="bg-[#E5322D] hover:bg-[#cc2a24]">
                   Get in Touch
                 </Button>
               </div>
-            </FadeIn>
-          </div>
+            </div>
+          </FadeIn>
         </Container>
       </section>
     </main>
