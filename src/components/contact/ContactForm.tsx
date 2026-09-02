@@ -1,12 +1,14 @@
 "use client";
 
 import { CheckCircle2, Loader2, Send } from "lucide-react";
-import { FormEvent, useState } from "react";
+import { FormEvent, useCallback, useState } from "react";
+import { TurnstileWidget } from "@/components/ui/TurnstileWidget";
 
 type FormType = "quote" | "message";
 
 export default function ContactForm() {
   const [type, setType] = useState<FormType>("quote");
+  const [turnstileToken, setTurnstileToken] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -18,6 +20,10 @@ export default function ContactForm() {
   });
 
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const handleTurnstileToken = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -32,13 +38,19 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, type }),
+        body: JSON.stringify({ ...formData, type, turnstileToken }),
       });
 
       const data = await response.json();
@@ -48,6 +60,7 @@ export default function ContactForm() {
       }
 
       setStatus("success");
+      setTurnstileToken("");
       setFormData({
         name: "",
         email: "",
@@ -59,6 +72,7 @@ export default function ContactForm() {
     } catch (error) {
       console.error(error);
       setStatus("error");
+      setTurnstileToken("");
     }
   };
 
@@ -143,15 +157,21 @@ export default function ContactForm() {
               />
             </div>
 
+            <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
+              <TurnstileWidget onToken={handleTurnstileToken} />
+            </div>
+
             {status === "error" && (
               <div className="rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-700">
-                We could not send your message. Please try again.
+                {!turnstileToken
+                  ? "Please complete the security verification and try again."
+                  : "We could not send your message. Please try again."}
               </div>
             )}
 
             <button
               type="submit"
-              disabled={status === "sending"}
+              disabled={status === "sending" || !turnstileToken}
               className="inline-flex items-center gap-3 rounded-full bg-[#392B87] px-7 py-4 text-sm font-bold text-white transition hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
             >
               {status === "sending" ? (
