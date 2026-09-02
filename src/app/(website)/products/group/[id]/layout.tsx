@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import { PRODUCT_GROUPS, getProductGroup } from "@/data/product-groups";
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://farteks.com";
