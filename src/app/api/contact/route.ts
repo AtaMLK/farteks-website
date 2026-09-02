@@ -34,7 +34,13 @@ export async function POST(request: Request) {
       );
     }
 
-    if (normalizedName.length > 120 || normalizedEmail.length > 254 || normalizedPhone.length > 50 || normalizedSubject.length > 200 || normalizedMessage.length > 5000) {
+    if (
+      normalizedName.length > 120 ||
+      normalizedEmail.length > 254 ||
+      normalizedPhone.length > 50 ||
+      normalizedSubject.length > 200 ||
+      normalizedMessage.length > 5000
+    ) {
       return NextResponse.json(
         { error: "One or more fields are too long." },
         { status: 400 },
@@ -42,10 +48,16 @@ export async function POST(request: Request) {
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) {
-      return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
+      return NextResponse.json(
+        { error: "Please enter a valid email address." },
+        { status: 400 },
+      );
     }
 
-    const turnstileValid = await verifyTurnstileToken(String(turnstileToken ?? ""), clientIp);
+    const turnstileValid = await verifyTurnstileToken(
+      String(turnstileToken ?? ""),
+      clientIp,
+    );
 
     if (!turnstileValid) {
       return NextResponse.json(
@@ -60,33 +72,91 @@ export async function POST(request: Request) {
         ? `Quote Request — ${normalizedSubject || "Farteks Website"}`
         : `Contact Message — ${normalizedSubject || "Farteks Website"}`;
 
+    const title = requestType === "quote" ? "New Quote Request" : "New Contact Message";
+    const typeLabel = requestType === "quote" ? "Request Quote" : "Message";
+    const escapedEmail = escapeHtml(normalizedEmail);
+    const mailtoHref = `mailto:${encodeURIComponent(normalizedEmail)}`;
+
     await sendSmtpEmail({
       replyTo: normalizedEmail,
       subject: emailSubject,
       html: `
-        <!DOCTYPE html>
-        <html>
-          <body style="margin:0;padding:0;background:#f4f4f4;font-family:Arial,sans-serif;">
-            <div style="max-width:680px;margin:40px auto;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e5e7eb;">
-              <div style="background:#392B87;padding:28px 32px;color:white;">
-                <div style="font-size:12px;letter-spacing:3px;font-weight:bold;color:#E5322D;">FARTEKS</div>
-                <h1 style="margin:10px 0 0;font-size:28px;">${requestType === "quote" ? "New Quote Request" : "New Contact Message"}</h1>
-              </div>
-              <div style="padding:32px;">
-                <table style="width:100%;border-collapse:collapse;">
-                  <tr><td style="padding:10px 0;font-weight:bold;width:140px;">Name</td><td style="padding:10px 0;">${escapeHtml(normalizedName)}</td></tr>
-                  <tr><td style="padding:10px 0;font-weight:bold;">Email</td><td style="padding:10px 0;">${escapeHtml(normalizedEmail)}</td></tr>
-                  ${normalizedPhone ? `<tr><td style="padding:10px 0;font-weight:bold;">Phone</td><td style="padding:10px 0;">${escapeHtml(normalizedPhone)}</td></tr>` : ""}
-                  ${normalizedSubject ? `<tr><td style="padding:10px 0;font-weight:bold;">Subject</td><td style="padding:10px 0;">${escapeHtml(normalizedSubject)}</td></tr>` : ""}
-                  <tr><td style="padding:10px 0;font-weight:bold;">Request Type</td><td style="padding:10px 0;">${requestType === "quote" ? "Request Quote" : "Message"}</td></tr>
-                </table>
-                <div style="margin-top:30px;padding-top:25px;border-top:1px solid #e5e7eb;">
-                  <div style="font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#392B87;font-weight:bold;">Message</div>
-                  <div style="margin-top:12px;line-height:1.7;color:#374151;white-space:pre-wrap;">${escapeHtml(normalizedMessage)}</div>
-                </div>
-              </div>
-              <div style="padding:20px 32px;background:#f8fafc;color:#64748b;font-size:12px;">Sent from farteks.com contact form.</div>
-            </div>
+        <!doctype html>
+        <html lang="en">
+          <body style="margin:0;padding:0;background:#eef1f6;font-family:Arial,Helvetica,sans-serif;color:#172033;">
+            <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background:#eef1f6;margin:0;padding:0;">
+              <tr>
+                <td align="center" style="padding:32px 14px;">
+                  <table role="presentation" width="640" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:640px;background:#ffffff;border:1px solid #dfe4ec;">
+                    <tr>
+                      <td style="background:#392B87;padding:28px 32px;border-bottom:4px solid #E5322D;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                          <tr>
+                            <td style="font-size:13px;line-height:18px;letter-spacing:2.4px;font-weight:700;color:#ff625d;">FARTEKS</td>
+                            <td align="right" style="font-size:12px;line-height:18px;color:#dcd8f5;">Website notification</td>
+                          </tr>
+                        </table>
+                        <div style="margin-top:12px;font-size:28px;line-height:36px;font-weight:700;color:#ffffff;">${title}</div>
+                        <div style="margin-top:7px;font-size:13px;line-height:20px;color:#dcd8f5;">A new website inquiry has been received.</div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="padding:30px 32px 8px;">
+                        <div style="font-size:12px;line-height:18px;letter-spacing:1.5px;font-weight:700;color:#392B87;text-transform:uppercase;">Contact information</div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="padding:0 32px 24px;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #e5e9f0;background:#fafbfc;">
+                          ${detailRow("Name", escapeHtml(normalizedName))}
+                          ${detailRow("Email", `<a href="${mailtoHref}" style="color:#392B87;text-decoration:none;font-weight:700;">${escapedEmail}</a>`)}
+                          ${normalizedPhone ? detailRow("Phone", escapeHtml(normalizedPhone)) : ""}
+                          ${normalizedSubject ? detailRow("Subject", escapeHtml(normalizedSubject)) : ""}
+                          ${detailRow("Request Type", `<span style="display:inline-block;background:#eeeafd;color:#392B87;font-size:12px;font-weight:700;padding:5px 9px;">${typeLabel}</span>`, true)}
+                        </table>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="padding:0 32px 10px;">
+                        <div style="font-size:12px;line-height:18px;letter-spacing:1.5px;font-weight:700;color:#392B87;text-transform:uppercase;">Message</div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="padding:0 32px 28px;">
+                        <div style="border-left:4px solid #E5322D;background:#f7f8fb;padding:18px 20px;font-size:15px;line-height:24px;color:#263248;white-space:pre-wrap;">${escapeHtml(normalizedMessage)}</div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="padding:0 32px 30px;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                          <tr>
+                            <td bgcolor="#392B87" style="background:#392B87;">
+                              <a href="${mailtoHref}" style="display:inline-block;padding:12px 20px;font-size:14px;line-height:18px;font-weight:700;color:#ffffff;text-decoration:none;">Reply to customer</a>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td style="background:#f7f8fb;border-top:1px solid #e5e9f0;padding:18px 32px;">
+                        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+                          <tr>
+                            <td style="font-size:12px;line-height:18px;color:#6b7280;">Sent securely from the Farteks website contact form.</td>
+                            <td align="right" style="font-size:12px;line-height:18px;"><a href="https://farteks.com" style="color:#392B87;text-decoration:none;font-weight:700;">farteks.com</a></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
           </body>
         </html>
       `,
@@ -95,8 +165,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true, emailSent: true });
   } catch (error) {
     console.error("Contact SMTP error:", error);
-    return NextResponse.json({ error: "Failed to send message." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to send message." },
+      { status: 500 },
+    );
   }
+}
+
+function detailRow(label: string, value: string, last = false) {
+  return `<tr>
+    <td style="width:145px;padding:13px 16px;border-bottom:${last ? "0" : "1px solid #e5e9f0"};font-size:12px;line-height:18px;font-weight:700;color:#667085;text-transform:uppercase;letter-spacing:.5px;vertical-align:top;">${label}</td>
+    <td style="padding:13px 16px;border-bottom:${last ? "0" : "1px solid #e5e9f0"};font-size:14px;line-height:20px;color:#172033;vertical-align:top;">${value}</td>
+  </tr>`;
 }
 
 function escapeHtml(value: string) {
