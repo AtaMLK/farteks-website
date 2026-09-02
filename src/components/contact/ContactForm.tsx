@@ -9,6 +9,7 @@ type FormType = "quote" | "message";
 export default function ContactForm() {
   const [type, setType] = useState<FormType>("quote");
   const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileResetKey, setTurnstileResetKey] = useState(0);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -73,6 +74,7 @@ export default function ContactForm() {
       console.error(error);
       setStatus("error");
       setTurnstileToken("");
+      setTurnstileResetKey((key) => key + 1);
     }
   };
 
@@ -158,7 +160,10 @@ export default function ContactForm() {
             </div>
 
             <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-              <TurnstileWidget onToken={handleTurnstileToken} />
+              <TurnstileWidget
+                onToken={handleTurnstileToken}
+                resetKey={turnstileResetKey}
+              />
             </div>
 
             {status === "error" && (
