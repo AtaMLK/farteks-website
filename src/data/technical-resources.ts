@@ -96,7 +96,7 @@ export const TECHNICAL_RESOURCES: TechnicalResource[] = [
     ],
     relatedLinks: [
       { label: 'Browse Products', href: '/products' },
-      { label: 'Manufacturing Capabilities', href: '/manufacturing' },
+      { label: 'Quality Information', href: '/quality' },
       { label: 'Request a Quote', href: '/contact' },
     ],
   },
@@ -222,8 +222,8 @@ export const TECHNICAL_RESOURCES: TechnicalResource[] = [
       },
     ],
     relatedLinks: [
-      { label: 'Manufacturing', href: '/manufacturing' },
       { label: 'Quality', href: '/quality' },
+      { label: 'View Products', href: '/products' },
       { label: 'Request a Quote', href: '/contact' },
     ],
   },
@@ -266,7 +266,7 @@ export const TECHNICAL_RESOURCES: TechnicalResource[] = [
     ],
     relatedLinks: [
       { label: 'Custom Parts', href: '/custom-parts' },
-      { label: 'Manufacturing', href: '/manufacturing' },
+      { label: 'View Products', href: '/products' },
       { label: 'Request a Quote', href: '/contact' },
     ],
   },
