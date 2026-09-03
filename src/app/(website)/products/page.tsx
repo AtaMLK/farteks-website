@@ -18,21 +18,21 @@ export default function ProductGroupsPage() {
       <div className="container mx-auto max-w-7xl px-4">
         <div className="mt-10 grid grid-cols-12 gap-4">
           <Link href="/custom-parts" className="col-span-12 h-full" aria-label="Open Custom Hydraulic Cylinder page">
-            <div className="custom-feature-card group relative h-[280px] overflow-hidden rounded-[20px] border bg-gradient-to-r from-white via-white to-slate-50 transition-all duration-500 hover:-translate-y-1">
-              <div className="relative z-10 flex h-full items-center justify-between p-8 sm:p-10 lg:p-12">
-                <div className="min-w-0 flex-1">
+            <div className="custom-feature-card group relative min-h-[340px] overflow-hidden rounded-[20px] border bg-gradient-to-r from-white via-white to-slate-50 transition-all duration-500 hover:-translate-y-1 sm:h-[300px] sm:min-h-0">
+              <div className="relative z-10 flex h-full items-center justify-between p-6 sm:p-10 lg:p-12">
+                <div className="min-w-0 flex-1 pr-2 sm:pr-0">
                   <div className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-orange-500">Custom Production</div>
-                  <h2 className="mb-3 text-3xl font-extrabold tracking-tight text-slate-900 transition-colors group-hover:text-orange-500 md:text-4xl lg:text-5xl">Custom Hydraulic Cylinder Components</h2>
+                  <h2 className="mb-3 max-w-[calc(100%-8px)] text-[30px] font-extrabold leading-[1.08] tracking-tight text-slate-900 transition-colors sm:text-4xl sm:leading-tight lg:text-5xl group-hover:text-orange-500">Custom Hydraulic Cylinder Components</h2>
                   <p className="mb-5 max-w-3xl text-base leading-7 text-slate-600 md:text-lg">Custom-made hydraulic cylinder components produced to your drawings, specifications, materials and quality requirements.</p>
-                  <div className="flex flex-wrap items-center gap-3">
+                  <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
                     <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">OEM Production</span>
                     <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">CNC Machining</span>
                     <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">Drawing Based</span>
                   </div>
                 </div>
-                <div className="ml-6 shrink-0">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-orange-500 transition-colors group-hover:bg-orange-600">
-                    <ArrowRight className="h-6 w-6 text-white transition-transform group-hover:translate-x-1" />
+                <div className="ml-3 shrink-0 self-center sm:ml-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-500 transition-colors sm:h-14 sm:w-14 group-hover:bg-orange-600">
+                    <ArrowRight className="h-5 w-5 text-white transition-transform sm:h-6 sm:w-6 group-hover:translate-x-1" />
                   </div>
                 </div>
               </div>
