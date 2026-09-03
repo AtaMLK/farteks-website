@@ -49,7 +49,14 @@ export default function HomePage() {
               <div className="absolute -inset-3 rounded-[34px] bg-gradient-to-r from-[#E5322D]/20 via-[#392B87]/20 to-[#E5322D]/20 blur-2xl" />
               <div className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-black p-1 shadow-[0_30px_100px_rgba(0,0,0,.45)] sm:rounded-[36px] sm:p-2">
                 <div className="relative overflow-hidden rounded-[22px] bg-black sm:rounded-[29px]">
-                  <video className="aspect-video w-full object-cover" src="/videos/GDC-Farteks.mp4" poster="/images/factory/manufacturing.jpg" controls controlsList="nodownload" disablePictureInPicture preload="metadata" playsInline aria-label="Farteks company introduction video" />
+                  <iframe
+                    className="aspect-video w-full border-0"
+                    src="https://www.youtube.com/embed/L5umjTO0qRc?si=YgX6W3ArQup7Bsdl"
+                    title="Farteks company introduction video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
                   <div className="pointer-events-none absolute left-5 top-5 flex items-center gap-2 rounded-full border border-white/10 bg-black/35 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.2em] text-white/70 backdrop-blur-md sm:left-7 sm:top-7">
                     <span className="h-1.5 w-1.5 rounded-full bg-[#E5322D]" /> GDC × FARTEKS
                   </div>
