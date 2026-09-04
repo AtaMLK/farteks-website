@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { PRODUCT_GROUPS } from "@/data/product-groups";
 import { PRODUCTS } from "@/data/products-data";
+import { getProductDisplayName } from "@/data/product-materials";
 import { ChevronRight } from "lucide-react";
 
 interface ProductDropdownProps {
@@ -38,7 +39,7 @@ export function ProductDropdown({ isOpen, onDownloadCatalog }: ProductDropdownPr
                 <div className="space-y-2">
                   {groupProducts.slice(0, 5).map((product) => (
                     <Link key={`${group.id}-${product.id}`} href={`/products/${product.id}`} className="block truncate text-xs text-slate-600 transition-colors hover:font-semibold hover:text-orange-500">
-                      {product.name}
+                      {getProductDisplayName(product)}
                     </Link>
                   ))}
                   {groupProducts.length > 5 && (
@@ -61,9 +62,6 @@ export function ProductDropdown({ isOpen, onDownloadCatalog }: ProductDropdownPr
             <div className="space-y-2">
               <Link href="/products/group/custom-parts" className="block truncate text-xs text-slate-600 transition-colors hover:font-semibold hover:text-orange-500">
                 Drawing-Based Production
-              </Link>
-              <Link href="/products/group/custom-parts" className="block truncate text-xs text-slate-600 transition-colors hover:font-semibold hover:text-orange-500">
-                OEM Custom Components
               </Link>
             </div>
           </div>
