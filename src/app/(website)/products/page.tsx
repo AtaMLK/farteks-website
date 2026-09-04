@@ -17,31 +17,6 @@ export default function ProductGroupsPage() {
 
       <div className="container mx-auto max-w-7xl px-4">
         <div className="mt-10 grid grid-cols-12 gap-4">
-          <Link href="/custom-parts" className="col-span-12 h-full" aria-label="Open Custom Hydraulic Cylinder page">
-            <div className="custom-feature-card group relative min-h-[340px] overflow-hidden rounded-[20px] border bg-gradient-to-r from-white via-white to-slate-50 transition-all duration-500 hover:-translate-y-1 sm:h-[300px] sm:min-h-0">
-              <div className="relative z-10 flex h-full items-center justify-between p-6 sm:p-10 lg:p-12">
-                <div className="min-w-0 flex-1 pr-2 sm:pr-0">
-                  <div className="mb-2 text-sm font-bold uppercase tracking-[0.18em] text-orange-500">Custom Production</div>
-                  <h2 className="mb-3 max-w-[calc(100%-8px)] text-[30px] font-extrabold leading-[1.08] tracking-tight text-slate-900 transition-colors sm:text-4xl sm:leading-tight lg:text-5xl group-hover:text-orange-500">Custom Hydraulic Cylinder Components</h2>
-                  <p className="mb-5 max-w-3xl text-base leading-7 text-slate-600 md:text-lg">Custom-made hydraulic cylinder components produced to your drawings, specifications, materials and quality requirements.</p>
-                  <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">OEM Production</span>
-                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">CNC Machining</span>
-                    <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">Drawing Based</span>
-                  </div>
-                </div>
-                <div className="ml-3 shrink-0 self-center sm:ml-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-500 transition-colors sm:h-14 sm:w-14 group-hover:bg-orange-600">
-                    <ArrowRight className="h-5 w-5 text-white transition-transform sm:h-6 sm:w-6 group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </div>
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-orange-500/5 via-transparent to-[#392B87]/5 opacity-70 transition-opacity duration-500 group-hover:opacity-100" />
-            </div>
-          </Link>
-        </div>
-
-        <div className="mt-4 grid grid-cols-12 gap-4">
           {PRODUCT_GROUPS.map((group, idx) => {
             const groupProducts = Array.from(
               new Map(PRODUCTS.filter((p) => group.products.includes(p.id)).map((product) => [product.id, product])).values(),
@@ -70,12 +45,33 @@ export default function ProductGroupsPage() {
               </Link>
             );
           })}
+
+          <Link href="/products/group/custom-parts" className="col-span-12 h-full sm:col-span-6 xl:col-span-4">
+            <div className="group relative h-[250px] overflow-hidden rounded-[20px] border border-slate-200 bg-gradient-to-r from-white to-slate-50 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl sm:h-[260px] lg:h-[280px]">
+              <div className="relative z-10 grid h-full grid-cols-[minmax(0,1fr)_56px] gap-4 p-6 sm:p-7 lg:p-8">
+                <div className="flex min-w-0 flex-col">
+                  <div className="mb-2 h-5 shrink-0 text-xs font-semibold text-orange-500">GROUP 8</div>
+                  <h3 className="mb-3 line-clamp-2 min-h-[56px] text-2xl font-bold leading-7 text-slate-900 transition-colors group-hover:text-orange-500">Custom Made Hydraulic Components</h3>
+                  <p className="mb-3 line-clamp-2 min-h-[40px] text-sm leading-5 text-slate-600 lg:line-clamp-3 lg:min-h-[60px]">Custom-made hydraulic cylinder components produced to drawings, specifications, materials and quality requirements.</p>
+                  <div className="mt-auto">
+                    <span className="text-xs font-semibold text-slate-500">Made to order</span>
+                  </div>
+                </div>
+                <div className="flex items-start justify-end pt-[48px]">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-orange-500 transition-colors group-hover:bg-orange-600 sm:h-12 sm:w-12">
+                    <ArrowRight className="h-5 w-5 text-white transition-transform group-hover:translate-x-1" />
+                  </div>
+                </div>
+              </div>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-orange-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+            </div>
+          </Link>
         </div>
 
         <div className="mt-20 rounded-[20px] border border-slate-200 bg-gradient-to-r from-slate-50 to-white p-12">
           <div className="grid grid-cols-3 gap-8 text-center">
             <div><div className="mb-2 text-4xl font-bold text-orange-500">{PRODUCTS.length}</div><div className="text-slate-600">Total Products</div></div>
-            <div><div className="mb-2 text-4xl font-bold text-orange-500">{PRODUCT_GROUPS.length}</div><div className="text-slate-600">Categories</div></div>
+            <div><div className="mb-2 text-4xl font-bold text-orange-500">{PRODUCT_GROUPS.length + 1}</div><div className="text-slate-600">Categories</div></div>
             <div><div className="mb-2 text-4xl font-bold text-orange-500">400+</div><div className="text-slate-600">Variants</div></div>
           </div>
         </div>
