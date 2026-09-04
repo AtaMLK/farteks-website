@@ -1,5 +1,8 @@
 import { PRODUCTS } from "@/data/products-data";
-import { getProductDisplayName } from "@/data/product-materials";
+import {
+  getProductDisplayDescription,
+  getProductDisplayName,
+} from "@/data/product-materials";
 
 import { Container } from "../layout/Container";
 import { ProductCard } from "./ProductCard";
@@ -18,7 +21,7 @@ export function ProductGrid() {
               <ProductCard
                 key={product.id}
                 title={getProductDisplayName(product)}
-                description={product.description}
+                description={getProductDisplayDescription(product)}
                 image={product.image}
                 href={`/products/${product.id}`}
                 badge={product.category}
