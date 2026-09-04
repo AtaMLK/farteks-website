@@ -22,6 +22,18 @@ import {
 
 import { PageIntro } from '@/components/ui/PageIntro';
 
+const FORGED_ROD_END_IDS = new Set([
+  'rod-end',
+  'weldable-rod-end',
+  'rod-end-secondary',
+]);
+
+function getSubgroupProductName(product: { id: string; name: string }) {
+  return FORGED_ROD_END_IDS.has(product.id)
+    ? `Forged ${product.name}`
+    : product.name;
+}
+
 export default function ProductGroupDetailPage() {
   const params = useParams();
 
@@ -232,7 +244,7 @@ export default function ProductGroupDetailPage() {
               {groupProducts.map((product) => (
                 <ProductCard
                   key={product.id}
-                  title={product.name}
+                  title={getSubgroupProductName(product)}
                   description={product.description}
                   image={product.image}
                   href={`/products/${product.id}`}
@@ -269,7 +281,7 @@ export default function ProductGroupDetailPage() {
                 {groupProducts.map((product) => (
                   <ProductCard
                     key={product.id}
-                    title={product.name}
+                    title={getSubgroupProductName(product)}
                     description={product.description}
                     image={product.image}
                     href={`/products/${product.id}`}
@@ -289,7 +301,7 @@ export default function ProductGroupDetailPage() {
                 {groupProducts.map((product) => (
                   <ProductCardImageOnly
                     key={product.id}
-                    title={product.name}
+                    title={getSubgroupProductName(product)}
                     image={product.singleImage}
                     href={`/products/${product.id}`}
                     badge={product.category}
