@@ -1,7 +1,11 @@
 "use client";
 
 import { getRelatedProducts } from "@/data/products-data";
-import { getAvailableMaterials } from "@/data/product-materials";
+import {
+  getAvailableMaterials,
+  getProductDisplayDescription,
+  getProductDisplayName,
+} from "@/data/product-materials";
 import { PRODUCT_GROUPS } from "@/data/product-groups";
 
 import { useState } from "react";
@@ -46,9 +50,11 @@ export default function ProductDetailClient({
   const drawingImage = normalizeDrawingImagePath(product.drawingImage);
   const currentImage = imageTab === "product" ? product.image : drawingImage;
 
+  const displayName = getProductDisplayName(product);
   const currentImageAlt =
-    imageTab === "product" ? product.name : `${product.name} Technical Drawing`;
+    imageTab === "product" ? displayName : `${displayName} Technical Drawing`;
 
+  const displayDescription = getProductDisplayDescription(product);
   const availableMaterials = getAvailableMaterials(product);
 
   return (
@@ -68,7 +74,7 @@ export default function ProductDetailClient({
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div className="min-w-0">
               <h1 className="w-full wrap-break-word text-2xl font-bold leading-tight text-slate-900 sm:text-3xl lg:text-4xl">
-                {product.name}
+                {displayName}
               </h1>
               <p className="mt-2 text-sm text-slate-600 sm:text-lg">{product.groupName}</p>
             </div>
@@ -134,7 +140,7 @@ export default function ProductDetailClient({
             <div className="mt-6 space-y-5">
               <div className="border-b border-slate-200 pb-5">
                 <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Description</p>
-                <p className="text-sm leading-6 text-slate-900 sm:text-base sm:leading-7">{product.description}</p>
+                <p className="text-sm leading-6 text-slate-900 sm:text-base sm:leading-7">{displayDescription}</p>
               </div>
 
               <div className="border-b border-slate-200 pb-5">
@@ -224,8 +230,8 @@ export default function ProductDetailClient({
             {related.map((relatedProduct) => (
               <ProductCard
                 key={relatedProduct.id}
-                title={relatedProduct.name}
-                description={relatedProduct.description}
+                title={getProductDisplayName(relatedProduct)}
+                description={getProductDisplayDescription(relatedProduct)}
                 image={relatedProduct.image}
                 href={`/products/${relatedProduct.id}`}
                 badge={relatedProduct.category}
