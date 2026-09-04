@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const gallery = [
-  "/images/hero/hero-machine.jpg", "/images/gallery/manufacturing.jpg", "/images/factory/quality.jpg",
+  "/images/ui-images/hero-machine.jpg", "/images/ui-images/manufacturing.jpg", "/images/ui-images/quality.jpg",
   "/images/gallery/1.jpg", "/images/gallery/2.jpg", "/images/gallery/3.jpg", "/images/gallery/4.jpg", "/images/gallery/5.jpg",
   "/images/gallery/6.jpg", "/images/gallery/7.jpg", "/images/gallery/8.jpg", "/images/gallery/9.jpg", "/images/gallery/10.jpg", "/images/gallery/11.jpg",
   "/images/gallery/12.jpg", "/images/gallery/13.jpg", "/images/gallery/15.jpg", "/images/gallery/16.jpg", "/images/gallery/17.jpg", "/images/gallery/18.jpg",

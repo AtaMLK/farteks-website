@@ -9,14 +9,11 @@ import { FadeItem } from "../animations/FadeItem";
 export function Quality() {
   return (
     <section>
-
       <Container>
-
         <div className="grid items-center gap-20 lg:grid-cols-2">
-
           <FadeIn>
             <Image
-              src="/images/factory/quality.jpg"
+              src="/images/ui-images/quality.jpg"
               alt="Quality"
               width={900}
               height={700}
@@ -26,7 +23,6 @@ export function Quality() {
 
           <FadeIn delay={0.2}>
             <div>
-
               <SectionTitle
                 eyebrow="Quality"
                 title="Quality Is Built Into Every Component"
@@ -35,7 +31,6 @@ export function Quality() {
 
               <Stagger>
                 <div className="mt-10 space-y-5">
-
                   <FadeItem>
                     <div className="rounded-xl border-2 border-[#E5322D] bg-slate-50 p-5 font-semibold text-[#392B87] hover:bg-red-50 transition-colors">
                       ✓ Precision Measuring Equipment
@@ -53,17 +48,12 @@ export function Quality() {
                       ✓ Final Dimensional Inspection
                     </div>
                   </FadeItem>
-
                 </div>
               </Stagger>
-
             </div>
           </FadeIn>
-
         </div>
-
       </Container>
-
     </section>
   );
 }

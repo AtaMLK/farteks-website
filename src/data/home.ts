@@ -21,7 +21,7 @@ export const hero = {
     text: "Request Quote",
     href: "/contact",
   },
-  image: "/images/hero/hero-machine.jpg",
+  image: "/images/ui-images/hero-machine.jpg",
 };
 
 export const stats = [
