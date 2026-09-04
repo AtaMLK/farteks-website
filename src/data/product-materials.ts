@@ -13,10 +13,7 @@ export const CAST_IRON_MATERIALS = [
   "EN-GJS-500 (By Request)",
 ] as const;
 
-const END_PLUG_IDS = new Set([
-  "end-plug-with-oil-hole",
-  "end-plug",
-]);
+const END_PLUG_IDS = new Set(["end-plug-with-oil-hole", "end-plug"]);
 
 const S355_ONLY_IDS = new Set([
   "bsp-weldable-port",
@@ -29,6 +26,8 @@ const S355_ONLY_IDS = new Set([
   "rod-end-secondary",
   "weldable-forks",
   "threaded-forks",
+  "hydraulic-oil-tanks",
+  "trunnion",
 ]);
 
 const MOBILE_CRANE_IDS = new Set([
@@ -47,10 +46,12 @@ const ISO_CK45_IDS = new Set([
   "copper-washer",
 ]);
 
-const NO_MATERIAL_IDS = new Set([
-  "bearings",
-  "bushing",
+const POWER_UNIT_CK45_IDS = new Set([
+  "elastic-gear-couplings",
+  "flat-pump-adapters",
 ]);
+
+const NO_MATERIAL_IDS = new Set(["bearings", "bushing"]);
 
 function isSteelProduct(product: Product): boolean {
   const id = product.id.toLowerCase();
@@ -68,25 +69,40 @@ function isSteelProduct(product: Product): boolean {
   );
 }
 
-export function getAvailableMaterials(product: Product): readonly string[] {
-  if (NO_MATERIAL_IDS.has(product.id)) {
-    return [];
+export function getProductDisplayName(product: Product): string {
+  if (product.id === "hydraulic-pump-drums") return "Bellhousing";
+  if (product.name === "Steel Gland") return "Steel Gland (Head Bush)";
+  if (product.name.startsWith("Cast Iron Gland")) {
+    return "Cast Iron Gland (Head Bush)";
   }
+  return product.name;
+}
+
+export function getAvailableMaterials(product: Product): readonly string[] {
+  if (NO_MATERIAL_IDS.has(product.id)) return [];
+
+  if (product.id === "hydraulic-pump-drums") return ["Aluminium"];
 
   if (END_PLUG_IDS.has(product.id)) {
     return ["S355", "Any other material by request"];
   }
 
-  if (S355_ONLY_IDS.has(product.id)) {
-    return ["S355"];
-  }
+  if (S355_ONLY_IDS.has(product.id)) return ["S355"];
 
   if (MOBILE_CRANE_IDS.has(product.id)) {
     return ["CK45", "Any main material by request"];
   }
 
-  if (ISO_CK45_IDS.has(product.id)) {
-    return ["CK45"];
+  if (ISO_CK45_IDS.has(product.id)) return ["CK45"];
+
+  if (POWER_UNIT_CK45_IDS.has(product.id)) return ["CK45"];
+
+  if (product.name === "Steel Gland") {
+    return ["S355", "Any other material by request"];
+  }
+
+  if (product.name.startsWith("Cast Iron Gland")) {
+    return ["Cast Iron GG25 / GG26 DIN 1691"];
   }
 
   return isSteelProduct(product) ? STEEL_MATERIALS : CAST_IRON_MATERIALS;
