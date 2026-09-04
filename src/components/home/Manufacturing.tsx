@@ -60,9 +60,9 @@ export function Manufacturing() {
       <div className="sticky top-0 h-svh min-h-[560px] overflow-hidden sm:min-h-[620px]">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[#17181b]" />
-          <img src="/images/factory/manufacturing.jpg" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_66%_45%,rgba(255,255,255,0.11),transparent_34%),linear-gradient(90deg,rgba(10,11,13,0.94)_0%,rgba(10,11,13,0.62)_32%,rgba(10,11,13,0.16)_65%,rgba(10,11,13,0.48)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,11,13,0.52)_0%,transparent_22%,transparent_76%,rgba(10,11,13,0.78)_100%)]" />
+          <img src="/images/factory/manufacturing.jpg" alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover opacity-100" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_66%_45%,rgba(255,255,255,0.03),transparent_34%),linear-gradient(90deg,rgba(10,11,13,0.24)_0%,rgba(10,11,13,0.12)_32%,rgba(10,11,13,0.04)_65%,rgba(10,11,13,0.12)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,11,13,0.10)_0%,transparent_22%,transparent_76%,rgba(10,11,13,0.18)_100%)]" />
           <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(rgba(255,255,255,.7)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.7)_1px,transparent_1px)] [background-size:64px_64px]" />
         </div>
 
