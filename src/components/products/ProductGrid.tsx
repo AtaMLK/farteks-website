@@ -1,4 +1,5 @@
 import { PRODUCTS } from "@/data/products-data";
+import { getProductDisplayName } from "@/data/product-materials";
 
 import { Container } from "../layout/Container";
 import { ProductCard } from "./ProductCard";
@@ -12,13 +13,11 @@ export function ProductGrid() {
 
       <section className="py-14 sm:py-20 lg:py-24">
         <Container>
-          <div
-            className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5"
-          >
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
             {PRODUCTS.map((product) => (
               <ProductCard
                 key={product.id}
-                title={product.name}
+                title={getProductDisplayName(product)}
                 description={product.description}
                 image={product.image}
                 href={`/products/${product.id}`}
