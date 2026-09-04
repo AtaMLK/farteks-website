@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function EntrancePage() {
-  const [showLogos, setShowLogos] = useState(false);
+  const showLogos = true;
   const [showProduct, setShowProduct] = useState(false);
   const [showTitle, setShowTitle] = useState(false);
   const [showSubtitle, setShowSubtitle] = useState(false);
@@ -21,8 +21,6 @@ export default function EntrancePage() {
    * Show logos immediately
    */
   useEffect(() => {
-    setShowLogos(true);
-
     const productTimer = setTimeout(() => {
       setShowProduct(true);
     }, 2500);
@@ -108,13 +106,13 @@ export default function EntrancePage() {
 
         {/* =====================================================
             SPACE BETWEEN LOGOS AND PRODUCT
-        ===================================================== */}
+        ===================================================== */
 
         <div className="h-16 md:h-24" />
 
         {/* =====================================================
             PRODUCT IMAGE
-        ===================================================== */}
+        ===================================================== */
 
         <div
           className={`transition-all duration-1000 ease-out ${
@@ -136,13 +134,13 @@ export default function EntrancePage() {
 
         {/* =====================================================
             SPACE AFTER PRODUCT
-        ===================================================== */}
+        ===================================================== */
 
         <div className="h-8 md:h-12" />
 
         {/* =====================================================
             FIRST RED SENTENCE
-        ===================================================== */}
+        ===================================================== */
 
         <div
           className={`text-center transition-all duration-700 ${
@@ -160,7 +158,7 @@ export default function EntrancePage() {
 
         {/* =====================================================
             SECOND RED SENTENCE
-        ===================================================== */}
+        ===================================================== */
 
         <div
           className={`mt-5 text-center transition-all duration-1000 ${
@@ -176,7 +174,7 @@ export default function EntrancePage() {
 
         {/* =====================================================
             ENTER BUTTON
-        ===================================================== */}
+        ===================================================== */
 
         <div
           className={`mt-10 transition-all duration-700 ${
