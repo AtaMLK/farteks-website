@@ -147,16 +147,18 @@ export default function ProductDetailClient({
                 <p className="break-all text-sm font-semibold text-slate-900 sm:text-base">#{product.productCode}</p>
               </div>
 
-              <div className="border-b border-slate-200 pb-5">
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Available main materials</p>
-                <div className="flex flex-wrap gap-2">
-                  {availableMaterials.map((material) => (
-                    <span key={material} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 sm:text-sm">
-                      {material}
-                    </span>
-                  ))}
+              {availableMaterials.length > 0 && (
+                <div className="border-b border-slate-200 pb-5">
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Available main materials</p>
+                  <div className="flex flex-wrap gap-2">
+                    {availableMaterials.map((material) => (
+                      <span key={material} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 sm:text-sm">
+                        {material}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div>
                 <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Specification Parameters</p>
