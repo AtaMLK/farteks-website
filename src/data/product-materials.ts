@@ -103,7 +103,7 @@ export function getAvailableMaterials(product: Product): readonly string[] {
   if (POWER_UNIT_CK45_IDS.has(product.id)) return ["CK45"];
 
   if (product.name === "Steel Gland") {
-    return ["CK45 / C45", "S355", "11SMn30", "11SMnPb30", "Any main material by request"];
+    return ["CK45 / C45", "S355", "11SMn30", "11SMnPb30"];
   }
 
   if (product.name.startsWith("Cast Iron Gland")) {
