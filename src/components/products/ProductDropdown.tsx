@@ -18,15 +18,6 @@ export function ProductDropdown({ isOpen, onDownloadCatalog }: ProductDropdownPr
       }`}
     >
       <div className="mx-auto w-full max-w-7xl px-6 py-10">
-        <div className="mb-8 flex items-center justify-between rounded-xl border border-slate-200 bg-gradient-to-r from-orange-50 via-white to-red-50 px-5 py-4 shadow-sm">
-          <Link href="/custom-parts" className="text-base font-semibold text-slate-900 transition-colors hover:text-[#E5322D]">
-            Custom Hydraulic Components
-          </Link>
-          <Link href="/custom-parts" aria-label="View custom hydraulic components" className="text-slate-400 transition-colors hover:text-[#E5322D]">
-            <ChevronRight size={19} />
-          </Link>
-        </div>
-
         <div className="grid min-w-0 grid-cols-6 gap-6">
           {PRODUCT_GROUPS.map((group) => {
             const groupProducts = Array.from(
@@ -59,6 +50,23 @@ export function ProductDropdown({ isOpen, onDownloadCatalog }: ProductDropdownPr
               </div>
             );
           })}
+
+          <div className="group/item min-w-0">
+            <Link href="/products/group/custom-parts" className="mb-4 flex min-w-0 items-center gap-2 border-b-2 border-slate-100 pb-2 transition-colors group-hover/item:border-orange-500">
+              <h4 className="min-w-0 flex-1 truncate text-sm font-semibold text-slate-900 transition-colors group-hover/item:text-orange-500">
+                Custom Made Hydraulic Components
+              </h4>
+              <ChevronRight size={16} className="shrink-0 text-slate-400 transition-colors group-hover/item:text-orange-500" />
+            </Link>
+            <div className="space-y-2">
+              <Link href="/products/group/custom-parts" className="block truncate text-xs text-slate-600 transition-colors hover:font-semibold hover:text-orange-500">
+                Drawing-Based Production
+              </Link>
+              <Link href="/products/group/custom-parts" className="block truncate text-xs text-slate-600 transition-colors hover:font-semibold hover:text-orange-500">
+                OEM Custom Components
+              </Link>
+            </div>
+          </div>
         </div>
 
         <div className="mt-8 flex items-center justify-between border-t border-slate-200 pt-8">
