@@ -10,7 +10,7 @@ const gallery = [
   "/images/gallery/6.jpg", "/images/gallery/7.jpg", "/images/gallery/8.jpg", "/images/gallery/9.jpg", "/images/gallery/10.jpg", "/images/gallery/11.jpg",
   "/images/gallery/12.jpg", "/images/gallery/13.jpg", "/images/gallery/15.jpg", "/images/gallery/16.jpg", "/images/gallery/17.jpg", "/images/gallery/18.jpg",
   "/images/gallery/19.jpg", "/images/gallery/20.jpg", "/images/gallery/21.jpg", "/images/gallery/22.jpg", "/images/gallery/23.jpg", "/images/gallery/24.jpg",
-  "/images/gallery/25.jpg", "/images/gallery/26.jpg", "/images/gallery/27.jpg", "/images/gallery/28.jpg", "/images/gallery/29.jpg", "/images/gallery/30.jpg",
+  "/images/gallery/25.jpg", "/images/gallery/26.jpg", "/images/gallery/27.jpg", "/images/gallery/28.jpg", "/images/gallery/29.jpg",
   "/images/gallery/31.jpg", "/images/gallery/32.jpg",
 ];
 
@@ -33,7 +33,6 @@ export function GalleryPreview() {
           </Link>
         </div>
 
-        {/* Mobile: keep the existing large visual treatment that works well on small screens. */}
         <div className="relative mt-10 sm:mt-14 lg:hidden">
           <Link href="/gallery" aria-label="Open the full Farteks gallery" className="group relative block h-[320px] overflow-hidden rounded-[28px] bg-[#181617] sm:h-[400px] sm:rounded-[34px]">
             <Image src={currentImage} alt="" fill sizes="100vw" className="scale-110 object-cover opacity-35 blur-2xl" aria-hidden="true" />
@@ -58,7 +57,6 @@ export function GalleryPreview() {
           </div>
         </div>
 
-        {/* Desktop: four compact cards keep the original photographs intact without forced cropping. */}
         <div className="relative mt-10 hidden lg:block">
           <div className="grid grid-cols-4 gap-4 xl:gap-6">
             {[0, 1, 2, 3].map((offset) => {
