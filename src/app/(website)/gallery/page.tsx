@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 
 const factoryImages = [
-  ...Array.from({ length: 32 }, (_, i) => `/images/gallery/${i + 1}.jpg`),
+  ...Array.from({ length: 31 }, (_, i) => `/images/gallery/${i + 1}.jpg`),
   "/images/gallery/factory1.jpg",
   "/images/gallery/factory2.JPG",
   "/images/gallery/factory3.JPG",
