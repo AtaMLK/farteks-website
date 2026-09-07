@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useState } from "react";
 
 const gallery = [
-<<<<<<< ours
   "/images/ui-images/hero-machine.jpg", "/images/ui-images/manufacturing.jpg", "/images/ui-images/quality.jpg",
   "/images/gallery/1.jpg", "/images/gallery/2.jpg", "/images/gallery/3.jpg", "/images/gallery/4.jpg", "/images/gallery/5.jpg",
   "/images/gallery/6.jpg", "/images/gallery/7.jpg", "/images/gallery/8.jpg", "/images/gallery/9.jpg", "/images/gallery/10.jpg", "/images/gallery/11.jpg",
@@ -13,41 +12,6 @@ const gallery = [
   "/images/gallery/19.jpg", "/images/gallery/20.jpg", "/images/gallery/21.jpg", "/images/gallery/22.jpg", "/images/gallery/23.jpg", "/images/gallery/24.jpg",
   "/images/gallery/25.jpg", "/images/gallery/26.jpg", "/images/gallery/27.jpg", "/images/gallery/28.jpg", "/images/gallery/29.jpg",
   "/images/gallery/31.jpg", "/images/gallery/32.jpg",
-=======
-  "/images/hero/hero-machine.jpg",
-  "/images/gallery/manufacturing.jpg",
-  "/images/factory/quality.jpg",
-  "/images/gallery/1.jpg",
-  "/images/gallery/2.jpg",
-  "/images/gallery/3.jpg",
-  "/images/gallery/4.jpg",
-  "/images/gallery/5.jpg",
-  "/images/gallery/6.jpg",
-  "/images/gallery/7.jpg",
-  "/images/gallery/8.jpg",
-  "/images/gallery/9.jpg",
-  "/images/gallery/10.jpg",
-  "/images/gallery/11.jpg",
-  "/images/gallery/12.jpg",
-  "/images/gallery/13.jpg",
-  "/images/gallery/15.jpg",
-  "/images/gallery/16.jpg",
-  "/images/gallery/17.jpg",
-  "/images/gallery/18.jpg",
-  "/images/gallery/19.jpg",
-  "/images/gallery/20.jpg",
-  "/images/gallery/21.jpg",
-  "/images/gallery/22.jpg",
-  "/images/gallery/23.jpg",
-  "/images/gallery/24.jpg",
-  "/images/gallery/25.jpg",
-  "/images/gallery/26.jpg",
-  "/images/gallery/27.jpg",
-  "/images/gallery/28.jpg",
-  "/images/gallery/29.jpg",
-  "/images/gallery/31.jpg",
-  "/images/gallery/32.jpg",
->>>>>>> theirs
 ];
 
 export function GalleryPreview() {
