@@ -9,7 +9,7 @@ const factoryImages = [
   "/images/gallery/factory1.jpg",
   "/images/gallery/factory2.JPG",
   "/images/gallery/factory3.JPG",
-  "/images/gallery/quality.jpg",
+  "/images/ui-images/quality.jpg",
   "/images/ui-images/manufacturing.jpg",
 ];
 
