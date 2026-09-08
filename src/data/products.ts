@@ -14,7 +14,7 @@ export const productDatabase = {
         standard: "OEM Spec",
         applications: ["Industrial Cylinders", "Heavy Equipment"],
       },
-      image: "/images/products/gland-forged-cap.jpg",
+      image: "/images/products/gland-forged-cap.webp",
     },
     {
       id: "gland-002",
@@ -27,7 +27,7 @@ export const productDatabase = {
         standard: "DIN",
         applications: ["Marine", "Corrosive Environments"],
       },
-      image: "/images/products/gland-steel-cap.jpg",
+      image: "/images/products/gland-steel-cap.webp",
     },
     {
       id: "gland-003",
@@ -40,7 +40,7 @@ export const productDatabase = {
         standard: "ISO",
         applications: ["Standard Cylinders", "Agricultural Equipment"],
       },
-      image: "/images/products/gland-rod.jpg",
+      image: "/images/products/gland-rod.webp",
     },
     {
       id: "gland-004",
@@ -53,7 +53,7 @@ export const productDatabase = {
         standard: "OEM Spec",
         applications: ["Compact Cylinders", "Mobile Equipment"],
       },
-      image: "/images/products/gland-pressed-eye.jpg",
+      image: "/images/products/gland-pressed-eye.webp",
     },
   ],
 
@@ -70,7 +70,7 @@ export const productDatabase = {
         applications: ["Hydraulic Cylinders", "Universal Joints"],
         sizes: ["M16", "M20", "M24", "M30"],
       },
-      image: "/images/products/rod-end-standard.jpg",
+      image: "/images/products/rod-end-standard.webp",
     },
     {
       id: "rod-end-002",
@@ -84,7 +84,7 @@ export const productDatabase = {
         applications: ["Industrial Equipment", "Mining"],
         sizes: ["M24", "M30", "M36"],
       },
-      image: "/images/products/rod-end-heavy-duty.jpg",
+      image: "/images/products/rod-end-heavy-duty.webp",
     },
   ],
 
@@ -94,13 +94,14 @@ export const productDatabase = {
       name: "Plain Piston",
       turkishName: "Düz Piston",
       category: "Pistons",
-      description: "Precision-engineered plain piston for standard applications",
+      description:
+        "Precision-engineered plain piston for standard applications",
       specifications: {
         bore: ["40", "50", "63", "80", "100 mm"],
         material: "Cast Iron",
         standard: "OEM Spec",
       },
-      image: "/images/products/piston-plain.jpg",
+      image: "/images/products/piston-plain.webp",
     },
     {
       id: "piston-002",
@@ -114,7 +115,7 @@ export const productDatabase = {
         material: "Ductile Iron",
         standard: "ISO",
       },
-      image: "/images/products/piston-threaded.jpg",
+      image: "/images/products/piston-threaded.webp",
     },
     {
       id: "piston-003",
@@ -127,7 +128,7 @@ export const productDatabase = {
         material: "Bronze Lined",
         standard: "OEM Spec",
       },
-      image: "/images/products/piston-single-bearing.jpg",
+      image: "/images/products/piston-single-bearing.webp",
     },
     {
       id: "piston-004",
@@ -141,7 +142,7 @@ export const productDatabase = {
         material: "Alloy Steel",
         standard: "ISO",
       },
-      image: "/images/products/piston-rod.jpg",
+      image: "/images/products/piston-rod.webp",
     },
   ],
 
@@ -157,7 +158,7 @@ export const productDatabase = {
         sizes: "Multiple sizes available",
         standard: "ISO 3384",
       },
-      image: "/images/products/seal-o-ring-static.jpg",
+      image: "/images/products/seal-o-ring-static.webp",
     },
     {
       id: "seal-002",
@@ -170,7 +171,7 @@ export const productDatabase = {
         sizes: "Multiple sizes available",
         standard: "ISO 6072",
       },
-      image: "/images/products/seal-o-ring-dynamic.jpg",
+      image: "/images/products/seal-o-ring-dynamic.webp",
     },
   ],
 
@@ -186,7 +187,7 @@ export const productDatabase = {
         material: "Ductile Iron",
         standard: "OEM Spec",
       },
-      image: "/images/products/flange-back-cap-flat.jpg",
+      image: "/images/products/flange-back-cap-flat.webp",
     },
     {
       id: "flange-002",
@@ -200,7 +201,7 @@ export const productDatabase = {
         standard: "ISO",
         ports: "Adjustable positions",
       },
-      image: "/images/products/flange-back-cap.jpg",
+      image: "/images/products/flange-back-cap.webp",
     },
   ],
 
@@ -217,7 +218,7 @@ export const productDatabase = {
         material: "Reinforced Rubber",
         standard: "ISO 1402",
       },
-      image: "/images/products/hose-hydraulic.jpg",
+      image: "/images/products/hose-hydraulic.webp",
     },
   ],
 
@@ -229,19 +230,12 @@ export const productDatabase = {
       category: "Fittings",
       description: "Various hydraulic connectors and fittings",
       specifications: {
-        types: [
-          "Straight",
-          "Elbow",
-          "Tee",
-          "Cross",
-          "Adapter",
-          "Union",
-        ],
+        types: ["Straight", "Elbow", "Tee", "Cross", "Adapter", "Union"],
         sizes: ["M10", "M12", "M14", "M16", "M20", "M24", "M30"],
         material: "Carbon Steel / Stainless",
         standard: "ISO 6149",
       },
-      image: "/images/products/fittings-hydraulic.jpg",
+      image: "/images/products/fittings-hydraulic.webp",
     },
   ],
 
@@ -251,14 +245,10 @@ export const productDatabase = {
       name: "Custom Machined Components",
       turkishName: "Özel Parçalar",
       category: "Custom Parts",
-      description: "Precision-machined components for specific OEM requirements",
+      description:
+        "Precision-machined components for specific OEM requirements",
       specifications: {
-        materials: [
-          "Alloy Steel",
-          "Stainless Steel",
-          "Ductile Iron",
-          "Bronze",
-        ],
+        materials: ["Alloy Steel", "Stainless Steel", "Ductile Iron", "Bronze"],
         processes: [
           "CNC Turning",
           "CNC Milling",
@@ -268,7 +258,7 @@ export const productDatabase = {
         tolerances: "±0.01mm",
         standard: "OEM Specification",
       },
-      image: "/images/products/custom-components.jpg",
+      image: "/images/products/custom-components.webp",
     },
   ],
 };

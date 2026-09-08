@@ -125,7 +125,7 @@ export default function EntrancePage() {
         >
           <div className="relative h-56 w-56 md:h-72 md:w-72 lg:h-80 lg:w-80">
             <Image
-              src="/images/products/entranceimage.png"
+              src="/images/products/entranceimage.webp"
               alt="Hydraulic Cylinder Component"
               fill
               className="object-contain"

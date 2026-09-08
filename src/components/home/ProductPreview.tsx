@@ -11,25 +11,25 @@ const products = [
   {
     title: "Hydraulic Glands",
     type: "Sealing & Guidance",
-    image: "/images/products/gland-steel-single.png",
+    image: "/images/products/gland-steel-single.webp",
     href: "/products/group/std1",
   },
   {
     title: "Rod Ends",
     type: "Cylinder Connection",
-    image: "/images/products/rod-end-single.png",
+    image: "/images/products/rod-end-single.webp",
     href: "/products/group/rod-end",
   },
   {
     title: "Pistons",
     type: "Pressure & Motion",
-    image: "/images/products/piston-single.png",
+    image: "/images/products/piston-single.webp",
     href: "/products/group/std1",
   },
   {
     title: "Custom Components",
     type: "Drawing to Production",
-    image: "/images/products/custom.png",
+    image: "/images/products/custom.webp",
     href: "/custom-parts",
   },
 ];

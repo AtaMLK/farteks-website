@@ -6,9 +6,21 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, Upload, Wrench } from "lucide-react";
 
 const processSteps = [
-  ["01", "Send your requirement", "Share a drawing, sample, dimensions, material or application information."],
-  ["02", "Engineering review", "We review the geometry, tolerances, material and manufacturing route."],
-  ["03", "Production", "After approval, the component enters controlled OEM production and inspection."],
+  [
+    "01",
+    "Send your requirement",
+    "Share a drawing, sample, dimensions, material or application information.",
+  ],
+  [
+    "02",
+    "Engineering review",
+    "We review the geometry, tolerances, material and manufacturing route.",
+  ],
+  [
+    "03",
+    "Production",
+    "After approval, the component enters controlled OEM production and inspection.",
+  ],
 ] as const;
 
 const requirements = [
@@ -47,13 +59,21 @@ export default function CustomPartsPage() {
             </h1>
             <div className="mt-6 max-w-3xl space-y-4 text-base leading-7 text-black/60 sm:mt-8 sm:text-lg sm:leading-8">
               <p>
-                We are producing “custom made hydraulic cylinder components” generally for our OEM partners according to their parameters, main material, special specifications, drawings, quality and quality control requests.
+                We are producing “custom made hydraulic cylinder components”
+                generally for our OEM partners according to their parameters,
+                main material, special specifications, drawings, quality and
+                quality control requests.
               </p>
               <p>
-                Thanks to our large CNC machine park, fully equipped quality control tools and lab, and highly experienced engineering team, we are supplying custom made equipment to the world’s No.1 OEMs according to their requirements and needs.
+                Thanks to our large CNC machine park, fully equipped quality
+                control tools and lab, and highly experienced engineering team,
+                we are supplying custom made equipment to the world’s No.1 OEMs
+                according to their requirements and needs.
               </p>
               <p>
-                Our custom made production service covers all requests starting from main material selection and production until final packing according to their instructions.
+                Our custom made production service covers all requests starting
+                from main material selection and production until final packing
+                according to their instructions.
               </p>
             </div>
             <Link
@@ -71,7 +91,7 @@ export default function CustomPartsPage() {
             className="relative aspect-[4/3] min-h-[280px] w-full overflow-hidden rounded-[24px] bg-[#dcdcdc] sm:aspect-[16/10] sm:rounded-[30px] lg:aspect-[4/3] lg:min-h-0 lg:rounded-[38px]"
           >
             <Image
-              src="/images/multidrawings.jpg"
+              src="/images/multidrawings.webp"
               alt="Multiple hydraulic cylinder component drawings"
               fill
               sizes="(max-width: 767px) 100vw, (max-width: 1023px) 80vw, 45vw"
@@ -123,9 +143,14 @@ export default function CustomPartsPage() {
             </h2>
             <div className="mt-7 space-y-3 sm:mt-9 sm:space-y-4">
               {requirements.map((item) => (
-                <div key={item} className="flex min-w-0 gap-3 border-b border-slate-200 pb-3 sm:pb-4">
+                <div
+                  key={item}
+                  className="flex min-w-0 gap-3 border-b border-slate-200 pb-3 sm:pb-4"
+                >
                   <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#E5322D]" />
-                  <span className="min-w-0 text-sm font-semibold leading-6 sm:text-base">{item}</span>
+                  <span className="min-w-0 text-sm font-semibold leading-6 sm:text-base">
+                    {item}
+                  </span>
                 </div>
               ))}
             </div>
@@ -133,7 +158,7 @@ export default function CustomPartsPage() {
 
           <div className="relative aspect-[4/3] min-h-[260px] w-full overflow-hidden rounded-[24px] bg-[#F0F0F0] sm:aspect-[16/10] sm:rounded-[30px] lg:rounded-[34px]">
             <Image
-              src="/images/drawings/customproductdrawing.jpg"
+              src="/images/drawings/customproductdrawing.webp"
               alt="Custom product drawing"
               fill
               sizes="(max-width: 767px) 100vw, 50vw"

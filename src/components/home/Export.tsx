@@ -50,7 +50,7 @@ export function Export() {
 
           <FadeIn delay={0.2}>
             <Image
-              src="/images/export/world-map.jpg"
+              src="/images/export/world-map.webp"
               alt="Export"
               width={900}
               height={700}

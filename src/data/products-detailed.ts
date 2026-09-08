@@ -11,7 +11,7 @@ export const productsDetailed = {
       category: "Glands",
       description: "Precision forged gland component for hydraulic cylinders",
       fullDescription: "High-strength forged cap gland designed for industrial hydraulic cylinders. Manufactured from premium alloy steel with precision machining to OEM specifications.",
-      image: "/images/products/gland-forged-cap.jpg",
+      image: "/images/products/gland-forged-cap.webp",
       drawing: "/drawings/gland-forged-cap-drawing.pdf",
       specifications: {
         material: "Alloy Steel",
@@ -49,7 +49,7 @@ export const productsDetailed = {
       category: "Glands",
       description: "High-strength steel gland for demanding applications",
       fullDescription: "Stainless steel cap gland engineered for corrosive environments and marine applications. Superior corrosion resistance with excellent durability.",
-      image: "/images/products/gland-steel-cap.jpg",
+      image: "/images/products/gland-steel-cap.webp",
       drawing: "/drawings/gland-steel-cap-drawing.pdf",
       specifications: {
         material: "Stainless Steel 304/316",
@@ -87,7 +87,7 @@ export const productsDetailed = {
       category: "Glands",
       description: "Rod gland assembly for cylinder rod connections",
       fullDescription: "Chrome-plated steel rod gland assembly for reliable rod connection in standard cylinder applications.",
-      image: "/images/products/gland-rod.jpg",
+      image: "/images/products/gland-rod.webp",
       drawing: "/drawings/gland-rod-drawing.pdf",
       specifications: {
         material: "Carbon Steel (Chrome Plated)",
@@ -125,7 +125,7 @@ export const productsDetailed = {
       category: "Glands",
       description: "Pressed eyelet gland connections",
       fullDescription: "Compact pressed eyelet gland for space-constrained applications. Perfect for mobile and compact hydraulic cylinders.",
-      image: "/images/products/gland-pressed-eye.jpg",
+      image: "/images/products/gland-pressed-eye.webp",
       drawing: "/drawings/gland-pressed-eye-drawing.pdf",
       specifications: {
         material: "Alloy Steel",
@@ -166,7 +166,7 @@ export const productsDetailed = {
       category: "Rod Ends",
       description: "Reliable rod end connections for various applications",
       fullDescription: "Standard rod end assembly with steel body and bronze bearing surface. Ideal for general hydraulic cylinder applications.",
-      image: "/images/products/rod-end-standard.jpg",
+      image: "/images/products/rod-end-standard.webp",
       drawing: "/drawings/rod-end-standard-drawing.pdf",
       specifications: {
         material: "Steel with Bronze Bearing",
@@ -205,7 +205,7 @@ export const productsDetailed = {
       category: "Rod Ends",
       description: "Reinforced design for high-load applications",
       fullDescription: "Heavy-duty reinforced rod end designed for extreme loads and demanding mining and industrial applications.",
-      image: "/images/products/rod-end-heavy-duty.jpg",
+      image: "/images/products/rod-end-heavy-duty.webp",
       drawing: "/drawings/rod-end-heavy-duty-drawing.pdf",
       specifications: {
         material: "Alloy Steel",
@@ -249,7 +249,7 @@ export const productsDetailed = {
       category: "Pistons",
       description: "Precision-engineered plain piston for standard applications",
       fullDescription: "Cast iron plain piston for standard hydraulic cylinders. Precision machined to exact OEM specifications with smooth surface finish.",
-      image: "/images/products/piston-plain.jpg",
+      image: "/images/products/piston-plain.webp",
       drawing: "/drawings/piston-plain-drawing.pdf",
       specifications: {
         material: "Cast Iron GG25",
@@ -288,7 +288,7 @@ export const productsDetailed = {
       category: "Pistons",
       description: "Piston with thread connection for rod assembly",
       fullDescription: "Ductile iron threaded piston with internal thread for rod connection. Used in assemblies where rod is threaded into the piston.",
-      image: "/images/products/piston-threaded.jpg",
+      image: "/images/products/piston-threaded.webp",
       drawing: "/drawings/piston-threaded-drawing.pdf",
       specifications: {
         material: "Ductile Iron EN-GJS-700",
@@ -328,7 +328,7 @@ export const productsDetailed = {
       category: "Pistons",
       description: "Piston with single bearing surface",
       fullDescription: "Bronze-lined single bearing piston for applications requiring precise alignment and smooth operation.",
-      image: "/images/products/piston-single-bearing.jpg",
+      image: "/images/products/piston-single-bearing.webp",
       drawing: "/drawings/piston-single-bearing-drawing.pdf",
       specifications: {
         material: "Cast Iron with Bronze Lining",
@@ -368,7 +368,7 @@ export const productsDetailed = {
       category: "Pistons",
       description: "Piston with integral rod connection",
       fullDescription: "Integral rod piston combining piston and rod in one component. Manufactured from alloy steel with precision machining.",
-      image: "/images/products/piston-rod.jpg",
+      image: "/images/products/piston-rod.webp",
       drawing: "/drawings/piston-rod-drawing.pdf",
       specifications: {
         material: "Alloy Steel 34CrMo4",
@@ -411,7 +411,7 @@ export const productsDetailed = {
       category: "Seals",
       description: "Static sealing O-ring for fixed applications",
       fullDescription: "Standard static O-ring for non-moving seal applications. Available in NBR and Viton materials for different temperature ranges.",
-      image: "/images/products/seal-o-ring-static.jpg",
+      image: "/images/products/seal-o-ring-static.webp",
       drawing: "/drawings/seal-o-ring-static-drawing.pdf",
       specifications: {
         material: "NBR 70 or Viton 75",
@@ -449,7 +449,7 @@ export const productsDetailed = {
       category: "Seals",
       description: "Dynamic sealing O-ring for moving applications",
       fullDescription: "High-performance dynamic O-ring for rod and piston sealing in reciprocating motion. Available in multiple elastomers.",
-      image: "/images/products/seal-o-ring-dynamic.jpg",
+      image: "/images/products/seal-o-ring-dynamic.webp",
       drawing: "/drawings/seal-o-ring-dynamic-drawing.pdf",
       specifications: {
         material: "NBR 70, Viton 75, or EPDM",
@@ -489,7 +489,7 @@ export const productsDetailed = {
       category: "Flanges",
       description: "Standard flat back cap for cylinder closure",
       fullDescription: "Ductile iron flat back cap for standard cylinder closure. Simple design for general-purpose applications.",
-      image: "/images/products/flange-back-cap-flat.jpg",
+      image: "/images/products/flange-back-cap-flat.webp",
       drawing: "/drawings/flange-back-cap-flat-drawing.pdf",
       specifications: {
         material: "Ductile Iron EN-GJS-400",
@@ -528,7 +528,7 @@ export const productsDetailed = {
       category: "Flanges",
       description: "Flanged back cap with lubrication ports",
       fullDescription: "Ductile iron flanged back cap with lubrication and drain ports. Designed for applications requiring circulation lubrication.",
-      image: "/images/products/flange-back-cap.jpg",
+      image: "/images/products/flange-back-cap.webp",
       drawing: "/drawings/flange-back-cap-drawing.pdf",
       specifications: {
         material: "Ductile Iron EN-GJS-400",
@@ -573,7 +573,7 @@ export const productsDetailed = {
       category: "Hoses",
       description: "High-pressure hydraulic hose assemblies",
       fullDescription: "Complete hydraulic hose assemblies with fittings. Available in various pressure ratings and sizes for all hydraulic applications.",
-      image: "/images/products/hose-hydraulic.jpg",
+      image: "/images/products/hose-hydraulic.webp",
       drawing: "/drawings/hose-hydraulic-drawing.pdf",
       specifications: {
         material: "Reinforced Rubber with Steel Braid",
@@ -616,7 +616,7 @@ export const productsDetailed = {
       category: "Fittings",
       description: "Various hydraulic connectors and fittings",
       fullDescription: "Complete range of hydraulic connectors and adapters in steel and stainless steel for all connection types.",
-      image: "/images/products/fittings-hydraulic.jpg",
+      image: "/images/products/fittings-hydraulic.webp",
       drawing: "/drawings/fittings-hydraulic-drawing.pdf",
       specifications: {
         material: "Carbon Steel or Stainless Steel 304/316",
@@ -660,7 +660,7 @@ export const productsDetailed = {
       category: "Custom Parts",
       description: "Precision-machined components for specific OEM requirements",
       fullDescription: "Full custom manufacturing service for hydraulic components. We manufacture any component to your exact specifications with precision and quality assurance.",
-      image: "/images/products/custom-components.jpg",
+      image: "/images/products/custom-components.webp",
       drawing: "/drawings/custom-components-drawing.pdf",
       specifications: {
         materials: ["Alloy Steel (34CrMo4)", "Stainless Steel (304/316)", "Ductile Iron", "Bronze/Brass", "Aluminum (custom)"],

@@ -131,7 +131,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               "@type": "Organization",
               name: "Farteks",
               url: baseUrl,
-              logo: `${baseUrl}/images/logos/farteks-logo.png`,
+              logo: `${baseUrl}/images/logos/logos3.png`,
               description:
                 "Hydraulic cylinder components manufacturer based in Turkey.",
               address: {

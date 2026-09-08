@@ -26,14 +26,16 @@ interface ProductDetailClientProps {
 function normalizeDrawingImagePath(path: string): string {
   const cleanPath = path.split("?")[0];
   const extensionIndex = cleanPath.lastIndexOf(".");
-  const extension = extensionIndex > -1 ? cleanPath.slice(extensionIndex) : ".png";
-  const withoutExtension = extensionIndex > -1 ? cleanPath.slice(0, extensionIndex) : cleanPath;
+  const extension =
+    extensionIndex > -1 ? cleanPath.slice(extensionIndex) : ".webp";
+  const withoutExtension =
+    extensionIndex > -1 ? cleanPath.slice(0, extensionIndex) : cleanPath;
 
   if (withoutExtension.endsWith("-drawing")) {
-    return `${withoutExtension}.png`;
+    return `${withoutExtension}.webp`;
   }
 
-  return `${withoutExtension}-drawing.png`;
+  return `${withoutExtension}-drawing.webp`;
 }
 
 export default function ProductDetailClient({
@@ -43,9 +45,15 @@ export default function ProductDetailClient({
 
   const related = getRelatedProducts(product.id, 4);
 
-  const parentGroup = PRODUCT_GROUPS.find((group) => group.products.includes(product.id));
-  const backHref = parentGroup ? `/products/group/${parentGroup.id}` : "/products";
-  const backLabel = parentGroup ? `Back to ${parentGroup.name}` : "Back to Products";
+  const parentGroup = PRODUCT_GROUPS.find((group) =>
+    group.products.includes(product.id),
+  );
+  const backHref = parentGroup
+    ? `/products/group/${parentGroup.id}`
+    : "/products";
+  const backLabel = parentGroup
+    ? `Back to ${parentGroup.name}`
+    : "Back to Products";
 
   const drawingImage = normalizeDrawingImagePath(product.drawingImage);
   const currentImage = imageTab === "product" ? product.image : drawingImage;
@@ -65,7 +73,10 @@ export default function ProductDetailClient({
             href={backHref}
             className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-x-0.5 hover:border-orange-300 hover:text-orange-500 hover:shadow-md sm:text-base"
           >
-            <ArrowLeft size={18} className="transition-transform duration-200 group-hover:-translate-x-0.5" />
+            <ArrowLeft
+              size={18}
+              className="transition-transform duration-200 group-hover:-translate-x-0.5"
+            />
             {backLabel}
           </Link>
         </div>
@@ -76,7 +87,9 @@ export default function ProductDetailClient({
               <h1 className="w-full wrap-break-word text-2xl font-bold leading-tight text-slate-900 sm:text-3xl lg:text-4xl">
                 {displayName}
               </h1>
-              <p className="mt-2 text-sm text-slate-600 sm:text-lg">{product.groupName}</p>
+              <p className="mt-2 text-sm text-slate-600 sm:text-lg">
+                {product.groupName}
+              </p>
             </div>
 
             <div className="flex flex-wrap gap-2 lg:shrink-0">
@@ -135,30 +148,49 @@ export default function ProductDetailClient({
           </div>
 
           <div className="min-w-0 rounded-[20px] border border-slate-200 bg-white p-5 sm:p-7 lg:p-8">
-            <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">Specifications Overview</h2>
+            <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">
+              Specifications Overview
+            </h2>
 
             <div className="mt-6 space-y-5">
               <div className="border-b border-slate-200 pb-5">
-                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Description</p>
-                <p className="text-sm leading-6 text-slate-900 sm:text-base sm:leading-7">{displayDescription}</p>
+                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
+                  Description
+                </p>
+                <p className="text-sm leading-6 text-slate-900 sm:text-base sm:leading-7">
+                  {displayDescription}
+                </p>
               </div>
 
               <div className="border-b border-slate-200 pb-5">
-                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Category</p>
-                <p className="text-sm font-medium text-slate-900 sm:text-base">{product.groupName}</p>
+                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
+                  Category
+                </p>
+                <p className="text-sm font-medium text-slate-900 sm:text-base">
+                  {product.groupName}
+                </p>
               </div>
 
               <div className="border-b border-slate-200 pb-5">
-                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Product Code</p>
-                <p className="break-all text-sm font-semibold text-slate-900 sm:text-base">#{product.productCode}</p>
+                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
+                  Product Code
+                </p>
+                <p className="break-all text-sm font-semibold text-slate-900 sm:text-base">
+                  #{product.productCode}
+                </p>
               </div>
 
               {availableMaterials.length > 0 && (
                 <div className="border-b border-slate-200 pb-5">
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Available main materials</p>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
+                    Available main materials
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {availableMaterials.map((material) => (
-                      <span key={material} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 sm:text-sm">
+                      <span
+                        key={material}
+                        className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 sm:text-sm"
+                      >
                         {material}
                       </span>
                     ))}
@@ -167,10 +199,15 @@ export default function ProductDetailClient({
               )}
 
               <div>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Specification Parameters</p>
+                <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
+                  Specification Parameters
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {product.specColumns.map((col) => (
-                    <span key={col} className="max-w-full wrap-break-word rounded bg-orange-100 px-2.5 py-1.5 text-xs font-semibold text-orange-600">
+                    <span
+                      key={col}
+                      className="max-w-full wrap-break-word rounded bg-orange-100 px-2.5 py-1.5 text-xs font-semibold text-orange-600"
+                    >
                       {col}
                     </span>
                   ))}
@@ -185,8 +222,12 @@ export default function ProductDetailClient({
 
         <div className="border-t border-slate-200 py-10 sm:py-16">
           <div className="mb-6 sm:mb-8">
-            <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">Detailed Specifications</h2>
-            <p className="mt-2 text-sm text-slate-500">Scroll horizontally to view all specification parameters.</p>
+            <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">
+              Detailed Specifications
+            </h2>
+            <p className="mt-2 text-sm text-slate-500">
+              Scroll horizontally to view all specification parameters.
+            </p>
           </div>
 
           <div className="overflow-hidden rounded-[20px] border border-slate-200 bg-white">
@@ -195,7 +236,10 @@ export default function ProductDetailClient({
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50">
                     {product.specColumns.map((col) => (
-                      <th key={col} className="whitespace-nowrap px-4 py-3 text-left text-xs font-bold text-slate-900 sm:px-6 sm:py-4 sm:text-sm">
+                      <th
+                        key={col}
+                        className="whitespace-nowrap px-4 py-3 text-left text-xs font-bold text-slate-900 sm:px-6 sm:py-4 sm:text-sm"
+                      >
                         {col}
                       </th>
                     ))}
@@ -203,9 +247,15 @@ export default function ProductDetailClient({
                 </thead>
                 <tbody>
                   {product.specs.map((spec, idx) => (
-                    <tr key={idx} className="border-b border-slate-200 transition-colors hover:bg-orange-50">
+                    <tr
+                      key={idx}
+                      className="border-b border-slate-200 transition-colors hover:bg-orange-50"
+                    >
                       {product.specColumns.map((col) => (
-                        <td key={`${idx}-${col}`} className="whitespace-nowrap px-4 py-3 text-xs font-mono text-slate-700 sm:px-6 sm:py-4 sm:text-sm">
+                        <td
+                          key={`${idx}-${col}`}
+                          className="whitespace-nowrap px-4 py-3 text-xs font-mono text-slate-700 sm:px-6 sm:py-4 sm:text-sm"
+                        >
                           {spec[col] || "-"}
                         </td>
                       ))}
@@ -217,14 +267,17 @@ export default function ProductDetailClient({
 
             <div className="border-t border-slate-200 bg-slate-50 px-4 py-3 sm:px-6 sm:py-4">
               <p className="text-xs text-slate-600 sm:text-sm">
-                Showing {product.specs.length} variants • All dimensions in mm unless otherwise specified
+                Showing {product.specs.length} variants • All dimensions in mm
+                unless otherwise specified
               </p>
             </div>
           </div>
         </div>
 
         <div className="border-t border-slate-200 py-10 sm:py-16">
-          <h2 className="mb-6 text-xl font-bold text-slate-900 sm:mb-8 sm:text-2xl">Related Products</h2>
+          <h2 className="mb-6 text-xl font-bold text-slate-900 sm:mb-8 sm:text-2xl">
+            Related Products
+          </h2>
 
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
             {related.map((relatedProduct) => (

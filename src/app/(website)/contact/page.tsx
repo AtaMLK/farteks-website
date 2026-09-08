@@ -95,7 +95,7 @@ export default function ContactPage() {
                     <p className="mt-2 text-slate-600">Konya, Türkiye</p>
                   </div>
                   <Image
-                    src="/images/ui-images/gdc-address.jpg"
+                    src="/images/ui-images/gdc-address.webp"
                     height={350}
                     width={700}
                     alt="GDC factory address"

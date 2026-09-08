@@ -13,7 +13,7 @@ export function Quality() {
         <div className="grid items-center gap-20 lg:grid-cols-2">
           <FadeIn>
             <Image
-              src="/images/ui-images/quality.jpg"
+              src="/images/ui-images/quality.webp"
               alt="Quality"
               width={900}
               height={700}

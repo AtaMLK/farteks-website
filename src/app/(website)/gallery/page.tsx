@@ -5,48 +5,54 @@ import { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 
 const factoryImages = [
-  ...Array.from({ length: 31 }, (_, i) => `/images/gallery/${i + 1}.jpg`),
-  "/images/gallery/factory1.jpg",
-  "/images/gallery/factory2.JPG",
-  "/images/gallery/factory3.JPG",
-  "/images/ui-images/quality.jpg",
-  "/images/ui-images/manufacturing.jpg",
+  ...Array.from({ length: 31 }, (_, i) => `/images/gallery/${i + 1}.webp`),
+  "/images/gallery/factory1.webp",
+  "/images/gallery/factory2.webp",
+  "/images/gallery/factory3.webp",
+  "/images/ui-images/quality.webp",
+  "/images/ui-images/manufacturing.webp",
 ];
 
 const exhibitionImages = [
-  "/images/gallery/exhibitions/1.jpg",
-  "/images/gallery/exhibitions/10.JPG",
-  "/images/gallery/exhibitions/11.JPG",
-  "/images/gallery/exhibitions/12.JPG",
-  "/images/gallery/exhibitions/13.JPG",
-  "/images/gallery/exhibitions/14.jpg",
-  "/images/gallery/exhibitions/16.JPG",
-  "/images/gallery/exhibitions/17.JPG",
-  "/images/gallery/exhibitions/18.jpg",
-  "/images/gallery/exhibitions/19.JPG",
-  "/images/gallery/exhibitions/2.jpg",
-  "/images/gallery/exhibitions/20.JPG",
-  "/images/gallery/exhibitions/21.JPG",
-  "/images/gallery/exhibitions/22.jpg",
-  "/images/gallery/exhibitions/23.jpg",
-  "/images/gallery/exhibitions/24.jpg",
-  "/images/gallery/exhibitions/25.JPG",
-  "/images/gallery/exhibitions/26.JPG",
-  "/images/gallery/exhibitions/27.JPG",
-  "/images/gallery/exhibitions/4.jpg",
-  "/images/gallery/exhibitions/5.jpg",
-  "/images/gallery/exhibitions/6.JPG",
-  "/images/gallery/exhibitions/7.JPG",
-  "/images/gallery/exhibitions/8.JPG",
-  "/images/gallery/exhibitions/9.JPG",
-  "/images/gallery/exhibitions/30.JPG",
-  "/images/gallery/exhibitions/28.JPG",
-  "/images/gallery/exhibitions/29.JPG",
+  "/images/gallery/exhibitions/1.webp",
+  "/images/gallery/exhibitions/10.webp",
+  "/images/gallery/exhibitions/11.webp",
+  "/images/gallery/exhibitions/12.webp",
+  "/images/gallery/exhibitions/13.webp",
+  "/images/gallery/exhibitions/14.webp",
+  "/images/gallery/exhibitions/16.webp",
+  "/images/gallery/exhibitions/17.webp",
+  "/images/gallery/exhibitions/18.webp",
+  "/images/gallery/exhibitions/19.webp",
+  "/images/gallery/exhibitions/2.webp",
+  "/images/gallery/exhibitions/20.webp",
+  "/images/gallery/exhibitions/21.webp",
+  "/images/gallery/exhibitions/22.webp",
+  "/images/gallery/exhibitions/23.webp",
+  "/images/gallery/exhibitions/24.webp",
+  "/images/gallery/exhibitions/25.webp",
+  "/images/gallery/exhibitions/26.webp",
+  "/images/gallery/exhibitions/27.webp",
+  "/images/gallery/exhibitions/4.webp",
+  "/images/gallery/exhibitions/5.webp",
+  "/images/gallery/exhibitions/6.webp",
+  "/images/gallery/exhibitions/7.webp",
+  "/images/gallery/exhibitions/8.webp",
+  "/images/gallery/exhibitions/9.webp",
+  "/images/gallery/exhibitions/30.webp",
+  "/images/gallery/exhibitions/28.webp",
+  "/images/gallery/exhibitions/29.webp",
 ];
 
 const allImages = [...factoryImages, ...exhibitionImages];
 
-function GalleryGrid({ images, onOpen }: { images: string[]; onOpen: (src: string) => void }) {
+function GalleryGrid({
+  images,
+  onOpen,
+}: {
+  images: string[];
+  onOpen: (src: string) => void;
+}) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {images.map((src, index) => (
@@ -76,19 +82,30 @@ function GalleryGrid({ images, onOpen }: { images: string[]; onOpen: (src: strin
 
 export default function GalleryPage() {
   const [active, setActive] = useState<string | null>(null);
-  const activeIndex = useMemo(() => (active ? allImages.indexOf(active) : -1), [active]);
+  const activeIndex = useMemo(
+    () => (active ? allImages.indexOf(active) : -1),
+    [active],
+  );
 
   const openAt = (index: number) => setActive(allImages[index] ?? null);
   const next = () => openAt((activeIndex + 1) % allImages.length);
-  const previous = () => openAt((activeIndex - 1 + allImages.length) % allImages.length);
+  const previous = () =>
+    openAt((activeIndex - 1 + allImages.length) % allImages.length);
 
   return (
     <main className="min-h-screen bg-slate-50 px-4 pb-20 pt-28 sm:px-6 lg:px-10">
       <div className="mx-auto max-w-[1600px]">
         <div className="mb-10 max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#E5322D]">Farteks / Gallery</p>
-          <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">Factory & Exhibition Gallery</h1>
-          <p className="mt-4 text-base leading-7 text-slate-500">A visual overview of our manufacturing environment, equipment and exhibition presence.</p>
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#E5322D]">
+            Farteks / Gallery
+          </p>
+          <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-900 sm:text-5xl">
+            Factory & Exhibition Gallery
+          </h1>
+          <p className="mt-4 text-base leading-7 text-slate-500">
+            A visual overview of our manufacturing environment, equipment and
+            exhibition presence.
+          </p>
         </div>
 
         <section>
@@ -97,7 +114,9 @@ export default function GalleryPage() {
         </section>
 
         <section className="mt-16">
-          <h2 className="mb-5 text-2xl font-bold text-slate-900">Exhibitions</h2>
+          <h2 className="mb-5 text-2xl font-bold text-slate-900">
+            Exhibitions
+          </h2>
           <GalleryGrid images={exhibitionImages} onOpen={setActive} />
         </section>
       </div>
@@ -109,17 +128,41 @@ export default function GalleryPage() {
           aria-modal="true"
           onClick={() => setActive(null)}
         >
-          <button type="button" onClick={() => setActive(null)} className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-3 text-white backdrop-blur hover:bg-white/20" aria-label="Close preview">
+          <button
+            type="button"
+            onClick={() => setActive(null)}
+            className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-3 text-white backdrop-blur hover:bg-white/20"
+            aria-label="Close preview"
+          >
             <X className="h-6 w-6" />
           </button>
-          <button type="button" onClick={(e) => { e.stopPropagation(); previous(); }} className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur hover:bg-white/20" aria-label="Previous image">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              previous();
+            }}
+            className="absolute left-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur hover:bg-white/20"
+            aria-label="Previous image"
+          >
             <ChevronLeft className="h-7 w-7" />
           </button>
-          <button type="button" onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur hover:bg-white/20" aria-label="Next image">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
+            className="absolute right-3 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-3 text-white backdrop-blur hover:bg-white/20"
+            aria-label="Next image"
+          >
             <ChevronRight className="h-7 w-7" />
           </button>
 
-          <div className="relative h-[90vh] w-full max-w-[1500px]" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="relative h-[90vh] w-full max-w-[1500px]"
+            onClick={(e) => e.stopPropagation()}
+          >
             <Image
               src={active}
               alt="Farteks gallery preview"

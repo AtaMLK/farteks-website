@@ -12,11 +12,6 @@ const compat = new FlatCompat({
 export default [
   ...compat.extends("next/core-web-vitals"),
   {
-    ignores: [
-      ".next/**",
-      "out/**",
-      "build/**",
-      "next-env.d.ts",
-    ],
+    ignores: [".next/**", "out/**", "build/**", "next-env.d.ts"],
   },
 ];

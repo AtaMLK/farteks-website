@@ -14,7 +14,7 @@ export function FooterCTA() {
             </p>
 
             <WordAnimation className="mt-6 max-w-4xl site-section-title text-white block">
-              Let's Build Your Next Hydraulic Solution Together
+              Let&apos;s Build Your Next Hydraulic Solution Together
             </WordAnimation>
 
             <p className="mt-8 max-w-2xl text-lg text-slate-300">

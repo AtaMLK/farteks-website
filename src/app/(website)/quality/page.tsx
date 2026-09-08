@@ -90,9 +90,9 @@ export default function QualityPage() {
         title="Quality Assurance"
         description="Quality is not just a process at FARTEKS - it's a commitment. Every component is manufactured and tested to exceed OEM standards and customer expectations."
         introImages={[
-          "/images/gallery/4.jpg",
-          "/images/gallery/17.jpg",
-          "/images/gallery/10.jpg",
+          "/images/gallery/4.webp",
+          "/images/gallery/17.webp",
+          "/images/gallery/10.webp",
         ]}
       />
 

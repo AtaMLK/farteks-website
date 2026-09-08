@@ -26,9 +26,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "Cast iron glands with multiple size variants",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/gland-cast-iron.png",
-    singleImage: "/images/products/gland-cast-iron-single.png",
-    drawingImage: "/images/drawings/gland-cast-iron-drawing.png",
+    image: "/images/products/gland-cast-iron.webp",
+    singleImage: "/images/products/gland-cast-iron-single.webp",
+    drawingImage: "/images/drawings/gland-cast-iron-drawing.webp",
     specColumns: ["CODE", "D", "D1", "D2", "L", "L1", "THREAD", "kg"],
 
     specs: [
@@ -1708,9 +1708,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "Steel glands SAE 1040/1050 with full specifications",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/gland-steel.png",
-    singleImage: "/images/products/gland-steel-single.png",
-    drawingImage: "/images/drawings/gland-steel-drawing.png",
+    image: "/images/products/gland-steel.webp",
+    singleImage: "/images/products/gland-steel-single.webp",
+    drawingImage: "/images/drawings/gland-steel-drawing.webp",
 
     specColumns: ["CODE", "D", "D1", "D2", "L", "L1", "THREAD", "kg"],
 
@@ -2885,9 +2885,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "Standard pistons with multiple size combinations",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/piston.png",
-    singleImage: "/images/products/piston-single.png",
-    drawingImage: "/images/drawings/piston-drawing.png",
+    image: "/images/products/piston.webp",
+    singleImage: "/images/products/piston-single.webp",
+    drawingImage: "/images/drawings/piston-drawing.webp",
     specColumns: ["CODE", "D", "D1", "L", "kg"],
 
     specs: [
@@ -2937,9 +2937,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "Pistons with threaded connections",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/piston-with-thread.png",
-    singleImage: "/images/products/piston-with-thread-single.png",
-    drawingImage: "/images/drawings/piston-with-thread-drawing.png",
+    image: "/images/products/piston-with-thread.webp",
+    singleImage: "/images/products/piston-with-thread-single.webp",
+    drawingImage: "/images/drawings/piston-with-thread-drawing.webp",
     specColumns: ["CODE", "D", "D1", "L", "L1", "THREAD", "kg"],
 
     specs: [
@@ -3205,9 +3205,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "Pistons featuring integrated guide rings",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/piston-with-guide-ring.png",
-    singleImage: "/images/products/piston-with-guide-ring-single.png",
-    drawingImage: "/images/drawings/piston-with-guide-ring-drawing.png",
+    image: "/images/products/piston-with-guide-ring.webp",
+    singleImage: "/images/products/piston-with-guide-ring-single.webp",
+    drawingImage: "/images/drawings/piston-with-guide-ring-drawing.webp",
     specColumns: ["CODE", "D", "D1", "L", "L1", "THREAD", "kg"],
 
     specs: [
@@ -3392,9 +3392,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.2",
     description: "New standard cast iron glands STD.2 series",
     groupName: "Standard 2 Component",
-    image: "/images/products/gland-cast-iron-std2-new.png",
-    singleImage: "/images/products/gland-cast-iron-std2-new-single.png",
-    drawingImage: "/images/drawings/gland-cast-iron-std2-new-drawings.png",
+    image: "/images/products/gland-cast-iron-std2-new.webp",
+    singleImage: "/images/products/gland-cast-iron-std2-new-single.webp",
+    drawingImage: "/images/drawings/gland-cast-iron-std2-new-drawings.webp",
     specColumns: ["CODE", "D1", "D2", "D", "M", "L", "kg"],
 
     specs: [
@@ -4032,9 +4032,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.2",
     description: "New standard steel pistons STD.2 series",
     groupName: "Standard 2 Component",
-    image: "/images/products/piston-steel-std2-new.png",
-    singleImage: "/images/products/piston-steel-std2-new-single.png",
-    drawingImage: "/images/drawings/piston-steel-std2-new-drawing.png",
+    image: "/images/products/piston-steel-std2-new.webp",
+    singleImage: "/images/products/piston-steel-std2-new-single.webp",
+    drawingImage: "/images/drawings/piston-steel-std2-new-drawing.webp",
     specColumns: ["CODE", "D", "D1", "L", "kg"],
 
     specs: [
@@ -4258,11 +4258,11 @@ export const PRODUCTS: Product[] = [
     category: "STD.2",
     description: "Steel pistons with threads STD.2 series",
     groupName: "Standard 2 Component",
-    image: "/images/products/piston-with-thread-steel-std2-new.png",
+    image: "/images/products/piston-with-thread-steel-std2-new.webp",
     singleImage:
-      "/images/products/piston-with-thread-steel-std2-new-single.png",
+      "/images/products/piston-with-thread-steel-std2-new-single.webp",
     drawingImage:
-      "/images/drawings/piston-with-thread-steel-std2-new-drawing.png",
+      "/images/drawings/piston-with-thread-steel-std2-new-drawing.webp",
     specColumns: ["CODE", "D", "M", "L1", "L", "D1", "kg"],
     specs: [
       {
@@ -4337,9 +4337,9 @@ export const PRODUCTS: Product[] = [
     category: "MC",
     description: "Specialized rod glands for mobile cranes",
     groupName: "mobile crane components",
-    image: "/images/products/mobile-crane-rod-gland.png",
-    singleImage: "/images/products/mobile-crane-rod-gland-single.png",
-    drawingImage: "/images/drawings/mobile-crane-rod-gland-drawing.png",
+    image: "/images/products/mobile-crane-rod-gland.webp",
+    singleImage: "/images/products/mobile-crane-rod-gland-single.webp",
+    drawingImage: "/images/drawings/mobile-crane-rod-gland-drawing.webp",
     specColumns: ["CODE", "D", "D1", "D2", "L1", "L2", "kg"],
 
     specs: [
@@ -4938,9 +4938,9 @@ export const PRODUCTS: Product[] = [
     category: "MC",
     description: "Large series rod glands for mobile cranes",
     groupName: "mobile crane components",
-    image: "/images/products/mobile-crane-rod-gland-large.png",
-    singleImage: "/images/products/mobile-crane-rod-gland-large-single.png",
-    drawingImage: "/images/drawings/mobile-crane-rod-gland-large-drawing.png",
+    image: "/images/products/mobile-crane-rod-gland-large.webp",
+    singleImage: "/images/products/mobile-crane-rod-gland-large-single.webp",
+    drawingImage: "/images/drawings/mobile-crane-rod-gland-large-drawing.webp",
     specColumns: ["CODE", "D", "D1", "D2", "L", "L1", "kg"],
 
     specs: [
@@ -5143,9 +5143,9 @@ export const PRODUCTS: Product[] = [
     category: "MC",
     description: "Specialized pistons for mobile crane applications",
     groupName: "mobile crane components",
-    image: "/images/products/mobile-crane-piston.png",
-    singleImage: "/images/products/mobile-crane-piston-single.png",
-    drawingImage: "/images/drawings/mobile-crane-piston-drawing.png",
+    image: "/images/products/mobile-crane-piston.webp",
+    singleImage: "/images/products/mobile-crane-piston-single.webp",
+    drawingImage: "/images/drawings/mobile-crane-piston-drawing.webp",
     specColumns: ["CODE", "D1", "D3", "D4", "D5", "L1", "L2", "kg"],
     specs: [
       {
@@ -5277,9 +5277,9 @@ export const PRODUCTS: Product[] = [
     category: "MC",
     description: "Rod nuts for mobile crane assemblies",
     groupName: "mobile crane components",
-    image: "/images/products/mobile-crane-rod-nut.png",
-    singleImage: "/images/products/mobile-crane-rod-nut-single.png",
-    drawingImage: "/images/drawings/mobile-crane-rod-nut-drawing.png",
+    image: "/images/products/mobile-crane-rod-nut.webp",
+    singleImage: "/images/products/mobile-crane-rod-nut-single.webp",
+    drawingImage: "/images/drawings/mobile-crane-rod-nut-drawing.webp",
     specColumns: ["CODE", "M", "L", "L1", "D", "D1", "kg"],
     specs: [
       {
@@ -5417,9 +5417,9 @@ export const PRODUCTS: Product[] = [
     category: "MC",
     description: "Internal nuts for mobile crane components",
     groupName: "mobile crane components",
-    image: "/images/products/mobile-crane-nut.png",
-    singleImage: "/images/products/mobile-crane-nut-single.png",
-    drawingImage: "/images/drawings/mobile-crane-nut-drawing.png",
+    image: "/images/products/mobile-crane-nut.webp",
+    singleImage: "/images/products/mobile-crane-nut-single.webp",
+    drawingImage: "/images/drawings/mobile-crane-nut-drawing.webp",
     specColumns: ["CODE", "M", "L", "D", "kg"],
     specs: [
       {
@@ -5473,9 +5473,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "End plugs with integrated oil holes",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/end-plug-with-oil-hole.png",
-    singleImage: "/images/products/end-plug-with-oil-hole-single.png",
-    drawingImage: "/images/drawings/end-plug-with-oil-hole-drawing.png",
+    image: "/images/products/end-plug-with-oil-hole.webp",
+    singleImage: "/images/products/end-plug-with-oil-hole-single.webp",
+    drawingImage: "/images/drawings/end-plug-with-oil-hole-drawing.webp",
     specColumns: ["CODE", "D", "D1", "D2", "L", "L1", "M", "kg"],
     specs: [
       {
@@ -5647,9 +5647,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "Standard end plugs for cylinders",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/end-plug.png",
-    singleImage: "/images/products/end-plug-single.png",
-    drawingImage: "/images/drawings/end-plug-drawing.png",
+    image: "/images/products/end-plug.webp",
+    singleImage: "/images/products/end-plug-single.webp",
+    drawingImage: "/images/drawings/end-plug-drawing.webp",
     specColumns: ["CODE", "L", "L1", "L2", "D", "D1", "kg"],
 
     specs: [
@@ -5962,11 +5962,11 @@ export const PRODUCTS: Product[] = [
     description:
       "Steel single-acting cylinder pistons manufactured from SAE 1040 / SAE 1050 steel according to the catalog dimensions.",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/steel-single-acting-cylinder-piston.png",
+    image: "/images/products/steel-single-acting-cylinder-piston.webp",
     singleImage:
-      "/images/products/steel-single-acting-cylinder-piston-single.png",
+      "/images/products/steel-single-acting-cylinder-piston-single.webp",
     drawingImage:
-      "/images/drawings/steel-single-acting-cylinder-piston-single-drawing.png",
+      "/images/drawings/steel-single-acting-cylinder-piston-single-drawing.webp",
     specColumns: [
       "CODE",
       "WIPER",
@@ -6078,11 +6078,11 @@ export const PRODUCTS: Product[] = [
     description:
       "Steel double-acting cylinder pistons with nutring configuration manufactured from SAE 1040 / SAE 1050 steel according to the catalog dimensions.",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/steel-with-nutring-cylinder-piston.png",
+    image: "/images/products/steel-with-nutring-cylinder-piston.webp",
     singleImage:
-      "/images/products/steel-with-nutring-cylinder-piston-single.png",
+      "/images/products/steel-with-nutring-cylinder-piston-single.webp",
     drawingImage:
-      "/images/drawings/steel-with-nutring-cylinder-piston-drawing.png",
+      "/images/drawings/steel-with-nutring-cylinder-piston-drawing.webp",
     specColumns: [
       "CODE",
       "NUTRING",
@@ -6192,9 +6192,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "BSP thread weldable ports",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/bsp-weldable-port.png",
-    singleImage: "/images/products/bsp-weldable-port-single.png",
-    drawingImage: "/images/drawings/bsp-weldable-port-drawing.png",
+    image: "/images/products/bsp-weldable-port.webp",
+    singleImage: "/images/products/bsp-weldable-port-single.webp",
+    drawingImage: "/images/drawings/bsp-weldable-port-drawing.webp",
 
     specColumns: ["CODE", "THREAD", "L", "BD", "kg"],
 
@@ -6243,9 +6243,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "UNF thread weldable nipples",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/unf-weldable-nipple.png",
-    singleImage: "/images/products/unf-weldable-nipple-single.png",
-    drawingImage: "/images/drawings/unf-weldable-nipple-drawing.png",
+    image: "/images/products/unf-weldable-nipple.webp",
+    singleImage: "/images/products/unf-weldable-nipple-single.webp",
+    drawingImage: "/images/drawings/unf-weldable-nipple-drawing.webp",
 
     specColumns: ["CODE", "THREAD", "L", "BD", "kg"],
 
@@ -6308,9 +6308,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "Metric thread weldable elbows",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/weldable-metric-elbow.png",
-    singleImage: "/images/products/weldable-metric-elbow-single.png",
-    drawingImage: "/images/drawings/weldable-metric-elbow-drawing.png",
+    image: "/images/products/weldable-metric-elbow.webp",
+    singleImage: "/images/products/weldable-metric-elbow-single.webp",
+    drawingImage: "/images/drawings/weldable-metric-elbow-drawing.webp",
 
     specColumns: ["CODE", "M", "B", "C", "BD", "AA", "kg"],
 
@@ -6360,9 +6360,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "Metric thread weldable nipples",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/weldable-metric-nipple.png",
-    singleImage: "/images/products/weldable-metric-nipple-single.png",
-    drawingImage: "/images/drawings/weldable-metric-nipple-drawing.png",
+    image: "/images/products/weldable-metric-nipple.webp",
+    singleImage: "/images/products/weldable-metric-nipple-single.webp",
+    drawingImage: "/images/drawings/weldable-metric-nipple-drawing.webp",
     specColumns: ["CODE", "THREAD", "L", "BD", "BD1", "kg"],
     specs: [
       {
@@ -6422,9 +6422,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.1",
     description: "Metric thread weldable ports",
     groupName: "Standard Components (STD.1)",
-    image: "/images/products/metric-weldable-port.png",
-    singleImage: "/images/products/metric-weldable-port-single.png",
-    drawingImage: "/images/drawings/metric-weldable-port-drawing.png",
+    image: "/images/products/metric-weldable-port.webp",
+    singleImage: "/images/products/metric-weldable-port-single.webp",
+    drawingImage: "/images/drawings/metric-weldable-port-drawing.webp",
 
     specColumns: ["CODE", "THREAD", "L", "BD", "kg"],
 
@@ -6480,9 +6480,9 @@ export const PRODUCTS: Product[] = [
     category: "RE",
     description: "Standard rod ends with ball joints",
     groupName: "rod end",
-    image: "/images/products/rod-end-single.png",
-    singleImage: "/images/products/rod-end-single.png",
-    drawingImage: "/images/drawings/rod-end-drawing.png",
+    image: "/images/products/rod-end-single.webp",
+    singleImage: "/images/products/rod-end-single.webp",
+    drawingImage: "/images/drawings/rod-end-drawing.webp",
     specColumns: ["CODE", "D", "I", "S", "LF", "D1", "L", "THREAD", "kg"],
     specs: [
       {
@@ -6615,9 +6615,9 @@ export const PRODUCTS: Product[] = [
     category: "RE",
     description: "Weldable rod ends for direct attachment",
     groupName: "Advanced Components (STD.1)",
-    image: "/images/products/weldable-rod-end-single.png",
-    singleImage: "/images/products/weldable-rod-end-single.png",
-    drawingImage: "/images/drawings/weldable-rod-end-drawing.png",
+    image: "/images/products/weldable-rod-end-single.webp",
+    singleImage: "/images/products/weldable-rod-end-single.webp",
+    drawingImage: "/images/drawings/weldable-rod-end-drawing.webp",
     specColumns: ["CODE", "d", "s", "i", "D1", "D2", "L", "a", "kg"],
 
     specs: [
@@ -6762,9 +6762,9 @@ export const PRODUCTS: Product[] = [
     category: "RE",
     description: "Secondary design rod ends",
     groupName: "Advanced Components (STD.1)",
-    image: "/images/products/rodend-secondary-single.png",
-    singleImage: "/images/products/rodend-secondary-single.png",
-    drawingImage: "/images/drawings/rodend-secondary-drawing.png",
+    image: "/images/products/rodend-secondary-single.webp",
+    singleImage: "/images/products/rodend-secondary-single.webp",
+    drawingImage: "/images/drawings/rodend-secondary-drawing.webp",
     specColumns: ["CODE", "D", "I", "S", "D1", "D2", "L", "L1", "kg"],
     specs: [
       {
@@ -6886,9 +6886,9 @@ export const PRODUCTS: Product[] = [
     category: "ISO",
     description: "ISO Cetop standard front heads",
     groupName: "ISO Cylinder",
-    image: "/images/products/iso-cetop-front-head.png",
-    singleImage: "/images/products/iso-cetop-front-head-single.png",
-    drawingImage: "/images/drawings/iso-cetop-front-head-drawing.png",
+    image: "/images/products/iso-cetop-front-head.webp",
+    singleImage: "/images/products/iso-cetop-front-head-single.webp",
+    drawingImage: "/images/drawings/iso-cetop-front-head-drawing.webp",
 
     specColumns: ["CODE", "D", "d", "d1", "d2", "d3", "L", "L1", "L2", "L3"],
 
@@ -7207,9 +7207,9 @@ export const PRODUCTS: Product[] = [
     category: "ISO",
     description: "ISO Cetop standard end heads",
     groupName: "ISO Cylinder",
-    image: "/images/products/iso-cetop-end-head.png",
-    singleImage: "/images/products/iso-cetop-end-head-single.png",
-    drawingImage: "/images/drawings/iso-cetop-end-head-drawing.png",
+    image: "/images/products/iso-cetop-end-head.webp",
+    singleImage: "/images/products/iso-cetop-end-head-single.webp",
+    drawingImage: "/images/drawings/iso-cetop-end-head-drawing.webp",
     specColumns: ["CODE", "D", "d", "d1", "d2", "R", "L", "L1", "L2", "kg"],
     specs: [
       {
@@ -7293,9 +7293,9 @@ export const PRODUCTS: Product[] = [
     category: "ISO",
     description: "ISO Cetop mounting nuts",
     groupName: "ISO Cylinder",
-    image: "/images/products/iso-cetop-nut.png",
-    singleImage: "/images/products/iso-cetop-nut-single.png",
-    drawingImage: "/images/drawings/iso-cetop-nut-drawing.png",
+    image: "/images/products/iso-cetop-nut.webp",
+    singleImage: "/images/products/iso-cetop-nut-single.webp",
+    drawingImage: "/images/drawings/iso-cetop-nut-drawing.webp",
     specColumns: ["CODE", "D", "S", "M", "d", "d1"],
     specs: [
       {
@@ -7355,9 +7355,9 @@ export const PRODUCTS: Product[] = [
     category: "ISO",
     description: "Flanges for cylinder mounting",
     groupName: "ISO Cylinder",
-    image: "/images/products/flange.png",
-    singleImage: "/images/products/flange-single.png",
-    drawingImage: "/images/drawings/flange-drawing.png",
+    image: "/images/products/flange.webp",
+    singleImage: "/images/products/flange-single.webp",
+    drawingImage: "/images/drawings/flange-drawing.webp",
     specColumns: ["CODE", "D", "S", "d", "d1", "d2", "d3", "d4"],
     specs: [
       {
@@ -7429,10 +7429,11 @@ export const PRODUCTS: Product[] = [
     category: "ISO",
     description: "Bush type end plugs with oil passages",
     groupName: "ISO Cylinder",
-    image: "/images/products/end-plug-with-oil-hole-bush-type.png",
-    singleImage: "/images/products/end-plug-with-oil-hole-bush-type-single.png",
+    image: "/images/products/end-plug-with-oil-hole-bush-type.webp",
+    singleImage:
+      "/images/products/end-plug-with-oil-hole-bush-type-single.webp",
     drawingImage:
-      "/images/drawings/end-plug-with-oil-hole-bush-type-drawing.png",
+      "/images/drawings/end-plug-with-oil-hole-bush-type-drawing.webp",
     specColumns: ["CODE", "D", "d", "d1", "d2", "L1", "L2", "L3", "R", "S"],
     specs: [
       {
@@ -7517,11 +7518,11 @@ export const PRODUCTS: Product[] = [
     description: "Weldable end plugs with spherical bearings",
     groupName: "ISO Cylinder",
     image:
-      "/images/products/weldable-with-oil-hole-end-plug-spherical-bearing.png",
+      "/images/products/weldable-with-oil-hole-end-plug-spherical-bearing.webp",
     singleImage:
-      "/images/products/weldable-with-oil-hole-end-plug-spherical-bearing-single.png",
+      "/images/products/weldable-with-oil-hole-end-plug-spherical-bearing-single.webp",
     drawingImage:
-      "/images/drawings/weldable-with-oil-hole-end-plug-spherical-bearing-drawing.png",
+      "/images/drawings/weldable-with-oil-hole-end-plug-spherical-bearing-drawing.webp",
 
     specColumns: [
       "CODE",
@@ -7625,9 +7626,9 @@ export const PRODUCTS: Product[] = [
     category: "ISO",
     description: "Weldable fork clevis connections",
     groupName: "ISO Cylinder",
-    image: "/images/products/fork.png",
-    singleImage: "/images/products/fork-single.png",
-    drawingImage: "/images/drawings/weldable-forks-drawing.png",
+    image: "/images/products/fork.webp",
+    singleImage: "/images/products/fork-single.webp",
+    drawingImage: "/images/drawings/weldable-forks-drawing.webp",
     specColumns: ["CODE", "L", "L1", "L2", "A", "d", "S", "CM"],
     specs: [
       {
@@ -7689,9 +7690,9 @@ export const PRODUCTS: Product[] = [
     category: "ISO",
     description: "Threaded fork clevis connections",
     groupName: "ISO Cylinder",
-    image: "/images/products/threaded-forks.png",
-    singleImage: "/images/products/threaded-forks-single.png",
-    drawingImage: "/images/drawings/threaded-forks-drawing.png",
+    image: "/images/products/threaded-forks.webp",
+    singleImage: "/images/products/threaded-forks-single.webp",
+    drawingImage: "/images/drawings/threaded-forks-drawing.webp",
     specColumns: ["CODE", "L", "L1", "L2", "A", "d", "S", "CM", "F"],
     specs: [
       {
@@ -7758,9 +7759,9 @@ export const PRODUCTS: Product[] = [
     category: "STD.2",
     description: "Standard spherical bearings for rod ends",
     groupName: "ISO Cylinder",
-    image: "/images/products/bearing.png",
-    singleImage: "/images/products/bearing-single.png",
-    drawingImage: "/images/drawings/bearing-drawing.png",
+    image: "/images/products/bearing.webp",
+    singleImage: "/images/products/bearing-single.webp",
+    drawingImage: "/images/drawings/bearing-drawing.webp",
     specColumns: ["CODE", "d", "D", "B", "C", "d1", "Weight (kg)"],
     specs: [
       {
@@ -7826,9 +7827,9 @@ export const PRODUCTS: Product[] = [
     category: "ISO",
     description: "Bronze bushings for rod ends",
     groupName: "ISO Cylinder",
-    image: "/images/products/bushing.png",
-    singleImage: "/images/products/bushing-single.png",
-    drawingImage: "/images/drawings/bushing-drawing.png",
+    image: "/images/products/bushing.webp",
+    singleImage: "/images/products/bushing-single.webp",
+    drawingImage: "/images/drawings/bushing-drawing.webp",
     specColumns: ["CODE", "D", "d", "L"],
     specs: [
       { CODE: "BY.B.2020", D: "23", d: "20", L: "20" },
@@ -7846,9 +7847,9 @@ export const PRODUCTS: Product[] = [
     category: "ISO",
     description: "Copper washers for hydraulic systems",
     groupName: "ISO Cylinder",
-    image: "/images/products/copper-washer.png",
-    singleImage: "/images/products/copper-washer-single.png",
-    drawingImage: "/images/drawings/copper-washer-drawing.png",
+    image: "/images/products/copper-washer.webp",
+    singleImage: "/images/products/copper-washer-single.webp",
+    drawingImage: "/images/drawings/copper-washer-drawing.webp",
     specColumns: ["CODE", "D", "d", "S"],
     specs: [
       { CODE: "BY.CW-1.2", D: "26.7", d: "21.2", S: "1.5" },
@@ -7865,9 +7866,9 @@ export const PRODUCTS: Product[] = [
     description:
       "Hydraulic pump drums and Cavi ve Square injection drum components for hydraulic power units.",
     groupName: "Hydraulic Power Unit Components",
-    image: "/images/products/pumpdrum.png",
-    singleImage: "/images/products/pumpdrum-single.png",
-    drawingImage: "/images/drawings/hydraulic-pump-drums-drawing.png",
+    image: "/images/products/pumpdrum.webp",
+    singleImage: "/images/products/pumpdrum-single.webp",
+    drawingImage: "/images/drawings/hydraulic-pump-drums-drawing.webp",
     specColumns: [
       "TYPE",
       "DIMENSIONS",
@@ -8196,9 +8197,9 @@ export const PRODUCTS: Product[] = [
     description:
       "Elastic gear coupling components including machined, full and processed coupling configurations shown in the GDC catalog.",
     groupName: "Hydraulic Power Unit Components",
-    image: "/images/products/elastic-gear-couplings.png",
-    singleImage: "/images/products/elastic-gear-couplings-single.png",
-    drawingImage: "/images/drawings/elastic-gear-couplings-drawing.png",
+    image: "/images/products/elastic-gear-couplings.webp",
+    singleImage: "/images/products/elastic-gear-couplings-single.webp",
+    drawingImage: "/images/drawings/elastic-gear-couplings-drawing.webp",
     specColumns: [
       "TYPE",
       "CODE",
@@ -8901,9 +8902,9 @@ export const PRODUCTS: Product[] = [
     description:
       "Elbow pump adapters made from GGG50 material for hydraulic power unit connections.",
     groupName: "Hydraulic Power Unit Components",
-    image: "/images/products/elbow-pump-adapters.png",
-    singleImage: "/images/products/elbow-pump-adapters-single.png",
-    drawingImage: "/images/drawings/elbow-pump-adapters-drawing.png",
+    image: "/images/products/elbow-pump-adapters.webp",
+    singleImage: "/images/products/elbow-pump-adapters-single.webp",
+    drawingImage: "/images/drawings/elbow-pump-adapters-drawing.webp",
     specColumns: ["CODE", "HOLE CENTER", "MEASUREMENT"],
     specs: [
       {
@@ -8955,9 +8956,9 @@ export const PRODUCTS: Product[] = [
     category: "UNI",
     description: "Flat pump adapters for hydraulic power unit connections.",
     groupName: "Hydraulic Power Unit Components",
-    image: "/images/products/flat-pump-adapters.png",
-    singleImage: "/images/products/flat-pump-adapters-single.png",
-    drawingImage: "/images/drawings/flat-pump-adapters-drawing.png",
+    image: "/images/products/flat-pump-adapters.webp",
+    singleImage: "/images/products/flat-pump-adapters-single.webp",
+    drawingImage: "/images/drawings/flat-pump-adapters-drawing.webp",
     specColumns: ["CODE", "HOLE CENTER", "MEASUREMENT"],
     specs: [
       {
@@ -8994,9 +8995,9 @@ export const PRODUCTS: Product[] = [
     category: "TRU",
     description: "Trunnion components for cylinder mounting",
     groupName: "trunnion",
-    image: "/images/products/trunnion.png",
-    singleImage: "/images/products/trunnion-single.png",
-    drawingImage: "/images/drawings/trunnion-drawing.png",
+    image: "/images/products/trunnion.webp",
+    singleImage: "/images/products/trunnion-single.webp",
+    drawingImage: "/images/drawings/trunnion-drawing.webp",
 
     specColumns: ["CODE", "A", "B", "C", "D", "E", "H", "kg"],
 
@@ -9141,9 +9142,9 @@ export const PRODUCTS: Product[] = [
     description:
       "Seamless / weldless hydraulic oil tanks in capacities from 6 to 250 liters.",
     groupName: "Hydraulic Power Unit Components",
-    image: "/images/products/tank.png",
-    singleImage: "/images/products/tank-single.png",
-    drawingImage: "/images/drawings/hydraulic-oil-tanks-drawing.png",
+    image: "/images/products/tank.webp",
+    singleImage: "/images/products/tank-single.webp",
+    drawingImage: "/images/drawings/hydraulic-oil-tanks-drawing.webp",
     specColumns: [
       "CODE",
       "EXPLANATION",
