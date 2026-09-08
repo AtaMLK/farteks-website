@@ -10,7 +10,7 @@ export function CompanyFilm() {
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   return (
-    <div className="relative overflow-hidden rounded-[22px] bg-black sm:rounded-[29px]">
+    <div className="relative aspect-video overflow-hidden rounded-[22px] bg-black sm:rounded-[29px]">
       {!videoLoaded ? (
         <button
           type="button"
@@ -43,7 +43,7 @@ export function CompanyFilm() {
         </button>
       ) : (
         <iframe
-          className="aspect-video w-full border-0"
+          className="h-full w-full border-0"
           src={VIDEO_URL}
           title="Farteks company introduction video"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
