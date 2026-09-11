@@ -64,6 +64,11 @@ export default function ProductDetailClient({
 
   const displayDescription = getProductDisplayDescription(product);
   const availableMaterials = getAvailableMaterials(product);
+  const isForgedRodEnd = new Set([
+    "rod-end",
+    "weldable-rod-end",
+    "rod-end-secondary",
+  ]).has(product.id);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-slate-50">
@@ -213,7 +218,9 @@ export default function ProductDetailClient({
                   ))}
                 </div>
                 <div className="mt-4 inline-flex items-center rounded-full border border-[#392B87]/15 bg-[#392B87]/5 px-3 py-1.5 text-xs font-bold text-[#392B87]">
-                  Production by drawing is available
+                  {isForgedRodEnd
+                    ? "Custom-made forging according to your drawing"
+                    : "Production by drawing is available"}
                 </div>
               </div>
             </div>
