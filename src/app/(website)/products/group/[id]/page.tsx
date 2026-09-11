@@ -26,18 +26,6 @@ import {
 
 import { PageIntro } from '@/components/ui/PageIntro';
 
-const FORGED_ROD_END_IDS = new Set([
-  'rod-end',
-  'weldable-rod-end',
-  'rod-end-secondary',
-]);
-
-function getSubgroupProductName(product: { id: string; name: string }) {
-  return FORGED_ROD_END_IDS.has(product.id)
-    ? `Forged ${product.name}`
-    : getProductDisplayName(product as Parameters<typeof getProductDisplayName>[0]);
-}
-
 export default function ProductGroupDetailPage() {
   const params = useParams();
 
@@ -78,16 +66,18 @@ export default function ProductGroupDetailPage() {
     group.products.includes(p.id)
   );
 
+  const groupTitle = group.id === 'rod-end' ? 'Forged Rod End' : group.name;
+
   return (
     <div className="min-h-screen bg-white pb-12">
       <PageIntro
         eyebrow={`Farteks / product group / ${group.order}`}
-        title={group.name}
+        title={groupTitle}
         description={group.description}
       />
 
       <div className="container max-w-7xl mx-auto px-4">
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mt-8 mb-8 flex items-center justify-between sm:mt-0">
           <Link
             href="/products"
             className="inline-flex items-center gap-2 text-slate-600 hover:text-orange-500 transition-colors font-semibold"
@@ -154,7 +144,7 @@ export default function ProductGroupDetailPage() {
               {groupProducts.map((product) => (
                 <ProductCard
                   key={product.id}
-                  title={getSubgroupProductName(product)}
+                  title={getProductDisplayName(product)}
                   description={getProductDisplayDescription(product)}
                   image={product.image}
                   href={`/products/${product.id}`}
@@ -173,7 +163,7 @@ export default function ProductGroupDetailPage() {
                 {groupProducts.map((product) => (
                   <ProductCard
                     key={product.id}
-                    title={getSubgroupProductName(product)}
+                    title={getProductDisplayName(product)}
                     description={getProductDisplayDescription(product)}
                     image={product.image}
                     href={`/products/${product.id}`}
@@ -189,7 +179,7 @@ export default function ProductGroupDetailPage() {
                 {groupProducts.map((product) => (
                   <ProductCardImageOnly
                     key={product.id}
-                    title={getSubgroupProductName(product)}
+                    title={getProductDisplayName(product)}
                     image={product.singleImage}
                     href={`/products/${product.id}`}
                     badge={product.category}
