@@ -26,7 +26,8 @@ const S355_ONLY_IDS = new Set([
   "threaded-forks",
   "hydraulic-oil-tanks",
   "trunnion",
-  "end-plug-with-oil-hole-bush-type",
+  "end-plug-with-oil-hole",
+  "end-plug",
   "weldable-with-oil-hole-end-plug-spherical-bearing",
 ]);
 

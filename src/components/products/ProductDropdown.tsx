@@ -37,34 +37,28 @@ export function ProductDropdown({ isOpen, onDownloadCatalog }: ProductDropdownPr
                 </Link>
 
                 <div className="space-y-2">
-                  {groupProducts.slice(0, 5).map((product) => (
-                    <Link key={`${group.id}-${product.id}`} href={`/products/${product.id}`} className="block truncate text-xs text-slate-600 transition-colors hover:font-semibold hover:text-orange-500">
-                      {getProductDisplayName(product)}
+                  {group.id === "custom-parts" ? (
+                    <Link href="/products/group/custom-parts" className="block truncate text-xs text-slate-600 transition-colors hover:font-semibold hover:text-orange-500">
+                      Drawing-Based Production
                     </Link>
-                  ))}
-                  {groupProducts.length > 5 && (
-                    <Link href={`/products/group/${group.id}`} className="block text-xs font-semibold text-orange-500 transition-colors hover:text-orange-600">
-                      +{groupProducts.length - 5} more →
-                    </Link>
+                  ) : (
+                    <>
+                      {groupProducts.slice(0, 5).map((product) => (
+                        <Link key={`${group.id}-${product.id}`} href={`/products/${product.id}`} className="block truncate text-xs text-slate-600 transition-colors hover:font-semibold hover:text-orange-500">
+                          {getProductDisplayName(product)}
+                        </Link>
+                      ))}
+                      {groupProducts.length > 5 && (
+                        <Link href={`/products/group/${group.id}`} className="block text-xs font-semibold text-orange-500 transition-colors hover:text-orange-600">
+                          +{groupProducts.length - 5} more →
+                        </Link>
+                      )}
+                    </>
                   )}
                 </div>
               </div>
             );
           })}
-
-          <div className="group/item min-w-0">
-            <Link href="/products/group/custom-parts" className="mb-4 flex min-w-0 items-center gap-2 border-b-2 border-slate-100 pb-2 transition-colors group-hover/item:border-orange-500">
-              <h4 className="min-w-0 flex-1 truncate text-sm font-semibold text-slate-900 transition-colors group-hover/item:text-orange-500">
-                Custom Made Hydraulic Components
-              </h4>
-              <ChevronRight size={16} className="shrink-0 text-slate-400 transition-colors group-hover/item:text-orange-500" />
-            </Link>
-            <div className="space-y-2">
-              <Link href="/products/group/custom-parts" className="block truncate text-xs text-slate-600 transition-colors hover:font-semibold hover:text-orange-500">
-                Drawing-Based Production
-              </Link>
-            </div>
-          </div>
         </div>
 
         <div className="mt-8 flex items-center justify-between border-t border-slate-200 pt-8">
