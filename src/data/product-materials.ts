@@ -22,6 +22,7 @@ const S355_ONLY_IDS = new Set([
   "rod-end",
   "weldable-rod-end",
   "rod-end-secondary",
+  "custom-forged-rod-end",
   "weldable-forks",
   "threaded-forks",
   "hydraulic-oil-tanks",
