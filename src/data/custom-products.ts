@@ -4,7 +4,7 @@ export const CUSTOM_FORGED_ROD_END: Product = {
   id: "custom-forged-rod-end",
   productCode: "",
   availableMaterials: ["S355"],
-  name: "Custom Forged Rod End",
+  name: "Custom Made Forged Rod End",
   category: "CUSTOM",
   description:
     "Custom forged rod ends manufactured according to your drawing and technical requirements.",
