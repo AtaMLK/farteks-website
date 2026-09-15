@@ -57,7 +57,7 @@ export default function CustomPartsPage() {
               <br />
               <span className="text-[#392B87]">Our production.</span>
               <br />
-              <span>Tailor-made components.</span>
+              <span className="text-[#E5322D]">Tailor-made components.</span>
             </h1>
             <div className="mt-6 max-w-3xl space-y-4 text-base leading-7 text-black/60 sm:mt-8 sm:text-lg sm:leading-8">
               <p>
