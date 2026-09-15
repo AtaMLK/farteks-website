@@ -1,11 +1,7 @@
 "use client";
 
 import { getRelatedProducts } from "@/data/products-data";
-import {
-  getAvailableMaterials,
-  getProductDisplayDescription,
-  getProductDisplayName,
-} from "@/data/product-materials";
+import { getAvailableMaterials, getProductDisplayDescription, getProductDisplayName } from "@/data/product-materials";
 import { PRODUCT_GROUPS } from "@/data/product-groups";
 
 import { useState } from "react";
@@ -13,10 +9,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowLeft } from "lucide-react";
-
 import { Container } from "@/components/layout/Container";
 import { ProductCard } from "@/components/products/ProductCard";
-
 import type { Product } from "@/data/products-data";
 
 interface ProductDetailClientProps {
@@ -26,62 +20,36 @@ interface ProductDetailClientProps {
 function normalizeDrawingImagePath(path: string): string {
   const cleanPath = path.split("?")[0];
   const extensionIndex = cleanPath.lastIndexOf(".");
-  const extension =
-    extensionIndex > -1 ? cleanPath.slice(extensionIndex) : ".webp";
-  const withoutExtension =
-    extensionIndex > -1 ? cleanPath.slice(0, extensionIndex) : cleanPath;
+  const extension = extensionIndex > -1 ? cleanPath.slice(extensionIndex) : ".webp";
+  const withoutExtension = extensionIndex > -1 ? cleanPath.slice(0, extensionIndex) : cleanPath;
 
-  if (withoutExtension.endsWith("-drawing")) {
-    return `${withoutExtension}.webp`;
-  }
-
+  if (withoutExtension.endsWith("-drawing")) return `${withoutExtension}.webp`;
   return `${withoutExtension}-drawing.webp`;
 }
 
-export default function ProductDetailClient({
-  product,
-}: ProductDetailClientProps) {
+export default function ProductDetailClient({ product }: ProductDetailClientProps) {
   const [imageTab, setImageTab] = useState<"product" | "drawing">("product");
-
+  const isCustomForgedRodEnd = product.id === "custom-forged-rod-end";
   const related = getRelatedProducts(product.id, 4);
 
-  const parentGroup = PRODUCT_GROUPS.find((group) =>
-    group.products.includes(product.id),
-  );
-  const backHref = parentGroup
-    ? `/products/group/${parentGroup.id}`
-    : "/products";
-  const backLabel = parentGroup
-    ? `Back to ${parentGroup.name}`
-    : "Back to Products";
+  const parentGroup = PRODUCT_GROUPS.find((group) => group.products.includes(product.id));
+  const backHref = parentGroup ? `/products/group/${parentGroup.id}` : "/products/group/rod-end";
+  const backLabel = parentGroup ? `Back to ${parentGroup.name}` : "Back to Forged Rod End";
 
   const drawingImage = normalizeDrawingImagePath(product.drawingImage);
-  const currentImage = imageTab === "product" ? product.image : drawingImage;
-
+  const currentImage = isCustomForgedRodEnd ? product.image : imageTab === "product" ? product.image : drawingImage;
   const displayName = getProductDisplayName(product);
-  const currentImageAlt =
-    imageTab === "product" ? displayName : `${displayName} Technical Drawing`;
-
+  const currentImageAlt = isCustomForgedRodEnd ? displayName : imageTab === "product" ? displayName : `${displayName} Technical Drawing`;
   const displayDescription = getProductDisplayDescription(product);
   const availableMaterials = getAvailableMaterials(product);
-  const isForgedRodEnd = new Set([
-    "rod-end",
-    "weldable-rod-end",
-    "rod-end-secondary",
-  ]).has(product.id);
+  const isForgedRodEnd = new Set(["rod-end", "weldable-rod-end", "rod-end-secondary"]).has(product.id);
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-slate-50">
       <Container>
         <div className="mt-24 pb-5 sm:mt-28 sm:pb-8">
-          <Link
-            href={backHref}
-            className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-x-0.5 hover:border-orange-300 hover:text-orange-500 hover:shadow-md sm:text-base"
-          >
-            <ArrowLeft
-              size={18}
-              className="transition-transform duration-200 group-hover:-translate-x-0.5"
-            />
+          <Link href={backHref} className="group inline-flex min-h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:-translate-x-0.5 hover:border-orange-300 hover:text-orange-500 hover:shadow-md sm:text-base">
+            <ArrowLeft size={18} className="transition-transform duration-200 group-hover:-translate-x-0.5" />
             {backLabel}
           </Link>
         </div>
@@ -89,21 +57,15 @@ export default function ProductDetailClient({
         <div className="border-b border-slate-200 pb-7 sm:pb-10">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div className="min-w-0">
-              <h1 className="w-full wrap-break-word text-2xl font-bold leading-tight text-slate-900 sm:text-3xl lg:text-4xl">
-                {displayName}
-              </h1>
-              <p className="mt-2 text-sm text-slate-600 sm:text-lg">
-                {product.groupName}
-              </p>
+              <h1 className="w-full wrap-break-word text-2xl font-bold leading-tight text-slate-900 sm:text-3xl lg:text-4xl">{displayName}</h1>
+              <p className="mt-2 text-sm text-slate-600 sm:text-lg">{product.groupName}</p>
             </div>
 
             <div className="flex flex-wrap gap-2 lg:shrink-0">
-              <span className="rounded-full bg-orange-100 px-3 py-1.5 text-xs font-semibold text-orange-600 sm:px-4 sm:py-2 sm:text-sm">
-                {product.category}
-              </span>
-              <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600 sm:px-4 sm:py-2 sm:text-sm">
-                #{product.productCode}
-              </span>
+              <span className="rounded-full bg-orange-100 px-3 py-1.5 text-xs font-semibold text-orange-600 sm:px-4 sm:py-2 sm:text-sm">{product.category}</span>
+              {!isCustomForgedRodEnd && (
+                <span className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600 sm:px-4 sm:py-2 sm:text-sm">#{product.productCode}</span>
+              )}
             </div>
           </div>
         </div>
@@ -125,178 +87,114 @@ export default function ProductDetailClient({
               />
             </div>
 
-            <div className="mt-3 grid grid-cols-2 gap-2 sm:gap-3">
-              <button
-                type="button"
-                onClick={() => setImageTab("product")}
-                className={`min-h-11.5 rounded-lg px-3 py-2.5 text-xs font-semibold transition-all duration-300 sm:text-sm ${
-                  imageTab === "product"
-                    ? "bg-orange-500 text-white shadow-sm"
-                    : "border border-slate-200 bg-white text-slate-600 hover:border-orange-500 hover:text-orange-500"
-                }`}
-              >
-                Product Image
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setImageTab("drawing")}
-                className={`min-h-11.5 rounded-lg px-3 py-2.5 text-xs font-semibold transition-all duration-300 sm:text-sm ${
-                  imageTab === "drawing"
-                    ? "bg-orange-500 text-white shadow-sm"
-                    : "border border-slate-200 bg-white text-slate-600 hover:border-orange-500 hover:text-orange-500"
-                }`}
-              >
-                Technical Drawing
-              </button>
-            </div>
+            {!isCustomForgedRodEnd && (
+              <div className="mt-3 grid grid-cols-2 gap-2 sm:gap-3">
+                <button type="button" onClick={() => setImageTab("product")} className={`min-h-11.5 rounded-lg px-3 py-2.5 text-xs font-semibold transition-all duration-300 sm:text-sm ${imageTab === "product" ? "bg-orange-500 text-white shadow-sm" : "border border-slate-200 bg-white text-slate-600 hover:border-orange-500 hover:text-orange-500"}`}>
+                  Product Image
+                </button>
+                <button type="button" onClick={() => setImageTab("drawing")} className={`min-h-11.5 rounded-lg px-3 py-2.5 text-xs font-semibold transition-all duration-300 sm:text-sm ${imageTab === "drawing" ? "bg-orange-500 text-white shadow-sm" : "border border-slate-200 bg-white text-slate-600 hover:border-orange-500 hover:text-orange-500"}`}>
+                  Technical Drawing
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="min-w-0 rounded-[20px] border border-slate-200 bg-white p-5 sm:p-7 lg:p-8">
-            <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">
-              Specifications Overview
-            </h2>
+            <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">Specifications Overview</h2>
 
             <div className="mt-6 space-y-5">
               <div className="border-b border-slate-200 pb-5">
-                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
-                  Description
-                </p>
-                <p className="text-sm leading-6 text-slate-900 sm:text-base sm:leading-7">
-                  {displayDescription}
-                </p>
+                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Description</p>
+                <p className="text-sm leading-6 text-slate-900 sm:text-base sm:leading-7">{displayDescription}</p>
               </div>
 
               <div className="border-b border-slate-200 pb-5">
-                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
-                  Category
-                </p>
-                <p className="text-sm font-medium text-slate-900 sm:text-base">
-                  {product.groupName}
-                </p>
+                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Category</p>
+                <p className="text-sm font-medium text-slate-900 sm:text-base">{product.groupName}</p>
               </div>
 
-              <div className="border-b border-slate-200 pb-5">
-                <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
-                  Product Code
-                </p>
-                <p className="break-all text-sm font-semibold text-slate-900 sm:text-base">
-                  #{product.productCode}
-                </p>
-              </div>
+              {!isCustomForgedRodEnd && (
+                <div className="border-b border-slate-200 pb-5">
+                  <p className="mb-1.5 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Product Code</p>
+                  <p className="break-all text-sm font-semibold text-slate-900 sm:text-base">#{product.productCode}</p>
+                </div>
+              )}
 
               {availableMaterials.length > 0 && (
                 <div className="border-b border-slate-200 pb-5">
-                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
-                    Available main materials
-                  </p>
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Available main materials</p>
                   <div className="flex flex-wrap gap-2">
                     {availableMaterials.map((material) => (
-                      <span
-                        key={material}
-                        className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 sm:text-sm"
-                      >
-                        {material}
-                      </span>
+                      <span key={material} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 sm:text-sm">{material}</span>
                     ))}
                   </div>
                 </div>
               )}
 
-              <div>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">
-                  Specification Parameters
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {product.specColumns.map((col) => (
-                    <span
-                      key={col}
-                      className="max-w-full wrap-break-word rounded bg-orange-100 px-2.5 py-1.5 text-xs font-semibold text-orange-600"
-                    >
-                      {col}
-                    </span>
-                  ))}
+              {!isCustomForgedRodEnd && (
+                <div>
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:text-sm">Specification Parameters</p>
+                  <div className="flex flex-wrap gap-2">
+                    {product.specColumns.map((col) => (
+                      <span key={col} className="max-w-full wrap-break-word rounded bg-orange-100 px-2.5 py-1.5 text-xs font-semibold text-orange-600">{col}</span>
+                    ))}
+                  </div>
+                  <div className="mt-4 inline-flex items-center rounded-full border border-[#392B87]/15 bg-[#392B87]/5 px-3 py-1.5 text-xs font-bold text-[#392B87]">
+                    {isForgedRodEnd ? "Custom-made forging according to your drawing" : "Production by drawing is available"}
+                  </div>
                 </div>
-                <div className="mt-4 inline-flex items-center rounded-full border border-[#392B87]/15 bg-[#392B87]/5 px-3 py-1.5 text-xs font-bold text-[#392B87]">
-                  {isForgedRodEnd
-                    ? "Custom-made forging according to your drawing"
-                    : "Production by drawing is available"}
+              )}
+
+              {isCustomForgedRodEnd && (
+                <div>
+                  <div className="inline-flex items-center rounded-full border border-[#392B87]/15 bg-[#392B87]/5 px-3 py-1.5 text-xs font-bold text-[#392B87]">
+                    Custom-made forging according to your drawing
+                  </div>
                 </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {!isCustomForgedRodEnd && (
+          <div className="border-t border-slate-200 py-10 sm:py-16">
+            <div className="mb-6 sm:mb-8">
+              <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">Detailed Specifications</h2>
+              <p className="mt-2 text-sm text-slate-500">Scroll horizontally to view all specification parameters.</p>
+            </div>
+            <div className="overflow-hidden rounded-[20px] border border-slate-200 bg-white">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-max">
+                  <thead>
+                    <tr className="border-b border-slate-200 bg-slate-50">
+                      {product.specColumns.map((col) => (
+                        <th key={col} className="whitespace-nowrap px-4 py-3 text-left text-xs font-bold text-slate-900 sm:px-6 sm:py-4 sm:text-sm">{col}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {product.specs.map((spec, idx) => (
+                      <tr key={idx} className="border-b border-slate-200 transition-colors hover:bg-orange-50">
+                        {product.specColumns.map((col) => (
+                          <td key={`${idx}-${col}`} className="whitespace-nowrap px-4 py-3 text-xs font-mono text-slate-700 sm:px-6 sm:py-4 sm:text-sm">{spec[col] || "-"}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="border-t border-slate-200 bg-slate-50 px-4 py-3 sm:px-6 sm:py-4">
+                <p className="text-xs text-slate-600 sm:text-sm">Showing {product.specs.length} variants • All dimensions in mm unless otherwise specified</p>
               </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className="border-t border-slate-200 py-10 sm:py-16">
-          <div className="mb-6 sm:mb-8">
-            <h2 className="text-xl font-bold text-slate-900 sm:text-2xl">
-              Detailed Specifications
-            </h2>
-            <p className="mt-2 text-sm text-slate-500">
-              Scroll horizontally to view all specification parameters.
-            </p>
-          </div>
-
-          <div className="overflow-hidden rounded-[20px] border border-slate-200 bg-white">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-max">
-                <thead>
-                  <tr className="border-b border-slate-200 bg-slate-50">
-                    {product.specColumns.map((col) => (
-                      <th
-                        key={col}
-                        className="whitespace-nowrap px-4 py-3 text-left text-xs font-bold text-slate-900 sm:px-6 sm:py-4 sm:text-sm"
-                      >
-                        {col}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {product.specs.map((spec, idx) => (
-                    <tr
-                      key={idx}
-                      className="border-b border-slate-200 transition-colors hover:bg-orange-50"
-                    >
-                      {product.specColumns.map((col) => (
-                        <td
-                          key={`${idx}-${col}`}
-                          className="whitespace-nowrap px-4 py-3 text-xs font-mono text-slate-700 sm:px-6 sm:py-4 sm:text-sm"
-                        >
-                          {spec[col] || "-"}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="border-t border-slate-200 bg-slate-50 px-4 py-3 sm:px-6 sm:py-4">
-              <p className="text-xs text-slate-600 sm:text-sm">
-                Showing {product.specs.length} variants • All dimensions in mm
-                unless otherwise specified
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-slate-200 py-10 sm:py-16">
-          <h2 className="mb-6 text-xl font-bold text-slate-900 sm:mb-8 sm:text-2xl">
-            Related Products
-          </h2>
-
+          <h2 className="mb-6 text-xl font-bold text-slate-900 sm:mb-8 sm:text-2xl">Related Products</h2>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
             {related.map((relatedProduct) => (
-              <ProductCard
-                key={relatedProduct.id}
-                title={getProductDisplayName(relatedProduct)}
-                description={getProductDisplayDescription(relatedProduct)}
-                image={relatedProduct.image}
-                href={`/products/${relatedProduct.id}`}
-                badge={relatedProduct.category}
-                variants={relatedProduct.specs.length}
-              />
+              <ProductCard key={relatedProduct.id} title={getProductDisplayName(relatedProduct)} description={getProductDisplayDescription(relatedProduct)} image={relatedProduct.image} href={`/products/${relatedProduct.id}`} badge={relatedProduct.category} variants={relatedProduct.specs.length} />
             ))}
           </div>
         </div>
